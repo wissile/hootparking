@@ -33,11 +33,11 @@ function initialize() {
   // Instantiate a directions service.
   directionsService = new google.maps.DirectionsService();
 
-  // Create a map and center it on Manhattan.
-  var manhattan = new google.maps.LatLng(40.7711329, -73.9741874);
+  // Create a map and center it on San Francisco.
+  var sf = new google.maps.LatLng(37.774391, -122.417859);
   var mapOptions = {
     zoom: 13,
-    center: manhattan
+    center: sf
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
@@ -117,20 +117,14 @@ google.maps.event.addDomListener(window, 'load', initialize);
     <div id="panel">
     <b>Start: </b>
     <select id="start">
-      <option value="penn station, new york, ny">Penn Station</option>
-      <option value="grand central station, new york, ny">Grand Central Station</option>
-      <option value="625 8th Avenue, New York, NY, 10018">Port Authority Bus Terminal</option>
-      <option value="staten island ferry terminal, new york, ny">Staten Island Ferry Terminal</option>
-      <option value="101 E 125th Street, New York, NY">Harlem - 125th St Station</option>
+      <option value="union square, san francisco, ca">union square</option>
     </select>
     <b>End: </b>
     <select id="end" onchange="calcRoute();">
-      <option value="260 Broadway New York NY 10007">City Hall</option>
-      <option value="W 49th St & 5th Ave, New York, NY 10020">Rockefeller Center</option>
-      <option value="moma, New York, NY">MOMA</option>
-      <option value="350 5th Ave, New York, NY, 10118">Empire State Building</option>
-      <option value="253 West 125th Street, New York, NY">Apollo Theater</option>
-      <option value="1 Wall St, New York, NY">Wall St</option>
+      <option value="">Select Destination</option>
+      <option value="845 pine st, San Francisco, CA">Dimitri house</option>
+      <option value="Hyatt rengency ,San Francisco, CA">Hyatt Rengency</option>
+      <option value="soma, San Francisco, CA">SOMA</option>
     </select>
     </div>
     <div id="map-canvas"></div>

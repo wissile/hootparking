@@ -19,6 +19,11 @@
 		return check;
 	}
 
+
+
+
+
+
 	function gnMenu( el, options ) {	
 		this.el = el;
 		this._init();
@@ -74,14 +79,14 @@
 			if( this.isMenuOpen ) return;
 			classie.add( this.trigger, 'gn-selected' );
 			this.isMenuOpen = true;
-			classie.add( this.menu, 'gn-open-all' );
+			classie.add( this.menu, 'gn-open-nosub' );
 			this._closeIconMenu();
 		},
 		_closeMenu : function() {
 			if( !this.isMenuOpen ) return;
 			classie.remove( this.trigger, 'gn-selected' );
 			this.isMenuOpen = false;
-			classie.remove( this.menu, 'gn-open-all' );
+			classie.remove( this.menu, 'gn-open-nosub' );
 			this._closeIconMenu();
 		}
 	}

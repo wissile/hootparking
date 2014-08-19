@@ -1,5 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
+
 body {
 	background: #34495e;
 	font-family: 'Lato', Arial, sans-serif;
@@ -47,9 +48,10 @@ input {
 }
 
 #inputfield {
-	width: 600px;
+	max-width: 600px;
+	padding: 0px 10px;
+	width: 100%;
 	margin: 0 auto;
-	border: 1px solid #fff;
 }
 
 #map-canvas {
@@ -59,7 +61,8 @@ input {
 }
 
 #destination {
-	width: 530px;
+	max-width: 530px;
+	width: 100%;
 	height: 60px;
 	margin: 0 auto;
 	border-radius: 0px;
@@ -80,6 +83,14 @@ input {
 	transform: rotate(-90deg);
 }
 
+@media (min-width: 768px) {
 
+}
 
+@media (max-width: 767px) {
+#gn-menu li:last-child {
+	display: none;
+}
+
+}
 

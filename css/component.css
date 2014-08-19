@@ -302,13 +302,15 @@ input.gn-search:focus {
 /* styles for opening menu */
 
 .gn-menu-wrapper.gn-open-all,
-.gn-menu-wrapper.gn-open-part {
+.gn-menu-wrapper.gn-open-part,
+.gn-menu-wrapper.gn-open-nosub {
 		-webkit-transform: translateX(0px);
 		-moz-transform: translateX(0px);
 		transform: translateX(0px);
 }
 
-.gn-menu-wrapper.gn-open-all {
+.gn-menu-wrapper.gn-open-all,
+.gn-menu-wrapper.gn-open-nosub {
 		width: 340px
 }
 
