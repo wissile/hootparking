@@ -79,14 +79,14 @@
 			if( this.isMenuOpen ) return;
 			classie.add( this.trigger, 'gn-selected' );
 			this.isMenuOpen = true;
-			classie.add( this.menu, 'gn-open-nosub' );
+			classie.add( this.menu, 'gn-open-all' );
 			this._closeIconMenu();
 		},
 		_closeMenu : function() {
 			if( !this.isMenuOpen ) return;
 			classie.remove( this.trigger, 'gn-selected' );
 			this.isMenuOpen = false;
-			classie.remove( this.menu, 'gn-open-nosub' );
+			classie.remove( this.menu, 'gn-open-all' );
 			this._closeIconMenu();
 		}
 	}

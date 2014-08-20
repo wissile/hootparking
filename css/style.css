@@ -6,6 +6,7 @@ body {
 	font-family: 'Lato', Arial, sans-serif;
 	color: #fff;
 	margin: 0 auto;
+	padding: 0px 10px;
 }
 
 h1 {
@@ -14,6 +15,7 @@ h1 {
 	font-size: 3.2em;
 	margin: 0;
 	font-weight: 300;
+	text-align: center;
 }
 
 h1 a {
@@ -60,7 +62,7 @@ input {
 	margin: 0 auto;
 }
 
-#destination {
+.destination {
 	max-width: 530px;
 	width: 100%;
 	height: 60px;
@@ -92,5 +94,17 @@ input {
 	display: none;
 }
 
+}
+
+
+#address {
+	color: #f4f4f4;
+}
+
+.tab-content > .tab-pane {
+  display: none;
+}
+.tab-content > .active {
+  display: block;
 }
 
