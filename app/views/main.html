@@ -1,0 +1,14 @@
+<div class="tab-pane active" id="main">
+    <h1>Bay East Nav <span>Your address:<span id="address">{{formattedAddress}}</span></span>
+        <input id="Autocomplete" class="destination" type="text" placeholder="Enter name or address"
+               ng-keydown="calcRoute()"
+               ng-autocomplete="result" details="details" options="options"/></h1>
+
+
+    <!--<input type="text" id="Autocomplete" class="form-control" ng-autocomplete="result1" details="details1" options="options1"/>-->
+    <p id="error">{{addressError}}</p>
+
+    <div id="map-canvas"></div>
+    &nbsp;
+    <div id="warnings_panel" style="width:100%;height:10%;text-align:center"></div>
+</div>
