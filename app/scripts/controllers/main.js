@@ -112,6 +112,15 @@ window.angular.module('easyparkangularApp')
             var mapOptions = {
                 zoom: 13,
                 center: sf,
+                panControl: false,
+                zoomControl: true,
+                zoomControlOptions: {
+                    style: google.maps.ZoomControlStyle.SMALL
+                },
+                mapTypeControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                overviewMapControl: false,
                 mapTypeControlOptions: {
                     mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
                 }
@@ -149,7 +158,7 @@ window.angular.module('easyparkangularApp')
             var request = {
                 origin: userLatLng,
                 destination: end,
-                travelMode: window.google.maps.TravelMode.WALKING
+                travelMode: window.google.maps.TravelMode.DRIVING // or WALKING
             };
 
             // Route the directions and pass the response to a
