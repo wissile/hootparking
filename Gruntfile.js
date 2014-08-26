@@ -46,7 +46,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['<%= yeoman.app %>/styles/{,*/}*.css', '<%= yeoman.app %>/stylus/{,*/}*.styl'],
-        tasks: ['newer:copy:styles', 'stylus', 'autoprefixer']
+        tasks: ['stylus', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -361,10 +361,11 @@ module.exports = function (grunt) {
       compile: {
           options: {
               linenos: true,
-              compress: false
+              compress: false,
+              'resolve url': true
           },
           files: {
-              'app/styles/main.css': 'app/stylus/main.styl', // 1:1 compile
+              'app/styles/main.css': 'app/stylus/main.styl' // 1:1 compile
               //'app/styles/main.css': ['app/stylus/main.styl'] // compile and concat into single file
           }
       }
