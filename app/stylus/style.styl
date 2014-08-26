@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url('http://fonts.googleapis.com/css?family=Lato:300,400,700');
 
 
 body {
@@ -106,5 +106,36 @@ input {
 }
 .tab-content > .active {
   display: block;
+}
+  
+#gn-menu{
+  position: absolute;
+  z-index: 2000;
+  width: 100%;
+  top: 0px;
+}
+
+.content{
+  right: 40px;
+  left: 280px;
+  top: 0px;
+  position: absolute;
+  padding-bottom: 30px;
+}
+
+.panel{
+  width: 100%;
+  min-height: 250px;
+  position: absolute;
+  margin-left: -102%;
+  z-index:2;
+  -webkit-transition: all .6s ease-in-out;
+  -moz-transition: all .6s ease-in-out;
+  -o-transition: all .6s ease-in-out;
+  -ms-transition: all .6s ease-in-out;
+  transition: all .6s ease-in-out;
+}
+.panel:target{
+  margin-left: 0%;
 }
 
