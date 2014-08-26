@@ -355,6 +355,18 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    stylus: {
+      compile: {
+          options: {
+              paths: ['stylus']
+          },
+          files: {
+              //'app/styles/*.css': 'stylus/*.styl' // 1:1 compile
+              'app/styles/main.css': ['stylus/*.styl'] // compile and concat into single file
+          }
+      }
     }
   });
 
@@ -368,6 +380,7 @@ module.exports = function (grunt) {
       'clean:server',
       'wiredep',
       'concurrent:server',
+      'stylus',
       'autoprefixer',
       'connect:livereload',
       'watch'
@@ -382,6 +395,7 @@ module.exports = function (grunt) {
   grunt.registerTask('test', [
     'clean:server',
     'concurrent:test',
+    'stylus',
     'autoprefixer',
     'connect:test',
     'karma'
@@ -392,6 +406,7 @@ module.exports = function (grunt) {
     'wiredep',
     'useminPrepare',
     'concurrent:dist',
+    'stylus',
     'autoprefixer',
     'concat',
     'ngmin',
