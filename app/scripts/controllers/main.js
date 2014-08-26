@@ -67,13 +67,60 @@ window.angular.module('easyparkangularApp')
             // Instantiate a directions service.
             directionsService = new window.google.maps.DirectionsService();
 
+
+            // Create an array to style the map
+            var styles = [
+                {
+                    stylers: [
+                        { hue: "#00ffe6" },//00ffe6   29ABE2
+                        { saturation: -20 },
+                        { lightness: 0 }
+                    ]
+                },{
+                    featureType: "road",
+                    elementType: "geometry",
+                    stylers: [
+                        { lightness: 100 },
+                        { visibility: "simplified" }
+                    ]
+                },{
+                    featureType: "road",
+                    elementType: "labels",
+                    stylers: [
+                        { visibility: "off" }
+                    ]
+                },{
+                    featureType: 'landscape',
+                        elementType: 'geometry',
+                        stylers: [
+                        { hue: '#FBB03B' },
+                        { gamma: 1.4 },
+                        { saturation: 82 },
+                        { lightness: 20 }
+                    ]
+                }
+            ];
+
+            // Create a new StyledMapType object, passing it the array of styles,
+            // as well as the name to be displayed on the map type control.
+            var styledMap = new google.maps.StyledMapType(styles,
+                {name: "Styled Map"});
+
+
             // Create a map and center it on San Francisco.
             var sf = new window.google.maps.LatLng(37.774391, -122.417859);
             var mapOptions = {
                 zoom: 13,
-                center: sf
+                center: sf,
+                mapTypeControlOptions: {
+                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+                }
             };
             map = new window.google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+            //Associate the styled map with the MapTypeId and set it to display.
+            map.mapTypes.set('map_style', styledMap);
+            map.setMapTypeId('map_style');
 
             var rendererOptions = {
                 map: map
