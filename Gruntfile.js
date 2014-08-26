@@ -45,8 +45,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.css', '<%= yeoman.app %>/stylus/{,*/}*.styl'],
+        tasks: ['newer:copy:styles', 'stylus', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -360,11 +360,12 @@ module.exports = function (grunt) {
     stylus: {
       compile: {
           options: {
-              paths: ['stylus']
+              linenos: true,
+              compress: false
           },
           files: {
-              //'app/styles/*.css': 'stylus/*.styl' // 1:1 compile
-              'app/styles/main.css': ['stylus/*.styl'] // compile and concat into single file
+              'app/styles/main.css': 'app/stylus/main.styl', // 1:1 compile
+              //'app/styles/main.css': ['app/stylus/main.styl'] // compile and concat into single file
           }
       }
     }
