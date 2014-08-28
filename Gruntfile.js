@@ -116,6 +116,7 @@ module.exports = function (grunt) {
         jshintrc: '.jshintrc',
         reporter: require('jshint-stylish')
       },
+
       all: {
         src: [
           'Gruntfile.js',
@@ -369,6 +370,18 @@ module.exports = function (grunt) {
               //'app/styles/main.css': ['app/stylus/main.styl'] // compile and concat into single file
           }
       }
+    },
+
+    uncss: {
+      dist: {
+          options: {
+              media : ['media screen and (max-width: 422px)', 'media (max-width: 767px) ']
+          },
+          files: {
+              '<%= yeoman.dist %>/styles/main.css': ['<%= yeoman.dist %>/index.html', '<%= yeoman.dist %>/views/main.html',
+                  '<%= yeoman.dist %>/views/search.html']
+          }
+      }
     }
   });
 
@@ -418,8 +431,14 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'uncss'
   ]);
+
+    grunt.registerTask('build-uncss', [
+        'build',
+        'uncss'
+    ]);
 
   grunt.registerTask('default', [
     'newer:jshint',

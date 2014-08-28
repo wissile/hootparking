@@ -13,9 +13,6 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
-    <link rel="apple-touch-icon" href="images/custom_icon.png"/>
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css">
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- endbuild -->
 </head>
 <body ng-app="easyparkangularApp">
@@ -112,11 +109,13 @@
     <script src="bower_components/jquery-ui/jquery-ui.js"></script>
     <!-- endbower -->
 
-    <script src="scripts/lib/gnmenu.js"></script>
-    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+
+
     <!-- endbuild -->
+    <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/lib/gnmenu.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/directives/ngAutocomplete.js"></script>
