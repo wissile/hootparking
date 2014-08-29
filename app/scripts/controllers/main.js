@@ -166,8 +166,6 @@ angular.module('easyparkangularApp')
             // function to create markers for each step.
             directionsService.route(request, function (response, status) {
                 if (status === window.google.maps.DirectionsStatus.OK) {
-                    var warnings = document.getElementById('warnings_panel');
-                    warnings.innerHTML = '<b>' + response.routes[0].warnings + '</b>';
                     directionsDisplay.setDirections(response);
                 }
             });
