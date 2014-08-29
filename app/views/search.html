@@ -1,8 +1,12 @@
-<div class="tab-pane" id="search">
-    <h1>Bay East <span>Annimation test</span></h1>
-
-    <div id="inputfield">
-        <input class="destination" type="text" placeholder="Enter destination name or address"/> <a id="findp"
-                                                                                                    class="gn-icon gn-icon-download"></a>
+<div id="desktop-container">
+    <div class="box">
+        <div id="map-canvas"></div>
+    </div>
+    <div class="box" id="pad">
+        <h1>Search Parking <span>Current Location:<span id="address">{{formattedAddress}}</span></span></h1>
+            <input id="Autocomplete" class="destination" type="text" placeholder="Enter name or address"
+                   ng-keydown="calcRoute()"
+                   ng-autocomplete="result" details="details" options="options"/>
+        <p id="error">{{addressError}}</p>
     </div>
 </div>

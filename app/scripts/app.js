@@ -24,12 +24,12 @@ angular
         $routeProvider
       .when('/main', {
             templateUrl: 'views/main.html',
-            controller: 'MainCtrl'
+            controller: ''
         }).when('/search', {
             templateUrl: 'views/search.html',
-            controller: ''
+            controller: 'MainCtrl'
         })
       .otherwise({
-        redirectTo: '/main'
+        redirectTo: '/search'
       });
   });
