@@ -116,7 +116,7 @@ angular.module('easyparkangularApp')
                 panControl: false,
                 zoomControl: true,
                 zoomControlOptions: {
-                    style: google.maps.ZoomControlStyle.SMALL
+                    style: window.google.maps.ZoomControlStyle.SMALL
                 },
                 mapTypeControl: false,
                 scaleControl: false,
@@ -172,5 +172,6 @@ angular.module('easyparkangularApp')
         };
 
         initialize();
+
 
     });

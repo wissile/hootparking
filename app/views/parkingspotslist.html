@@ -1,0 +1,10 @@
+<div ng-controller="ParkingspotslistCtrl">
+  I have {{spots.length}} spots. They are:
+  <input type="checkbox" ng-model="typeFilter" ng-true-value="OFF" ng-false-value="ON"> Garage
+  <div class="list-group">
+    <a class="list-group-item"
+       ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
+      {{spot.NAME}} {{spot.distance | number:2}} Miles
+    </a>
+  </div>
+</div>
