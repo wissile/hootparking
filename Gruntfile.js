@@ -367,7 +367,6 @@ module.exports = function (grunt) {
           },
           files: {
               'app/styles/main.css': 'app/stylus/main.styl' // 1:1 compile
-              //'app/styles/main.css': ['app/stylus/main.styl'] // compile and concat into single file
           }
       }
     },
