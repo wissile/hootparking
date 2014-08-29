@@ -1,5 +1,6 @@
 'use strict';
 
+//noinspection JSHint
 /**
  * @ngdoc overview
  * @name easyparkangularApp
@@ -19,7 +20,8 @@ angular
     'ngAutocomplete'
   ])
   .config(function ($routeProvider) {
-    $routeProvider
+    //noinspection JSCheckFunctionSignatures
+        $routeProvider
       .when('/main', {
             templateUrl: 'views/main.html',
             controller: 'MainCtrl'

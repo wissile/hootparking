@@ -1,5 +1,4 @@
-
-
+'use strict';
 /**
  * A directive for adding google places autocomplete to a text box
  * google places autocomplete info: https://developers.google.com/maps/documentation/javascript/places
@@ -32,9 +31,8 @@
  *
  */
 
-window.angular.module( 'ngAutocomplete', [])
+angular.module( 'ngAutocomplete', [])
     .directive('ngAutocomplete', function() {
-        'use strict';
 
         return {
 

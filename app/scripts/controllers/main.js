@@ -1,3 +1,4 @@
+'use strict';
 /**
  * @ngdoc function
  * @name easyparkangularApp.controller:MainCtrl
@@ -5,9 +6,8 @@
  * # MainCtrl
  * Controller of the easyparkangularApp
  */
-window.angular.module('easyparkangularApp')
+angular.module('easyparkangularApp')
     .controller('MainCtrl', function ($scope) {
-        'use strict';
 
         var map;
         var directionsDisplay;
@@ -53,6 +53,7 @@ window.angular.module('easyparkangularApp')
                 },
                 function (results, status) {
                     if (status === window.google.maps.GeocoderStatus.OK) {
+                        /*jshint camelcase: false */
                         $scope.formattedAddress = results[0].formatted_address;
                     } else {
                         $scope.addressError = 'Unable to retrieve your address';
@@ -72,22 +73,22 @@ window.angular.module('easyparkangularApp')
             var styles = [
                 {
                     stylers: [
-                        { hue: "#00ffe6" },//00ffe6   29ABE2
+                        { hue: '#00ffe6' },//00ffe6   29ABE2
                         { saturation: -20 },
                         { lightness: 0 }
                     ]
                 },{
-                    featureType: "road",
-                    elementType: "geometry",
+                    featureType: 'road',
+                    elementType: 'geometry',
                     stylers: [
                         { lightness: 100 },
-                        { visibility: "simplified" }
+                        { visibility: 'simplified' }
                     ]
                 },{
-                    featureType: "road",
-                    elementType: "labels",
+                    featureType: 'road',
+                    elementType: 'labels',
                     stylers: [
-                        { visibility: "off" }
+                        { visibility: 'off' }
                     ]
                 },{
                     featureType: 'landscape',
@@ -103,8 +104,8 @@ window.angular.module('easyparkangularApp')
 
             // Create a new StyledMapType object, passing it the array of styles,
             // as well as the name to be displayed on the map type control.
-            var styledMap = new google.maps.StyledMapType(styles,
-                {name: "Styled Map"});
+            var styledMap = new window.google.maps.StyledMapType(styles,
+                {name: 'Styled Map'});
 
 
             // Create a map and center it on San Francisco.
@@ -122,7 +123,7 @@ window.angular.module('easyparkangularApp')
                 streetViewControl: false,
                 overviewMapControl: false,
                 mapTypeControlOptions: {
-                    mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+                    mapTypeIds: [window.google.maps.MapTypeId.ROADMAP, 'map_style']
                 }
             };
             map = new window.google.maps.Map(document.getElementById('map-canvas'), mapOptions);
