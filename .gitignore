@@ -1,7 +1,10 @@
 node_modules
 dist
 .tmp
-.sass-cache
 bower_components
 .idea
-app/styles/
+app/styles
+merges
+platforms
+plugins
+www
