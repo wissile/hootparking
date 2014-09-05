@@ -13,8 +13,8 @@ angular.module('easyparkangularApp')
       $scope.quantity = 8;
       $scope.orderProp = 'distance';
 
-      $scope.$on('parkingSpot:updated', function(event,data) {
-          $scope.spots = data;
+      $scope.$on('parkingSpot:updated', function (event, data) {
+        $scope.spots = data;
       });
 
     });
