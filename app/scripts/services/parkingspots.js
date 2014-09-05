@@ -88,12 +88,12 @@ angular.module('easyparkangularApp')
       var stepDisplay;
       var markerArray = [];
 
-      var calculateRoute = function(){
+      var calculateRoute = function () {
 
       };
 
       //MAIN FUNCTIONS OF SERVICE
-      var parkingSpots  = {
+      var parkingSpots = {
         getParkingSpots: function (lat, lon, radius, uom) {
           var spots;
 
@@ -202,7 +202,7 @@ angular.module('easyparkangularApp')
 
         calcRoute: function () {
           //calculateRoute();
-          parkingSpots.geolocateUser().then(function(){
+          parkingSpots.geolocateUser().then(function () {
             // First, remove any existing markers from the map.
             for (var i = 0; i < markerArray.length; i++) {
               markerArray[i].setMap(null);
@@ -228,14 +228,14 @@ angular.module('easyparkangularApp')
               if (status === window.google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
                 var latLng = response.routes[0].legs[0].end_location;
-                var lat =latLng.k;
+                var lat = latLng.k;
                 var lon = latLng.B;
                 var radius = 2;
                 var uom = 'mile';
                 parkingSpots.getParkingSpots(lat, lon, radius, uom)
-                    .then(function(response){
+                    .then(function (response) {
                       spotsDeferred.resolve(response);
-                      $rootScope.$broadcast('parkingSpot:updated',response);
+                      $rootScope.$broadcast('parkingSpot:updated', response);
                     });
               }
             });

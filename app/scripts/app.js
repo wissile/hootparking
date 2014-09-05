@@ -10,26 +10,26 @@
  * Main module of the application.
  */
 angular
-  .module('easyparkangularApp', [
-    'ngAnimate',
-    'ngCookies',
-    'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch',
-    'ngAutocomplete'
-  ])
-  .config(function ($routeProvider) {
-    //noinspection JSCheckFunctionSignatures
-        $routeProvider
-      .when('/main', {
+    .module('easyparkangularApp', [
+      'ngAnimate',
+      'ngCookies',
+      'ngResource',
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch',
+      'ngAutocomplete'
+    ])
+    .config(function ($routeProvider) {
+      //noinspection JSCheckFunctionSignatures
+      $routeProvider
+          .when('/main', {
             templateUrl: 'views/main.html',
             controller: ''
-        }).when('/search', {
+          }).when('/search', {
             templateUrl: 'views/search.html',
             controller: 'MainCtrl'
-        })
-      .otherwise({
-        redirectTo: '/search'
-      });
-  });
+          })
+          .otherwise({
+            redirectTo: '/search'
+          });
+    });
