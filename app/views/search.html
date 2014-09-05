@@ -1,13 +1,16 @@
 <div id="desktop-container">
-    <div class="box">
-        <div id="map-canvas"></div>
-    </div>
-    <div class="box" id="pad">
-        <h1>Search Parking <span>Current Location:<span id="address">{{formattedAddress}}</span></span></h1>
-            <input id="Autocomplete" class="destination" type="text" placeholder="Enter name or address"
-                   ng-keydown="calcRoute()"
-                   ng-autocomplete="result" details="details" options="options"/>
-        <p id="error">{{addressError}}</p>
-      <div ng-include src="'/views/parkingspotslist.html'"></div>
-    </div>
+  <div class="box">
+    <div id="map-canvas"></div>
+  </div>
+  <div class="box" id="pad">
+    <h1>Search Parking <span>Current Location:<span id="address">{{formattedAddress}}</span></span></h1>
+
+    <form ng-submit="calcRoute()">
+      <input id="Autocomplete" class="destination" type="text" placeholder="Enter name or address"
+             ng-autocomplete="result" details="details" options="options"/>
+    </form>
+    <p id="error">{{addressError}}</p>
+
+    <div ng-include src="'/views/parkingspotslist.html'"></div>
+  </div>
 </div>
