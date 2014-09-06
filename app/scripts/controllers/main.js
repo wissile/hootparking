@@ -15,7 +15,6 @@ angular.module('easyparkangularApp')
       $scope.options = null;
       $scope.details = '';
 
-      new window.gnMenu(document.getElementById('gn-menu'));
 
       function writeAddressName(latLng) {
         var geocoder = new window.google.maps.Geocoder();
