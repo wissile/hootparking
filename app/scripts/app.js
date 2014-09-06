@@ -25,11 +25,17 @@ angular
           .when('/main', {
             templateUrl: 'views/main.html',
             controller: ''
-          }).when('/search', {
-            templateUrl: 'views/search.html',
+          }).when('/home', {
+            templateUrl: 'views/home.html',
             controller: 'MainCtrl'
+          }).when('/find', {
+            templateUrl: 'views/find.html',
+            controller: ''
+          }).when('/signup', {
+            templateUrl: 'views/signup.html',
+            controller: ''
           })
           .otherwise({
-            redirectTo: '/search'
+            redirectTo: '/home'
           });
     });
