@@ -17,4 +17,16 @@ angular.module('easyparkangularApp')
         $scope.spots = data;
       });
 
+      $scope.saveParkingSpot = function(spot){
+        console.log("spot", spot);
+        var parkingSpot = {
+          DESC: spot.DESC,
+          INTER: spot.INTER,
+          LOC: spot.LOC,
+          NAME: spot.NAME
+        };
+
+        window.localStorage.setItem("parkingSpot", JSON.stringify(parkingSpot));
+      }
+
     });

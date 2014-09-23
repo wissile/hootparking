@@ -30,7 +30,7 @@ angular
             controller: 'MainCtrl'
           }).when('/find', {
             templateUrl: 'views/find.html',
-            controller: ''
+            controller: 'FindCtrl'
           }).when('/signup', {
             templateUrl: 'views/signup.html',
             controller: ''
