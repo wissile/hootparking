@@ -245,6 +245,7 @@ angular.module('easyparkangularApp')
         getSpots: function () {
           return spotsDeferred.promise;
         }
+
       };
 
       return parkingSpots;
