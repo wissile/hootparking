@@ -34,7 +34,7 @@ angular
           }).when('/find', {
             title: 'Find my Car',
             templateUrl: 'views/find.html',
-            controller: ''
+            controller: 'FindCtrl'
           }).when('/signup', {
             title: 'Account',
             templateUrl: 'views/signup.html',

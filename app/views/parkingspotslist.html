@@ -2,7 +2,7 @@
   I found {{spots.length}} spots. Filter by:
   <input type="checkbox" ng-model="typeFilter" ng-true-value="OFF" ng-false-value="ON"> Garage
   <div class="list-group">
-    <a class="list-group-item"
+    <a class="list-group-item" ng-click="saveParkingSpot(spot)"
        ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
 
       <div class="parking-name">{{spot.NAME}}</div>
