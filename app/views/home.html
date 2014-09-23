@@ -11,19 +11,19 @@
       <form ng-submit="calcRoute()">
         <input id="Autocomplete" type="text" placeholder="Enter name or address..."
                ng-autocomplete="result" details="details" options="options"/>
-        <p><input type="submit" class="getstats" value="Search Parking"></input></p>
+
+        <p><input type="submit" class="getpark" value="Search Parking"></input></p>
       </form>
       <p>
+
       <p id="error">{{addressError}}</p>
+
       <div ng-include src="'/views/parkingspotslist.html'"></div>
     </li>
   </ul>
 
 </div>
 <div id="map-canvas"></div>
-
-
-
 
 
 

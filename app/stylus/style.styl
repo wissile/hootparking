@@ -14,13 +14,19 @@ body {
 }
 
 .main {
-  margin: 40px 0px 80px 0px;
+  margin: 60px 0px 80px 0px;
 }
 
 #geolocate {
   max-width: 400px;
   border: 1px solid transparent;
   box-sizing: border-box;
+}
+.altsign {
+  font-style: italic;
+  color: #808080;
+  margin-top:5px;
+  text-align: center;
 }
 
 #geosection {
@@ -74,9 +80,13 @@ body {
   font-weight: 100;
   text-align: left;
 }
-.getstats {
+
+.getstats a {
+  display: block;
   width: 100%;
   height: 50px;
+  padding: 3.5% 0%;
+  margin-top: 20px;
   text-transform: uppercase;
   font-size: 14px;
   border: 1px solid #29A5DC;
@@ -86,10 +96,24 @@ body {
   vertical-align: middle;
   cursor: pointer;
   text-align: center;
-  padding: 3.5% 0%;
-  margin-top: 20px;
 }
 
+.getpark {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 3.5% 0%;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 1px solid #29A5DC;
+  color: #29A5DC;
+  font-weight: 800;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  text-align: center;
+}
 
 ul li {
   display: block;
@@ -98,16 +122,23 @@ input, button {
   outline: 0;
 }
 
-.getstats:hover {
+.getstats a:hover {
   background-color: #29A5DC;
   color: #fff;
+  text-decoration: none;
+}
+
+.getpark:hover {
+  background-color: #29A5DC;
+  color: #fff;
+  text-decoration: none;
 }
 
 .header {
   width: 100%;
   border-bottom: 1px solid #c6c6c6;
   color: #808080;
-  padding: 10px 0px;
+  padding: 5px 0px;
   background-color: #fff;
   position: fixed;
   top: 0;
@@ -131,13 +162,21 @@ input, button {
   min-height: 30px;
 }
 
+.header-nav li a {
+  color: inherit;
+  padding: 10px 20px;
+  cursor: pointer;
+}
 
+.header-nav li a:hover {
+  text-decoration: none;
+}
 
 .footer {
   width: 100%;
   border-top: 1px solid #c6c6c6;
   color: #808080;
-  padding: 10px 0px;
+  padding: 5px 0px;
   background-color: #fff;
   position: fixed;
   bottom: 0;
@@ -163,6 +202,13 @@ input, button {
   text-align: center;
   vertical-align: top;
   min-height: 30px;
+}
+
+.footer-nav li a {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 70%;
 }
 
 .footer-nav li p {
