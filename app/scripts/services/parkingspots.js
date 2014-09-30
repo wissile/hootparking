@@ -278,7 +278,7 @@ angular.module('easyparkangularApp')
                   BEG = parseInt(to24Hour(rate.BEG).split(':'), 10);
                   END = parseInt(to24Hour(rate.END).split(':'), 10);
                   END = END === 0 ? 24 : END;
-                  if (currentHour > BEG && currentHour < END) {
+                  if (currentHour >= BEG && currentHour <= END) {
                     return rate;
                   }
                 }
