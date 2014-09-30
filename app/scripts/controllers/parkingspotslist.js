@@ -14,7 +14,8 @@ angular.module('easyparkangularApp')
       $scope.orderProp = 'distance';
 
       $scope.$on('parkingSpot:updated', function (event, data) {
-        $scope.spots = data;
+        data = ParkingSpots.setCurrentRate(data);
+        $scope.spots = ParkingSpots.cleanName(data);
       });
 
       $scope.saveParkingSpot = function(spot){

@@ -52,6 +52,17 @@ angular.module('easyparkangularApp')
         return spots;
       };
 
+      var to24Hour = function (str) {
+        var tokens = /([10]?\d):([0-5]\d) ([ap]m)/i.exec(str);
+        if (tokens == null) { return null; }
+        if (tokens[3].toLowerCase() === 'pm' && tokens[1] !== '12') {
+          tokens[1] = '' + (12 + (+tokens[1]));
+        } else if (tokens[3].toLowerCase() === 'am' && tokens[1] === '12') {
+          tokens[1] = '00';
+        }
+        return tokens[1] + ':' + tokens[2];
+      }
+
       //GEOLOCATION SERVICES
       var userLatLng;
 
@@ -244,9 +255,52 @@ angular.module('easyparkangularApp')
 
         getSpots: function () {
           return spotsDeferred.promise;
+        },
+
+        cleanName : function (spots) {
+          for (var i = 0; i < spots.length; i++) {
+            spots[i].NAME = spots[i].NAME.replace('Garage','');
+          }
+          return spots;
+        },
+
+        setCurrentRate : function(spots){
+          var now = new Date();
+          var currentHour = now.getHours();
+          var BEG;
+          var END;
+          for (var i = 0; i < spots.length; i++) {
+            if(spots[i].RATES && spots[i].RATES.RS){
+              spots[i].currentRate = _.find(spots[i].RATES.RS, function(rate){
+                if(rate && rate.BEG && rate.END){
+                  BEG = parseInt(to24Hour(rate.BEG).split(':'), 10);
+                  END = parseInt(to24Hour(rate.END).split(':'), 10);
+                  END = END === 0 ? 24 : END;
+                  if(currentHour > BEG && currentHour < END){
+                    return rate;
+                  }
+                }
+              });
+            }
+          }
+          return spots;
         }
 
       };
 
       return parkingSpots;
     });
+
+//RS: [{BEG:12:00 AM, END:9:00 AM, RATE:0, RQ:No charge}, {BEG:9:00 AM, END:12:00 PM, RATE:3, RQ:Per hour},…]
+//0: {BEG:12:00 AM, END:9:00 AM, RATE:0, RQ:No charge}
+//1: {BEG:9:00 AM, END:12:00 PM, RATE:3, RQ:Per hour}
+//2: {BEG:12:00 PM, END:3:00 PM, RATE:4.25, RQ:Per hour}
+//3: {BEG:3:00 PM, END:6:00 PM, RATE:3.25, RQ:Per hour}
+//4: {BEG:6:00 PM, END:9:00 PM, RATE:2.75, RQ:Per hour}
+//5: {BEG:9:00 PM, END:12:00 AM, RATE:0.25, RQ:Per hour}
+//
+//rate.BEG: "12:00 AM"
+//rate.END: "9:00 AM"
+//BEG: "00:00"
+//END: "9:00"
+//currentHour: 23
