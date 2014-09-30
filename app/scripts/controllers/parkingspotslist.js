@@ -19,7 +19,7 @@ angular.module('easyparkangularApp')
       });
 
       $scope.saveParkingSpot = function (spot) {
-        console.log("spot", spot);
+        console.log('spot', spot);
         var parkingSpot = {
           DESC: spot.DESC,
           INTER: spot.INTER,
@@ -27,7 +27,7 @@ angular.module('easyparkangularApp')
           NAME: spot.NAME
         };
 
-        window.localStorage.setItem("parkingSpot", JSON.stringify(parkingSpot));
-      }
+        window.localStorage.setItem('parkingSpot', JSON.stringify(parkingSpot));
+      };
 
     });

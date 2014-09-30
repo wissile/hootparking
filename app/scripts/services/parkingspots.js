@@ -54,7 +54,7 @@ angular.module('easyparkangularApp')
 
       var to24Hour = function (str) {
         var tokens = /([10]?\d):([0-5]\d) ([ap]m)/i.exec(str);
-        if (tokens == null) {
+        if (tokens === null) {
           return null;
         }
         if (tokens[3].toLowerCase() === 'pm' && tokens[1] !== '12') {
@@ -63,7 +63,7 @@ angular.module('easyparkangularApp')
           tokens[1] = '00';
         }
         return tokens[1] + ':' + tokens[2];
-      }
+      };
 
       //GEOLOCATION SERVICES
       var userLatLng;
@@ -100,10 +100,6 @@ angular.module('easyparkangularApp')
       var directionsService;
       var stepDisplay;
       var markerArray = [];
-
-      var calculateRoute = function () {
-
-      };
 
       //MAIN FUNCTIONS OF SERVICE
       var parkingSpots = {
@@ -240,6 +236,7 @@ angular.module('easyparkangularApp')
             directionsService.route(request, function (response, status) {
               if (status === window.google.maps.DirectionsStatus.OK) {
                 directionsDisplay.setDirections(response);
+                /*jshint camelcase: false */
                 var latLng = response.routes[0].legs[0].end_location;
                 var lat = latLng.k;
                 var lon = latLng.B;
@@ -271,9 +268,10 @@ angular.module('easyparkangularApp')
           var currentHour = now.getHours();
           var BEG;
           var END;
-          for (var i = 0; i < spots.length; i++) {
-            if (spots[i].RATES && spots[i].RATES.RS) {
-              spots[i].currentRate = _.find(spots[i].RATES.RS, function (rate) {
+
+          _.forEach(spots, function(spot){
+            if (spot.RATES && spot.RATES.RS) {
+              spot.currentRate = _.find(spot.RATES.RS, function (rate) {
                 if (rate && rate.BEG && rate.END) {
                   BEG = parseInt(to24Hour(rate.BEG).split(':'), 10);
                   END = parseInt(to24Hour(rate.END).split(':'), 10);
@@ -284,7 +282,7 @@ angular.module('easyparkangularApp')
                 }
               });
             }
-          }
+          });
           return spots;
         }
 
