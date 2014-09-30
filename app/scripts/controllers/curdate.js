@@ -11,7 +11,7 @@ angular.module('easyparkangularApp')
 
       var stopTime = $interval(updateTime, 1000);
 
-      $scope.$on('$destroy', function() {
+      $scope.$on('$destroy', function () {
         // Make sure that the interval is destroyed too
         $interval.cancel(stopTime);
       });

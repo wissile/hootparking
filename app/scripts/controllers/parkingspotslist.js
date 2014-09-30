@@ -18,7 +18,7 @@ angular.module('easyparkangularApp')
         $scope.spots = ParkingSpots.cleanName(data);
       });
 
-      $scope.saveParkingSpot = function(spot){
+      $scope.saveParkingSpot = function (spot) {
         console.log("spot", spot);
         var parkingSpot = {
           DESC: spot.DESC,
