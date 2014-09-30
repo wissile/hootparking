@@ -141,7 +141,13 @@ module.exports = function (grunt) {
         ],
         options: {
           open: true,
-          base: '<%= config.dist %>'
+          base: '<%= config.dist %>',
+          middleware: function (connect) {
+            return [
+              connect.static(config.dist),
+              proxySnippet
+            ];
+          }
         }
       }
     },
@@ -544,7 +550,7 @@ module.exports = function (grunt) {
       grunt.config.set('connect.options.hostname', '0.0.0.0');
     }
     if (target === 'dist') {
-      return grunt.task.run(['build', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'configureProxies:dist', 'connect:dist:keepalive']);
     }
 
     grunt.task.run([
@@ -574,8 +580,8 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'connect:test',
-      'mocha'
+      'connect:test'
+//      'mocha'
     ]);
   });
 
