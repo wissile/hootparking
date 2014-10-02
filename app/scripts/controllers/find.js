@@ -8,9 +8,9 @@
  * Controller of the yeomanApp
  */
 angular.module('easyparkangularApp')
-  .controller('FindCtrl', function ($scope, ParkingSpots) {
+    .controller('FindCtrl', function ($scope, ParkingSpots) {
 
-      $scope.carLocation = JSON.parse(window.localStorage.getItem("parkingSpot"));
+      $scope.carLocation = JSON.parse(window.localStorage.getItem('parkingSpot'));
 
       function writeAddressName(latLng) {
         var geocoder = new window.google.maps.Geocoder();
@@ -32,4 +32,4 @@ angular.module('easyparkangularApp')
         writeAddressName(latLng);
       });
 
-  });
+    });
