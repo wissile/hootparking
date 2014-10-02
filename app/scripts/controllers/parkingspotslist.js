@@ -14,11 +14,12 @@ angular.module('easyparkangularApp')
       $scope.orderProp = 'distance';
 
       $scope.$on('parkingSpot:updated', function (event, data) {
-        $scope.spots = data;
+        data = ParkingSpots.setCurrentRate(data);
+        $scope.spots = ParkingSpots.cleanName(data);
       });
 
-      $scope.saveParkingSpot = function(spot){
-        console.log("spot", spot);
+      $scope.saveParkingSpot = function (spot) {
+        console.log('spot', spot);
         var parkingSpot = {
           DESC: spot.DESC,
           INTER: spot.INTER,
@@ -26,7 +27,7 @@ angular.module('easyparkangularApp')
           NAME: spot.NAME
         };
 
-        window.localStorage.setItem("parkingSpot", JSON.stringify(parkingSpot));
-      }
+        window.localStorage.setItem('parkingSpot', JSON.stringify(parkingSpot));
+      };
 
     });

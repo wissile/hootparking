@@ -53,8 +53,8 @@ angular
           });
     })
 
-    .run(['$location', '$rootScope', function($location, $rootScope) {
-      $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
+    .run(['$location', '$rootScope', function ($location, $rootScope) {
+      $rootScope.$on('$routeChangeSuccess', function (event, current) {
         $rootScope.title = current.$$route.title;
       });
     }]);

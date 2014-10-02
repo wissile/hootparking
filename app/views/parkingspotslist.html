@@ -6,9 +6,11 @@
        ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
 
       <div class="parking-name">{{spot.NAME}}</div>
-      <div class="type">Garage</div><div class="status">{{spot.TYPE}}</div>
+      <div class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</div>
+      <div class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</div>
+      <div class="status">{{spot.TYPE}}</div>
       <div class="right-data">
-        <div class="price"><span>$</span>{{spot.distance | number:0}}</div>
+        <div class="price"><span>$</span>{{spot.currentRate.RATE | number:1}}</div>
         <div class="distance">{{spot.distance | number:1}}<span>mi</span></div>
       </div>
     </a>
