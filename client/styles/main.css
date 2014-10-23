@@ -1,0 +1,428 @@
+
+/* line 1 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/main.styl */
+
+/* line 1 : /Users/v-newbad-ave/bitbucket/easyparkapp/node_modules/grunt-contrib-stylus/node_modules/stylus/lib/functions/index.styl */
+
+/* line 287 : /Users/v-newbad-ave/bitbucket/easyparkapp/node_modules/grunt-contrib-stylus/node_modules/stylus/lib/functions/index.styl */
+
+/* line 1 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+@import url("http://fonts.googleapis.com/css?family=Lato:100.300,400,700");
+@import url("http://fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700");
+
+/* line 5 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+body {
+  font-family: "Roboto", Verdana, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* line 10 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#container {
+  margin: 0 auto;
+  max-width: 400px;
+}
+
+/* line 15 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.main {
+  margin: 60px 0px 80px 0px;
+}
+
+/* line 19 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#geolocate {
+  max-width: 400px;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+
+/* line 25 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.altsign {
+  font-style: italic;
+  color: #808080;
+  margin-top: 5px;
+  text-align: center;
+}
+
+/* line 32 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#geosection {
+  padding: 0;
+  margin: 10px 20px;
+}
+
+/* line 37 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#geosection li {
+  margin: 50px 0px;
+}
+
+/* line 41 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#geosection li:last-child {
+  margin-bottom: 0px;
+}
+
+/* line 45 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.geosecline {
+  padding-bottom: 10px;
+  white-space: nowrap;
+}
+
+/* line 50 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.test {
+  display: inline-block;
+  vertical-align: top;
+  margin: 0;
+}
+
+/* line 56 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#address {
+  font-size: 26px;
+  font-weight: 100;
+  color: #4d4d4d;
+  white-space: normal;
+  margin-left: 10px;
+}
+
+/* line 64 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.sectionline {
+  font-size: 16px;
+  font-weight: 100;
+  color: #808080;
+  margin-left: 36px;
+  margin-top: 0;
+  padding: 0;
+}
+
+/* line 73 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#search-zip input {
+  border: 1px solid #c6c6c6;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 100;
+  padding: 5px 10px;
+}
+
+/* line 82 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#search-zip p {
+  font-size: 16px;
+  font-weight: 100;
+  text-align: left;
+}
+
+/* line 88 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.getstats a {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 3.5% 0%;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 1px solid #29a5dc;
+  color: #29a5dc;
+  font-weight: 800;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* line 105 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.getpark {
+  display: block;
+  width: 100%;
+  height: 50px;
+  padding: 3.5% 0%;
+  margin-top: 20px;
+  text-transform: uppercase;
+  font-size: 14px;
+  border: 1px solid #29a5dc;
+  color: #29a5dc;
+  font-weight: 800;
+  background-color: #fff;
+  vertical-align: middle;
+  cursor: pointer;
+  text-align: center;
+}
+
+/* line 122 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+ul li {
+  display: block;
+}
+
+/* line 126 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+input,
+button {
+  outline: 0;
+}
+
+/* line 130 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.getstats a:hover {
+  background-color: #29a5dc;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* line 136 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.getpark:hover {
+  background-color: #29a5dc;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* line 142 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.header {
+  width: 100%;
+  border-bottom: 1px solid #c6c6c6;
+  color: #808080;
+  padding: 5px 0px;
+  background-color: #fff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 200;
+}
+
+/* line 154 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.header-nav {
+  width: 100%;
+  padding: 0;
+  margin: 10px 0px 0px 0px;
+}
+
+/* line 160 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.header-nav li {
+  display: inline-block;
+  width: 32%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: top;
+  min-height: 30px;
+}
+
+/* line 170 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.header-nav li a {
+  color: inherit;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* line 176 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.header-nav li a:hover {
+  text-decoration: none;
+}
+
+/* line 180 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer {
+  width: 100%;
+  border-top: 1px solid #c6c6c6;
+  color: #808080;
+  padding: 5px 0px;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 200;
+}
+
+/* line 192 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer-nav {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 198 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer-nav li a:hover {
+  text-decoration: none;
+}
+
+/* line 202 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer-nav li {
+  display: inline-block;
+  width: 32%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  vertical-align: top;
+  min-height: 30px;
+}
+
+/* line 212 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer-nav li a {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  width: 70%;
+}
+
+/* line 219 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.footer-nav li p {
+  margin: 0;
+  padding: 0;
+  font-size: 12px;
+  color: #808080;
+  text-decoration: none;
+}
+
+/* line 227 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#carinfo {
+  width: 80%;
+  padding: 0;
+  font-size: 38px;
+  font-weight: 100;
+  color: #808080;
+  margin: 0 auto;
+}
+
+/* line 236 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#carinfo li {
+  display: inline-block;
+  text-align: center;
+  padding: 10px;
+  margin: 0;
+  vertical-align: top;
+}
+
+/* line 244 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#carinfo li p {
+  padding: 0;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 400;
+  text-align: center;
+}
+
+/* line 252 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#Autocomplete {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #f1f1f1;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 100;
+  font-family: "Roboto";
+  color: #4d4d4d;
+}
+
+/* line 264 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#registerlist {
+  padding: 0;
+  margin: 10px 10px;
+}
+
+/* line 269 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.name {
+  float: left;
+  width: 50%;
+}
+
+/* line 274 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#profile-intro {
+  font-size: 28px;
+  font-weight: 100;
+  color: #808080;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* line 282 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#profile-intro p {
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+/* line 289 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+#registerlist li {
+  margin: 10px 0px;
+}
+
+/* line 293 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.register {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  border-bottom: 1px solid #f1f1f1;
+  padding: 5px 15px;
+  box-sizing: border-box;
+  font-size: 22px;
+  font-weight: 100;
+  font-family: "Roboto";
+  color: #4d4d4d;
+}
+
+/* line 306 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.register:focus {
+  border-bottom: 1px solid #29a5dc;
+}
+
+/* line 310 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.list-group {
+  z-index: 1;
+}
+
+/* line 314 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.list-group-item {
+  border-left: 4px solid #ff0;
+}
+
+/* line 318 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.parking-name {
+  font-size: 20px;
+  font-weight: 400;
+  color: #808080;
+  margin-bottom: 10px;
+}
+
+/* line 325 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.right-data {
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin: 6px 6px 0px 0px;
+}
+
+/* line 332 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.distance {
+  display: inline-block;
+  font-size: 32px;
+  font-weight: 100;
+}
+
+/* line 338 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.distance span {
+  font-size: 18px;
+}
+
+/* line 342 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.price {
+  display: inline-block;
+  font-size: 32px;
+  margin-right: 5px;
+  font-weight: 100;
+}
+
+/* line 349 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.price span {
+  font-size: 18px;
+  vertical-align: top;
+}
+
+/* line 354 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.type {
+  color: #808080;
+  display: inline-block;
+}
+
+/* line 359 : /Users/v-newbad-ave/bitbucket/easyparkapp/app/stylus/style.styl */
+.status {
+  color: #808080;
+  display: inline-block;
+  margin-left: 10px;
+  padding: 0px 5px;
+  font-size: 14px;
+  border-radius: 10px;
+  background-color: #f3761c;
+  color: #fff;
+}
