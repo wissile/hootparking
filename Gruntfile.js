@@ -11,6 +11,13 @@ var cordova = require('cordova');
 
 module.exports = function (grunt) {
 
+  var localConfig;
+  try {
+    localConfig = require('./server/config/local.env');
+  } catch(e) {
+    localConfig = {};
+  }
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -79,6 +86,39 @@ module.exports = function (grunt) {
           '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         tasks: ['notify:livereload']
+      },
+      express: {
+        files: [
+          'server/**/*.{js,json}'
+        ],
+        tasks: ['express:dev', 'wait'],
+        options: {
+          livereload: true,
+          nospawn: true //Without this option specified express won't be reloaded
+        }
+      }
+    },
+
+    express: {
+      options: {
+        port: process.env.PORT || 9000
+      },
+      dev: {
+        options: {
+          script: 'server/app.js',
+          debug: true
+        }
+      },
+      prod: {
+        options: {
+          script: 'dist/server/app.js'
+        }
+      }
+    },
+
+    open: {
+      server: {
+        url: 'http://localhost:<%= express.options.port %>'
       }
     },
 
@@ -96,9 +136,9 @@ module.exports = function (grunt) {
         ]
       },
       options: {
-        port: 9000,
+        port: 9001,
         open: true,
-        livereload: 35729,
+        livereload: 35728,
         // Change this to '0.0.0.0' to access the server from outside
         hostname: 'localhost'
       },
@@ -232,13 +272,22 @@ module.exports = function (grunt) {
 //        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
 //      }
 //    },
+//    wiredep: {
+//      options: {
+//        cwd: '<%= yeoman.app %>'
+//      },
+//      app: {
+//        src: ['<%= yeoman.app %>/index.html'],
+//        ignorePath: /\.\.\//
+//      }
+//    },
+
+    // Automatically inject Bower components into the app
     wiredep: {
-      options: {
-        cwd: '<%= yeoman.app %>'
-      },
-      app: {
-        src: ['<%= yeoman.app %>/index.html'],
-        ignorePath: /\.\.\//
+      target: {
+        src: '<%= yeoman.app %>/index.html',
+        ignorePath: '<%= yeoman.app %>/',
+        exclude: []
       }
     },
 
@@ -540,10 +589,32 @@ module.exports = function (grunt) {
           message: 'build complete, server ready and watching for changes'//required
         }
       }
+    },
+
+    env: {
+      test: {
+        NODE_ENV: 'test'
+      },
+      prod: {
+        NODE_ENV: 'production'
+      },
+      all: localConfig
     }
+
 
   });
 
+  // Used for delaying livereload until after server has restarted
+  grunt.registerTask('wait', function () {
+    grunt.log.ok('Waiting for server reload...');
+
+    var done = this.async();
+
+    setTimeout(function () {
+      grunt.log.writeln('Done waiting!');
+      done();
+    }, 1500);
+  });
 
   grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
     if (grunt.option('allow-remote')) {
@@ -555,12 +626,14 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
-      'wiredep',
+      'env:all',
       'concurrent:server',
+      'wiredep',
       'stylus',
       'autoprefixer',
-      'configureProxies:server',
-      'connect:livereload',
+      'express:dev',
+      'wait',
+      'open',
       'watch'
     ]);
   });
