@@ -1,41 +1,28 @@
-<div ng-hide="signup" id="geolocate">
-  <div id="profile-intro"><p><img src="images/profile.png"/></p>
-
-    <p>Your profile</p></div>
-  <ul id="registerlist">
-    <li>
-      <input class="register" type="text" placeholder="Enter email"/>
-    </li>
-    <li>
-      <input class="register" type="password" name="pwd" placeholder="Enter password"/>
-
-      <div class="getstats"><a href="#profile">Sign in</a></div>
-      <div class="altsign">Don't have an account, please <a ng-click="signup = !signup">Sign up</a></div>
-    </li>
-  </ul>
-</div>
-
-
-<div ng-show="signup" id="geolocate">
+<div>
   <div id="profile-intro"><p><img src="images/profile.png"/></p>Create an account<p>Enjoy benefits that saves you time
     and money</p></div>
-  <ul id="registerlist">
-    <li class="name">
-      <input class="register" type="text" placeholder="First name"/>
-    </li>
-    <li class="name">
-      <input class="register" type="text" placeholder="Last name"/>
-    </li>
-    <li>
-      <input class="register" type="text" placeholder="Enter email"/>
-    </li>
-    <li>
-      <input class="register" type="password" name="pwd" placeholder="Enter password"/>
+  <form class="form" name="form" ng-submit="register(form)" novalidate>
+    <ul id="registerlist">
+      <li class="name">
+        <input class="register" type="text" placeholder="First name" ng-model="user.firstName"
+               required/>
+      </li>
+      <li class="name">
+        <input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
+               required/>
+      </li>
+      <li>
+        <input class="register" type="text" placeholder="Enter email" ng-model="user.email"
+               required/>
+      </li>
+      <li>
+        <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
+               ng-minlength="3"
+               required/>
 
-      <div class="getstats"><a href="#profile">Sign up</a></div>
-      <div class="altsign">Already have an account, please <a ng-click="signup = !signup">Sign in</a></div>
-    </li>
-  </ul>
+        <p><input type="submit" class="getpark" value="Sign up"/></p>
+        <div class="altsign">Already have an account, please <a href="#login">Sign in</a></div>
+      </li>
+    </ul>
+  </form>
 </div>
-
-

@@ -1,0 +1,21 @@
+<div>
+  <div id="profile-intro"><p><img src="images/profile.png"/></p>
+
+    <p>Your profile</p></div>
+  <form class="form" name="form" ng-submit="login(form)" novalidate>
+    <ul id="registerlist">
+      <li>
+        <input class="register" type="text" name="email" ng-model="user.email" placeholder="Enter email" required/>
+      </li>
+      <li>
+        <input class="register" type="password" name="password" ng-model="user.password" placeholder="Enter password"
+               required/>
+
+        <!--<div class="getstats"><a ng-click="">Sign in</a></div>-->
+        <p><input type="submit" class="getpark" value="Sign in"/></p>
+        <div class="altsign">Don't have an account, please <a href="#signup">Sign up</a></div>
+      </li>
+    </ul>
+  </form>
+</div>
+
