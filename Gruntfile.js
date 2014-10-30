@@ -60,10 +60,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ['<%= config.app %>/scripts/{,*/}*.js'],
-        tasks: ['newer:jshint:all', 'notify:js'],
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        }
+        tasks: ['newer:jshint:all', 'notify:js']
       },
       jsTest: {
         files: ['test/spec/{,*/}*.js'],
@@ -77,14 +74,17 @@ module.exports = function (grunt) {
         tasks: ['stylus', 'newer:copy:styles', 'autoprefixer', 'notify:css']
       },
       livereload: {
-        options: {
-          livereload: '<%= connect.options.livereload %>'
-        },
         files: [
-          '<%= yeoman.app %>/{,*/}*.html',
-          '.tmp/styles/{,*/}*.css',
-          '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '{.tmp,<%= yeoman.app %>}/**/*.css',
+          '{.tmp,<%= yeoman.app %>}/**/*.html',
+          '{.tmp,<%= yeoman.app %>}/**/*.js',
+          '!{.tmp,<%= yeoman.app %>}/**/*.spec.js',
+          '!{.tmp,<%= yeoman.app %>}/**/*.mock.js',
+          '<%= yeoman.app %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ],
+        options: {
+          livereload: true
+        },
         tasks: ['notify:livereload']
       },
       express: {
@@ -616,12 +616,14 @@ module.exports = function (grunt) {
     }, 1500);
   });
 
-  grunt.registerTask('serve', 'start the server and preview your app, --allow-remote for remote access', function (target) {
-    if (grunt.option('allow-remote')) {
-      grunt.config.set('connect.options.hostname', '0.0.0.0');
-    }
+  grunt.registerTask('express-keepalive', 'Keep grunt running', function() {
+    this.async();
+  });
+
+  grunt.registerTask('serve', 'start the server and preview your app', function (target) {
+
     if (target === 'dist') {
-      return grunt.task.run(['build', 'configureProxies:dist', 'connect:dist:keepalive']);
+      return grunt.task.run(['build', 'env:all', 'express:dev', 'wait', 'open', 'express-keepalive']);
     }
 
     grunt.task.run([
@@ -674,8 +676,8 @@ module.exports = function (grunt) {
     'filerev',
 //    'modernizr',
     'usemin',
-    'htmlmin',
-    'uncss'
+    'htmlmin'
+ //   'uncss'
   ]);
 
   grunt.registerTask('cordova-prepare', 'Prepare the native application', function () {

@@ -12,7 +12,6 @@ module.exports = function(app) {
   var proxy = httpProxy.createProxyServer({});
 
   // Insert routes below
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
