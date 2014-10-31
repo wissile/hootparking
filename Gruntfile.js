@@ -623,7 +623,7 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', 'start the server and preview your app', function (target) {
 
     if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'express:dev', 'wait', 'open', 'express-keepalive']);
+      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:dev', 'wait', 'open', 'express-keepalive']);
     }
 
     grunt.task.run([
