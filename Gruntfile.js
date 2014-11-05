@@ -556,8 +556,50 @@ module.exports = function (grunt) {
         NODE_ENV: 'production'
       },
       all: localConfig
-    }
+    },
 
+    ngconstant: {
+      // Options for all targets
+      options: {
+        space: '  ',
+        wrap: '"use strict";\n\n {%= __ngModule %}',
+        name: 'config'
+      },
+      // Environment targets
+      local: {
+        options: {
+          dest: '<%= config.client %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'local',
+            apiEndpoint: 'http://localhost:9000'
+          }
+        }
+      },
+      development: {
+        options: {
+          dest: '<%= config.client %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'development',
+            apiEndpoint: 'http://your-development.api.endpoint:3000'
+          }
+        }
+      },
+      production: {
+        options: {
+          dest: '<%= config.client %>/scripts/config.js'
+        },
+        constants: {
+          ENV: {
+            name: 'production',
+            apiEndpoint: 'http://easyparkapp.herokuapp.com'
+          }
+        }
+      }
+    }
 
   });
 
@@ -584,12 +626,21 @@ module.exports = function (grunt) {
     }
 
     if (target === 'dist') {
-      return grunt.task.run(['build', 'clean:dist', 'copy:dist', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
+      return grunt.task.run(['build',
+                            'clean:dist',
+                            'copy:dist',
+                            'env:all',
+                            'env:prod',
+                            'express:prod',
+                            'wait',
+                            'open',
+                            'express-keepalive']);
     }
 
     grunt.task.run([
       'clean:server',
       'env:all',
+      'ngconstant:local',
       'concurrent:server',
       'wiredep',
       'stylus',
@@ -623,6 +674,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('buildweb', [
     'clean:www',
+    'ngconstant:production',
     'wiredep',
     'useminPrepare',
     'concurrent:www',

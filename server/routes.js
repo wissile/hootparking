@@ -24,7 +24,6 @@ module.exports = function(app) {
     proxy.web(req, res, { target: 'http://api.sfpark.org' });
   });
 
-
   // All other routes should redirect to the index.html
   app.route('/*')
     .get(function(req, res) {

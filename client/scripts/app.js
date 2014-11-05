@@ -18,7 +18,8 @@ angular
       'ngSanitize',
       'ngTouch',
       'ngAutocomplete',
-      'backButton'
+      'backButton',
+      'config'
     ])
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
       //noinspection JSCheckFunctionSignatures
@@ -64,7 +65,7 @@ angular
         $httpProvider.interceptors.push('authInterceptor');
     })
 
-    .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {
+    .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location, ENV) {
       return {
         // Add authorization token to headers
         request: function (config) {
@@ -72,6 +73,10 @@ angular
           if ($cookieStore.get('token')) {
             config.headers.Authorization = 'Bearer ' + $cookieStore.get('token');
           }
+          if(_.contains(config.url, '/api') || _.contains(config.url, '/auth') || _.contains(config.url, '/sfpark/rest/')){
+            config.url = ENV.apiEndpoint + config.url;
+          }
+
           return config;
         },
 
