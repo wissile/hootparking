@@ -24,10 +24,10 @@ angular
     .config(function ($routeProvider, $locationProvider, $httpProvider) {
       //noinspection JSCheckFunctionSignatures
       $routeProvider
-          .when('/main', {
-            title: 'Main',
-            templateUrl: 'views/main.html',
-            controller: ''
+          .when('/', {
+            title: 'Search Parking',
+            templateUrl: 'views/home.html',
+            controller: 'MainCtrl'
           }).when('/home', {
             title: 'Search Parking',
             templateUrl: 'views/home.html',
@@ -59,7 +59,7 @@ angular
             controller: ''
           })
           .otherwise({
-            redirectTo: '/home'
+            redirectTo: '/'
           });
         //$locationProvider.html5Mode(true);
         $httpProvider.interceptors.push('authInterceptor');

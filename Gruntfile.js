@@ -41,6 +41,29 @@ module.exports = function (grunt) {
     // Project settings
     config: config,
 
+    express: {
+      options: {
+        port: process.env.PORT || 9000
+      },
+      dev: {
+        options: {
+          script: 'server/app.js',
+          debug: true
+        }
+      },
+      prod: {
+        options: {
+          script: 'dist/server/app.js'
+        }
+      }
+    },
+
+    open: {
+      server: {
+        url: 'http://localhost:<%= express.options.port %>'
+      }
+    },
+
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       cordova: {
@@ -89,7 +112,7 @@ module.exports = function (grunt) {
         files: [
           'server/**/*.{js,json}'
         ],
-        tasks: ['express:dev', 'wait'],
+        tasks: ['newer:jshint:server', 'express:dev', 'wait'],
         options: {
           livereload: true,
           nospawn: true //Without this option specified express won't be reloaded
@@ -97,26 +120,40 @@ module.exports = function (grunt) {
       }
     },
 
-    express: {
+    // Make sure code styles are up to par and there are no obvious mistakes
+    jshint: {
       options: {
-        port: process.env.PORT || 9000
+        jshintrc: '<%= config.client %>/.jshintrc',
+        reporter: require('jshint-stylish')
       },
-      dev: {
-        options: {
-          script: 'server/app.js',
-          debug: true
-        }
-      },
-      prod: {
-        options: {
-          script: 'dist/server/app.js'
-        }
-      }
-    },
-
-    open: {
       server: {
-        url: 'http://localhost:<%= express.options.port %>'
+        options: {
+          jshintrc: 'server/.jshintrc'
+        },
+        src: [
+          'server/**/*.js',
+          '!server/**/*.spec.js'
+        ]
+      },
+      serverTest: {
+        options: {
+          jshintrc: 'server/.jshintrc-spec'
+        },
+        src: ['server/**/*.spec.js']
+      },
+      all: [
+        'Gruntfile.js',
+        '<%= config.client %>/**/*.js',
+        '!<%= config.client %>/scripts/config.js',
+        '!<%= config.client %>/**/*.spec.js',
+        '!<%= config.client %>/**/*.mock.js',
+        '!<%= config.client %>/bower_components/**/*.js'
+      ],
+      test: {
+        src: [
+          '<%= config.client %>/**/*.spec.js',
+          '<%= config.client %>/**/*.mock.js'
+        ]
       }
     },
 
@@ -152,41 +189,6 @@ module.exports = function (grunt) {
       server: '.tmp'
     },
 
-    // Make sure code styles are up to par and there are no obvious mistakes
-    jshint: {
-      options: {
-        jshintrc: '.jshintrc',
-        reporter: require('jshint-stylish'),
-        globals: {
-          google: true
-        }
-      },
-
-      all: {
-        src: [
-          'Gruntfile.js',
-          '<%= config.client %>/scripts/{,*/}*.js'
-        ]
-      },
-      test: {
-        options: {
-          jshintrc: 'test/.jshintrc'
-        },
-        src: ['test/spec/{,*/}*.js']
-      }
-    },
-
-    //TODO remove if not going to be used
-    // Mocha testing framework configuration options
-    //mocha: {
-    //  all: {
-    //    options: {
-    //      run: true,
-    //      urls: ['http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html']
-    //    }
-    //  }
-    //},
-
     // Add vendor prefixed styles
     autoprefixer: {
       options: {
@@ -204,23 +206,40 @@ module.exports = function (grunt) {
       }
     },
 
-    // Automatically inject Bower components into the HTML file
-//    wiredep: {
-//      app: {
-//        ignorePath: /^\/|\.\.\//,
-//        src: ['<%= config.client %>/index.html'],
-//        exclude: ['bower_components/bootstrap/www/js/bootstrap.js']
-//      }
-//    },
-//    wiredep: {
-//      options: {
-//        cwd: '<%= config.client %>'
-//      },
-//      app: {
-//        src: ['<%= config.client %>/index.html'],
-//        ignorePath: /\.\.\//
-//      }
-//    },
+    // Debugging with node inspector
+    'node-inspector': {
+      custom: {
+        options: {
+          'web-host': 'localhost'
+        }
+      }
+    },
+
+    // Use nodemon to run server in debug mode with an initial breakpoint
+    nodemon: {
+      debug: {
+        script: 'server/app.js',
+        options: {
+          nodeArgs: ['--debug-brk'],
+          env: {
+            PORT: process.env.PORT || 9000
+          },
+          callback: function (nodemon) {
+            nodemon.on('log', function (event) {
+              console.log(event.colour);
+            });
+
+            // opens browser on initial server start
+            nodemon.on('config:update', function () {
+              setTimeout(function () {
+                require('open')('http://localhost:8080/debug?port=5858');
+              }, 500);
+            });
+          }
+        }
+      }
+    },
+
 
     // Automatically inject Bower components into the app
     wiredep: {
@@ -283,8 +302,15 @@ module.exports = function (grunt) {
     usemin: {
       html: ['<%= config.www %>/{,*/}*.html'],
       css: ['<%= config.www %>/styles/{,*/}*.css'],
+      js: ['<%= config.www %>/scripts/{,*/}*.js'],
       options: {
-        assetsDirs: ['<%= config.www %>', '<%= config.www %>/images']
+        assetsDirs: ['<%= config.www %>', '<%= config.www %>/images'],
+        // This is so we update image references in our ng-templates
+        patterns: {
+          js: [
+            [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
       }
     },
 
@@ -315,8 +341,50 @@ module.exports = function (grunt) {
       }
     },
 
-    htmlmin: {
+    // Allow the use of non-minsafe AngularJS files. Automatically makes it
+    // minsafe compatible so Uglify does not destroy the ng references
+    ngAnnotate: {
       www: {
+        files: [
+          {
+            expand: true,
+            cwd: '.tmp/concat/scripts',
+            src: '*.js',
+            dest: '.tmp/concat/scripts'
+          }
+        ]
+      }
+    },
+
+    // Package all the html partials into a single javascript payload
+    ngtemplates: {
+      options: {
+        // This should be the name of your apps angular module
+        module: 'easyparkangularApp',
+        htmlmin: {
+          collapseBooleanAttributes: true,
+          collapseWhitespace: true,
+          conservativeCollapse: true,
+          removeAttributeQuotes: true,
+          removeCommentsFromCDATA: true,
+          removeEmptyAttributes: true,
+          removeOptionalTags: true,
+          removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
+          useShortDoctype: true
+        },
+        usemin: 'scripts/scripts.js'
+      },
+      main: {
+        cwd: '<%= config.client %>',
+        src: ['views/{,*/}*.html'],
+        dest: '.tmp/templates.js'
+      }
+    },
+
+    htmlmin: {
+      www:{
         options: {
           collapseBooleanAttributes: true,
           collapseWhitespace: true,
@@ -326,56 +394,17 @@ module.exports = function (grunt) {
           removeEmptyAttributes: true,
           removeOptionalTags: true,
           removeRedundantAttributes: true,
+          removeScriptTypeAttributes: true,
+          removeStyleLinkTypeAttributes: true,
           useShortDoctype: true
+
         },
         files: [
           {
             expand: true,
             cwd: '<%= config.www %>',
-            src: ['*.html', 'views/{,*/}*.html'],
+            src: ['*.html'],
             dest: '<%= config.www %>'
-          }
-        ]
-      }
-    },
-
-    // By default, your `index.html`'s <!-- Usemin block --> will take care
-    // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
-    // cssmin: {
-    //   www: {
-    //     files: {
-    //       '<%= config.www %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= config.client %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   www: {
-    //     files: {
-    //       '<%= config.www %>/scripts/scripts.js': [
-    //         '<%= config.www %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   www: {}
-    // },
-
-    // ngmin tries to make the code safe for minification automatically by
-    // using the Angular long form for dependency injection. It doesn't work on
-    // things like resolve or inject so those have to be done manually.
-    ngmin: {
-      www: {
-        files: [
-          {
-            expand: true,
-            cwd: '.tmp/concat/scripts',
-            src: '*.js',
-            dest: '.tmp/concat/scripts'
           }
         ]
       }
@@ -415,12 +444,9 @@ module.exports = function (grunt) {
               'images/{,*/}*.webp',
               '{,*/}*.html',
               'styles/fonts/{,*/}*.*',
-              'fonts/*'
+              'fonts/*',
+              '!views/*'
             ]
-          },
-          {
-            src: 'node_modules/apache-server-configs/dist/.htaccess',
-            dest: '<%= config.www %>/.htaccess'
           },
           {
             expand: true,
@@ -487,6 +513,15 @@ module.exports = function (grunt) {
       test: [
         'copy:styles'
       ],
+      debug: {
+        tasks: [
+          'nodemon',
+          'node-inspector'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
+      },
       www: [
         'copy:styles',
         'imagemin',
@@ -500,6 +535,16 @@ module.exports = function (grunt) {
         configFile: 'test/karma.conf.js',
         singleRun: true
       }
+    },
+
+    env: {
+      test: {
+        NODE_ENV: 'test'
+      },
+      prod: {
+        NODE_ENV: 'production'
+      },
+      all: localConfig
     },
 
     stylus: {
@@ -546,16 +591,6 @@ module.exports = function (grunt) {
           message: 'build complete, server ready and watching for changes'//required
         }
       }
-    },
-
-    env: {
-      test: {
-        NODE_ENV: 'test'
-      },
-      prod: {
-        NODE_ENV: 'production'
-      },
-      all: localConfig
     },
 
     ngconstant: {
@@ -622,19 +657,43 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', 'start the server and preview your app', function (target) {
 
     if (target === 'www') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:dev', 'wait', 'open', 'express-keepalive']);
+      return grunt.task.run([
+        'build',
+        'env:all',
+        'env:prod',
+        'express:prod',
+        'wait',
+        'open',
+        'express-keepalive'
+      ]);
     }
 
     if (target === 'dist') {
-      return grunt.task.run(['build',
-                            'clean:dist',
-                            'copy:dist',
-                            'env:all',
-                            'env:prod',
-                            'express:prod',
-                            'wait',
-                            'open',
-                            'express-keepalive']);
+      return grunt.task.run([
+        'build',
+        'clean:dist',
+        'copy:dist',
+        'env:all',
+        'env:prod',
+        'express:prod',
+        'wait',
+        'open',
+        'express-keepalive'
+      ]);
+    }
+
+
+    if (target === 'debug') {
+      return grunt.task.run([
+        'clean:server',
+        'env:all',
+        'ngconstant:local',
+        'concurrent:server',
+        'wiredep',
+        'stylus',
+        'autoprefixer',
+        'concurrent:debug'
+      ]);
     }
 
     grunt.task.run([
@@ -667,7 +726,7 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
-      'connect:test'
+      //'connect:test'
 //      'mocha'
     ]);
   });
@@ -680,8 +739,9 @@ module.exports = function (grunt) {
     'concurrent:www',
     'stylus',
     'autoprefixer',
+    'ngtemplates',
     'concat',
-    'ngmin',
+    'ngAnnotate',
     'copy:www',
     'cdnify',
     'cssmin',
