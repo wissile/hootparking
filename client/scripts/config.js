@@ -2,6 +2,6 @@
 
  angular.module('config', [])
 
-.constant('ENV', {name:'production',apiEndpoint:'http://easyparkapp.herokuapp.com'})
+.constant('ENV', {name:'local',apiEndpoint:'http://localhost:9000'})
 
 ;
