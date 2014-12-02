@@ -11,4 +11,6 @@
     <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
+    <!--<icon src="res/android/logoicon.png" platform="android" width="57" height="57" density="mdpi" />-->
+    <icon src="logoicon.png" />
 </widget>
