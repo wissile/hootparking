@@ -12,7 +12,6 @@ module.exports = function(app) {
   var proxy = httpProxy.createProxyServer({});
 
   // Insert routes below
-  app.use('/api/things', require('./api/thing'));
   app.use('/api/users', require('./api/user'));
 
   app.use('/auth', require('./auth'));
@@ -24,7 +23,6 @@ module.exports = function(app) {
   app.all('/sfpark/rest/*',  function (req, res) {
     proxy.web(req, res, { target: 'http://api.sfpark.org' });
   });
-
 
   // All other routes should redirect to the index.html
   app.route('/*')
