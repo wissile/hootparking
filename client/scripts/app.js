@@ -61,7 +61,14 @@ angular
           .otherwise({
             redirectTo: '/'
           });
-        $locationProvider.html5Mode(true);
+        var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
+
+        if(isCordovaApp){
+          $locationProvider.html5Mode(false);
+        }else{
+          $locationProvider.html5Mode(true);
+        }
+
         $httpProvider.interceptors.push('authInterceptor');
     })
 

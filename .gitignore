@@ -1,10 +1,11 @@
 node_modules
-/client/bower_components
+client/bower_components
+client/scripts/config.js
 public
 dist
 www
-/server/config/local.env.js
-/app/styles
+server/config/local.env.js
+app/styles
 merges
 platforms
 plugins

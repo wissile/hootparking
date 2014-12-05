@@ -279,6 +279,14 @@ module.exports = function (grunt) {
       }
     },
 
+    processhtml: {
+      www: {
+        files: {
+          '<%= config.www %>/index.html': ['<%= config.www %>/index.html']
+        }
+      }
+    },
+
     // Reads HTML for usemin blocks to enable smart builds that automatically
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
@@ -660,6 +668,8 @@ module.exports = function (grunt) {
     if (target === 'www') {
       return grunt.task.run([
         'build',
+        'processhtml:www',
+        'htmlmin',
         'env:all',
         'env:prod',
         'express:prod',
@@ -672,6 +682,7 @@ module.exports = function (grunt) {
     if (target === 'dist') {
       return grunt.task.run([
         'build',
+        'htmlmin',
         'clean:dist',
         'copy:dist',
         'env:all',
@@ -750,7 +761,7 @@ module.exports = function (grunt) {
     'filerev',
 //    'modernizr',
     'usemin',
-    'htmlmin'
+//    'htmlmin'
  //   'uncss'
   ]);
 
