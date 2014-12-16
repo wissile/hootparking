@@ -90,6 +90,7 @@
     "karma-phantomjs-launcher": "~0.1.4",
     "karma-requirejs": "~0.2.1",
     "karma-script-launcher": "~0.1.0",
+    "load-grunt-config": "^0.16.0",
     "load-grunt-tasks": "^0.4.0",
     "open": "~0.0.4",
     "requirejs": "~2.1.11",
