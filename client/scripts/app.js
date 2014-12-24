@@ -68,9 +68,15 @@ angular
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
         if(isCordovaApp){
-          $locationProvider.html5Mode(false);
+          $locationProvider.html5Mode({
+            enabled: false,
+            requireBase: false
+          });
         }else{
-          $locationProvider.html5Mode(true);
+          $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: true
+          });
         }
 
         $httpProvider.interceptors.push('authInterceptor');
