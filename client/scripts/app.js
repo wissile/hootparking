@@ -21,109 +21,66 @@ angular
       'backButton',
       'config'
     ])
+    .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
+      //noinspection JSCheckFunctionSignatures
 
-  //.config( function($stateProvider, $locationProvider, $httpProvider, $urlRouterProvider) {
-  //  $urlRouterProvider.otherwise('/');
-  //
-  //  $stateProvider
-  //    .state('home', {
-  //      url:'/',
-  //      templateUrl: 'views/home.html',
-  //      controller: 'MainCtrl'
-  //    })
-  //    .state('find', {
-  //      url:'/find',
-  //      templateUrl: 'views/find.html',
-  //      controller: 'MainCtrl'
-  //    })
-  //
-  //});
+      $urlRouterProvider.otherwise("/home");
 
+      $stateProvider
+        .state('home', {
+          url: '/home',
+          title: 'Search Parking',
+          templateUrl: 'views/home.html',
+          controller: 'MainCtrl'
+        }).state('find', {
+          url: '/find',
+          title: 'Find my Car',
+          templateUrl: 'views/find.html',
+          controller: 'FindCtrl'
+        }).state('account', {
+          url: '/account',
+          title: 'Account',
+          templateUrl: 'views/account.html',
+          controller: 'AccountCtrl',
+          authenticate: true
+        }).state('login', {
+          url: '/login',
+          title: 'Login',
+          templateUrl: 'views/login.html',
+          controller: 'LoginCtrl'
+        }).state('signup', {
+          url: '/signup',
+          title: 'Sign up',
+          templateUrl: 'views/signup.html',
+          controller: 'SignupCtrl'
+        }).state('stats', {
+          url: '/stats',
+          title: 'Parking Stats',
+          templateUrl: 'views/stats.html',
+          controller: ''
+        }).state('profile', {
+          url: '/profile',
+          title: 'Profile',
+          templateUrl: 'views/profile.html',
+          controller: ''
+        });
 
-  .config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-    //
-    // For any unmatched url, redirect to /state1
-    $urlRouterProvider.otherwise('/');
-    //
-    // Now set up the states
-    $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: 'views/home.html',
-            controller: 'MainCtrl'
-
-      })
-      .state('find', {
-        url: '/find',
-        templateUrl: 'views/find.html',
-            controller: 'MainCtrl'
-      });
-
-
-
-
-
-
-
-    //.config(function ($routeProvider, $locationProvider, $httpProvider) {
-    //  //noinspection JSCheckFunctionSignatures
-    //  $routeProvider
-    //      .when('/', {
-    //        title: 'Search Parking',
-    //        templateUrl: 'views/home.html',
-    //        controller: 'MainCtrl'
-    //      }).when('/home', {
-    //        title: 'Search Parking',
-    //        templateUrl: 'views/home.html',
-    //        controller: 'MainCtrl'
-    //      }).when('/find', {
-    //        title: 'Find my Car',
-    //        templateUrl: 'views/find.html',
-    //        controller: 'FindCtrl'
-    //      }).when('/account', {
-    //        title: 'Account',
-    //        templateUrl: 'views/account.html',
-    //        controller: 'AccountCtrl',
-    //        authenticate: true
-    //      }).when('/login', {
-    //        title: 'Login',
-    //        templateUrl: 'views/login.html',
-    //        controller: 'LoginCtrl'
-    //      }).when('/signup', {
-    //        title: 'Sign up',
-    //        templateUrl: 'views/signup.html',
-    //        controller: 'SignupCtrl'
-    //      }).when('/stats', {
-    //        title: 'Parking Stats',
-    //        templateUrl: 'views/stats.html',
-    //        controller: ''
-    //      }).when('/profile', {
-    //        title: 'Profile',
-    //        templateUrl: 'views/profile.html',
-    //        controller: ''
-    //      })
-    //      .otherwise({
-    //        redirectTo: '/'
-    //      });
-    //
-    //
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
         if(isCordovaApp){
-          $locationProvider.html5Mode(false);
+          $locationProvider.html5Mode({
+            enabled: false,
+            requireBase: false
+          });
         }else{
-          $locationProvider.html5Mode(true);
+          $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: true
+          });
         }
 
         $httpProvider.interceptors.push('authInterceptor');
     })
-
-
-
-
-
-
-
 
     .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location, ENV) {
       return {
