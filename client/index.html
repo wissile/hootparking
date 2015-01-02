@@ -4,12 +4,14 @@
   <meta charset="utf-8">
   <title></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
   <link rel="stylesheet" href="bower_components/add-to-homescreen/style/addtohomescreen.css" />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -29,38 +31,79 @@
 
 <div id="container"> <!--Entire view-->
 
-  <div class="header"><!--Title and top navigation-->
-    <ul class="header-nav">
-      <li><a back-button><img src="images/back.png" height="14"/> Back </a></li>
-      <li ng-bind="title">Search</li>
-      <li><a href="#/stats"><img src="images/info.png"/></a></li>
-    </ul>
+  <div ng-controller="MenuCtrl" layout="column" layout-fill>
+    <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
+        <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Sidenav Left</h1>
+        </md-toolbar>
+        <md-content class="md-padding" ng-controller="LeftCtrl">
+          <md-button ng-click="close()" class="md-primary">
+            Close
+          </md-button>
+          <ul class="footer-nav">
+            <li><a ui-sref="home">Parking</a></li>
+            <li><a ui-sref="find">Find Car</a></li>
+            <li><a ui-sref="account">Account</a></li>
+          </ul>
+        </md-content>
+      </md-sidenav>
+      <md-content flex class="md-padding">
+        <div layout="column" layout-fill layout-align="center center">
+
+            <!--main content-->
+          <div class="main">
+
+            <div ui-view></div>
+
+          </div>
+          <!--end main-->
+
+          <div>
+            <md-button ng-click="toggleLeft()" class="md-primary">
+              Toggle left
+            </md-button>
+          </div>
+        </div>
+      </md-content>
+    </section>
   </div>
+
+
+  <!--Title and top navigation-->
+  <!--<div class="header">-->
+    <!--<ul class="header-nav">-->
+      <!--<li><a back-button><img src="images/back.png" height="14"/> Back </a></li>-->
+      <!--<li ng-bind="title">Search</li>-->
+      <!--<li><a href="#/stats"><img src="images/info.png"/></a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
   <!--end header-->
 
-  <div class="main"><!--main content-->
 
-    <div ng-view></div>
 
-  </div>
-  <!--end main-->
 
-  <div class="footer"><!--icon bottom navigation-->
-    <ul class="footer-nav">
-      <li><a href="#/home"><img src="images/park.png"/>
+  <!--icon bottom navigation-->
+  <!--<div class="footer">-->
+    <!--<ul class="footer-nav">-->
+      <!--<li><a href="#/home"><img src="images/park.png"/>-->
 
-        <p>Parking</p></a></li>
+        <!--<p>Parking</p></a></li>-->
 
-      <li><a href="#/find"><img src="images/car.png"/>
+      <!--<li><a href="#/find"><img src="images/car.png"/>-->
 
-        <p>Find Car</p></a></li>
+        <!--<p>Find Car</p></a></li>-->
 
-      <li><a href="#/account"><img src="images/account.png"/>
+      <!--<li><a href="#/account"><img src="images/account.png"/>-->
 
-        <p>Account</p></a></li>
-    </ul>
-  </div>
+        <!--<p>Account</p></a></li>-->
+    <!--</ul>-->
+  <!--</div>-->
   <!--end footer-->
+
+
+
+
 
 </div>
 <!--end container-->
@@ -104,15 +147,34 @@
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/classie/classie.js"></script>
 <script src="bower_components/add-to-homescreen/src/addtohomescreen.min.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+
+<script>
+    angular.module('easyparkangularApp', ['ngMaterial'])
+            .controller('MenuCtrl', function($scope, $timeout, $mdSidenav) {
+                $scope.toggleLeft = function() {
+                    $mdSidenav('left').toggle();
+                };
+            })
+            .controller('LeftCtrl', function($scope, $timeout, $mdSidenav) {
+                $scope.close = function() {
+                    $mdSidenav('left').close();
+                };
+            });
+</script>
+
+
 
 <!-- build:js({.tmp,client}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
@@ -130,6 +192,7 @@
 <script src="scripts/controllers/login.controller.js"></script>
 <script src="scripts/controllers/account.controller.js"></script>
 <script src="scripts/controllers/signup.controller.js"></script>
+<script src="scripts/controllers/menu.controller.js"></script>
 <!-- endbuild -->
 
 </body>
