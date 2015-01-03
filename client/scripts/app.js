@@ -15,6 +15,7 @@ angular
       'ngCookies',
       'ngResource',
       'ui.router',
+        'ngMaterial',
       'ngSanitize',
       'ngTouch',
       'ngAutocomplete',
