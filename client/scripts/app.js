@@ -19,6 +19,7 @@ angular
       'ngTouch',
       'ngAutocomplete',
       'backButton',
+        'ngMaterial',
       'config'
     ])
     .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
@@ -29,9 +30,9 @@ angular
       $stateProvider
         .state('home', {
           url: '/home',
-          title: 'Search Parking',
+          title: 'Home',
           templateUrl: 'views/home.html',
-          controller: 'MainCtrl'
+          controller: ''
         }).state('find', {
           url: '/find',
           title: 'Find my Car',
@@ -124,4 +125,22 @@ angular
           }
         });
       });
-    });
+    })
+
+  .run([
+    '$log', '$rootScope', '$window', '$state', '$location',
+    function($log, $rootScope, $window, $state, $location) {
+
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+        if (toState.title) {
+          $rootScope.pageTitle = toState.title;
+        }
+      });
+
+      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+        // something else
+      });
+
+      $state.go('home');
+    }
+  ]);

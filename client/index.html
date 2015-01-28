@@ -32,57 +32,47 @@
 
   <div ng-controller="MenuCtrl" layout="column" layout-fill>
     <section layout="row" flex>
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left">
-        <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Sidenav Left</h1>
-        </md-toolbar>
-        <md-content class="md-padding" ng-controller="LeftCtrl">
-          <md-button ng-click="close()" class="md-primary">
-            Close
-          </md-button>
-        </md-content>
-          <ul class="footer-nav">
-              <li><a ui-sref="home">Parking</a></li>
-              <li><a ui-sref="find">Find Car</a></li>
-              <li><a ui-sref="account">Account</a></li>
+      <md-sidenav class="md-sidenav-left darkblue" md-component-id="left">
+        <div class="sidenav-header">
+          <div class="main-nav-photo"><img src="images/jen.png" width="35" height="35"/></div>
+          <div class="main-nav-name">Jennifer Bakhlava<span>September 2014</span></div>
+        </div>
+
+          <ul class="main-nav" ng-controller="LeftCtrl">
+              <li><a ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search</span></a></li>
+              <li><a ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
+              <li><a ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Account</span></a></li>
           </ul>
       </md-sidenav>
-      <md-content flex class="md-padding">
+      <div flex class="md-padding">
         <div layout="column" layout-fill layout-align="center center">
+
+          <div class="header">
+            <ul class="header-items">
+            <li><button class="main-menu-toggle" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></button></li>
+            <li><h2 ng-bind="pageTitle"></h2></li>
+            </ul>
+          </div>
+
 
             <!--main content-->
           <div class="main">
-
-            <div ui-view></div>
-
+            <div ng-style="{'background-color': appBackground}" ui-view></div>
           </div>
           <!--end main-->
 
-            <md-button ng-click="toggleLeft()" class="md-primary">
-                Toggle left
-            </md-button>
+
 
           <div>
 
           </div>
         </div>
-      </md-content>
+      </div>
     </section>
   </div>
 
 
 
-
-
-
-
-    <!--<ul class="footer-nav">-->
-        <!--<li><a ui-sref="home">Parking</a></li>-->
-        <!--<li><a ui-sref="find">Find Car</a></li>-->
-        <!--<li><a ui-sref="account">Account</a></li>-->
-    <!--</ul>`-->
-
-    <!--<div ui-view></div>-->
 
 </div>
 <!--end container-->

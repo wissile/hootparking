@@ -1,1 +1,62 @@
-<p>Hello {{ getCurrentUser().firstName }}</p>
+<div class="account-user-info-container">
+<div class="account-photo-container"><img src="images/jen.png" width="80" height="80"/></div>
+<p>{{ getCurrentUser().firstName }}Jennifer Baklhava</p>
+</div>
+
+<ul class="account-notifications">
+  <li class="acc-label"><div class="switch-label">Parking sweeping</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb1" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb1 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Parking cleaning</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb2" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb2 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Reached max budjet</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb3" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb3 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Parking fare change</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb4" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb4 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Parking time</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb5" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb5 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Move car</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb6" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb6 }}</div>
+    </md-switch>
+  </li>
+  <div class="account-sep-line"></div>
+  <li class="acc-label"><div class="switch-label">Set spending budget</div></li>
+  <li class="acc-switch">
+    <md-switch ng-model="data.cb7" ng-true-value="'ON'" ng-false-value="'OFF'">
+      <div class="inside-bar">{{ data.cb7 }}</div>
+    </md-switch>
+  </li>
+</ul>
+
+<div class="account-profile">
+  <md-text-float label="FirstName" ng-model="user.firstName"> </md-text-float>
+  <md-text-float label="LastName" ng-model="user.lastName"> </md-text-float>
+  <md-text-float label="Email" ng-model="user.email"> </md-text-float>
+  <md-text-float label="Password" ng-model="user.password"> </md-text-float>
+</div>
