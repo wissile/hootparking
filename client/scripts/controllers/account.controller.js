@@ -3,8 +3,9 @@
 angular.module('easyparkangularApp')
   .controller('AccountCtrl', function ($scope, Auth) {
 
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.appBackground='#2b2f3d';
 
+    $scope.getCurrentUser = Auth.getCurrentUser;
 
 
   });

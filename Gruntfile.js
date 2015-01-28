@@ -29,7 +29,7 @@ module.exports = function (grunt) {
         www: 'www',
         dist: 'dist'
       },
-      localConfig : require('./server/config/local.env'),
+      localConfig : require('./server/config/local.env')
     },
 
     // can optionally pass options to load-grunt-tasks.

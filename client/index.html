@@ -4,11 +4,13 @@
   <meta charset="utf-8">
   <title></title>
   <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
   <!-- build:css(client) styles/vendor.css -->
   <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:css(.tmp) styles/main.css -->
@@ -28,38 +30,49 @@
 
 <div id="container"> <!--Entire view-->
 
-  <div class="header"><!--Title and top navigation-->
-    <ul class="header-nav">
-      <li><a back-button><img src="images/back.png" height="14"/> Back </a></li>
-      <li ng-bind="title">Search</li>
-      <li><a ui-sref="stats"><img src="images/info.png"/></a></li>
-    </ul>
+  <div ng-controller="MenuCtrl" layout="column" layout-fill>
+    <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left darkblue" md-component-id="left">
+        <div class="sidenav-header">
+          <div class="main-nav-photo"><img src="images/jen.png" width="35" height="35"/></div>
+          <div class="main-nav-name">Jennifer Bakhlava<span>September 2014</span></div>
+        </div>
+
+          <ul class="main-nav" ng-controller="LeftCtrl">
+              <li><a ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search</span></a></li>
+              <li><a ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
+              <li><a ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Account</span></a></li>
+          </ul>
+      </md-sidenav>
+      <div flex class="md-padding">
+        <div layout="column" layout-fill layout-align="center center">
+
+          <div class="header">
+            <ul class="header-items">
+            <li><button class="main-menu-toggle" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></button></li>
+            <li><h2 ng-bind="pageTitle"></h2></li>
+            </ul>
+          </div>
+
+
+            <!--main content-->
+          <div class="main">
+            <div ng-style="{'background-color': appBackground}" ui-view></div>
+          </div>
+          <!--end main-->
+
+
+
+          <div>
+
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
-  <!--end header-->
 
-  <div class="main"><!--main content-->
 
-    <div ui-view></div>
 
-  </div>
-  <!--end main-->
-
-  <div class="footer"><!--icon bottom navigation-->
-    <ul class="footer-nav">
-      <li><a ui-sref="home"><img src="images/park.png"/>
-
-        <p>Parking</p></a></li>
-
-      <li><a ui-sref="find"><img src="images/car.png"/>
-
-        <p>Find Car</p></a></li>
-
-      <li><a ui-sref="account"><img src="images/account.png"/>
-
-        <p>Account</p></a></li>
-    </ul>
-  </div>
-  <!--end footer-->
 
 </div>
 <!--end container-->
@@ -106,10 +119,14 @@
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="bower_components/lodash/dist/lodash.compat.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/hammerjs/hammer.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
 <script src="http://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=false"></script>
+
 
 <!-- build:js({.tmp,client}) scripts/scripts.js -->
 <script src="scripts/app.js"></script>
@@ -127,6 +144,7 @@
 <script src="scripts/controllers/login.controller.js"></script>
 <script src="scripts/controllers/account.controller.js"></script>
 <script src="scripts/controllers/signup.controller.js"></script>
+<script src="scripts/controllers/menu.controller.js"></script>
 <!-- endbuild -->
 
 </body>
