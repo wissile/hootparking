@@ -25,14 +25,14 @@ angular
     .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
       //noinspection JSCheckFunctionSignatures
 
-      $urlRouterProvider.otherwise("/home");
+      $urlRouterProvider.otherwise('/home');
 
       $stateProvider
         .state('home', {
           url: '/home',
           title: 'Home',
           templateUrl: 'views/home.html',
-          controller: ''
+          controller: 'MainCtrl'
         }).state('find', {
           url: '/find',
           title: 'Find my Car',
@@ -128,16 +128,16 @@ angular
     })
 
   .run([
-    '$log', '$rootScope', '$window', '$state', '$location',
-    function($log, $rootScope, $window, $state, $location) {
+    '$log', '$rootScope', '$window', '$state',
+    function($log, $rootScope, $window, $state) {
 
-      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+      $rootScope.$on('$stateChangeStart', function(event, toState) {
         if (toState.title) {
           $rootScope.pageTitle = toState.title;
         }
       });
 
-      $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams) {
+      $rootScope.$on('$stateChangeSuccess', function() {
         // something else
       });
 
