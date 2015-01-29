@@ -67,6 +67,7 @@ module.exports = function (grunt, options) {
       }
 
       grunt.task.run([
+        'newer:jshint',
         'clean:server',
         'env:all',
         'ngconstant:local',
