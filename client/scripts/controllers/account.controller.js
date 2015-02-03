@@ -5,7 +5,7 @@ angular.module('easyparkangularApp')
 
     $scope.appBackground='#2b2f3d';
 
-    $scope.getCurrentUser = Auth.getCurrentUser;
+    $scope.getCurrentUser = Auth.getCurrentUser();
 
 
   });
