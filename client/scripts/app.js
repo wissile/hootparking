@@ -113,23 +113,8 @@ angular
       };
     })
 
-    .run(function ($location, $rootScope, Auth) {
-      $rootScope.$on('$routeChangeSuccess', function (event, next) {
-        $rootScope.title = next.$$route.title;
-
-        // Redirect to login if route requires auth and you're not logged in
-        Auth.isLoggedInAsync(function(loggedIn) {
-          if (next.authenticate && !loggedIn) {
-            $location.replace();
-            $location.path('/login');
-          }
-        });
-      });
-    })
-
-  .run([
-    '$log', '$rootScope', '$window', '$state',
-    function($log, $rootScope, $window, $state) {
+  .run(
+    function($log, $rootScope, $window, $state, $location, Auth) {
 
       $rootScope.$on('$stateChangeStart', function(event, toState) {
         if (toState.title) {
@@ -137,10 +122,16 @@ angular
         }
       });
 
-      $rootScope.$on('$stateChangeSuccess', function() {
-        // something else
+      $rootScope.$on('$stateChangeSuccess', function(event, toState) {
+        // Redirect to login if route requires auth and you're not logged in
+        Auth.isLoggedInAsync(function(loggedIn) {
+          if (toState.authenticate && !loggedIn) {
+            $location.replace();
+            $state.go('login');
+          }
+        });
       });
 
       $state.go('home');
     }
-  ]);
+  );
