@@ -11,6 +11,8 @@
     <access origin="*" />
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="SplashScreenDelay" value="10000" />
 
     <platform name="android">
       <icon src="www/res/android/logoicon.png" platform="android" width="57" height="57" density="mdpi" />

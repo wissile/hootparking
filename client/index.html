@@ -98,6 +98,21 @@
   ga('send', 'pageview');
 </script>
 
+
+
+<script type="text/javascript" charset="utf-8">
+  function onLoad() {
+    document.addEventListener("deviceready", onDeviceReady, false);
+  }
+
+  function onDeviceReady() {
+    navigator.splashscreen.hide()
+  }
+</script>
+
+
+
+
 <!-- build:js(client) scripts/oldieshim.js -->
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
