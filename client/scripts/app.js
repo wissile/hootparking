@@ -25,14 +25,29 @@ angular
     .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
       //noinspection JSCheckFunctionSignatures
 
-      $urlRouterProvider.otherwise('/home');
+      $urlRouterProvider.otherwise('/guide');
 
       $stateProvider
         .state('guide', {
           url: '/guide',
-          title: 'Guide',
-          templateUrl: 'views/search-guide.html',
-          controller: ''
+          title: 'Search Guide',
+          templateUrl: 'views/search-guide.html'
+        }).state('guide2', {
+          url: '/guide2',
+          title: 'Save Guide',
+          templateUrl: 'views/save-guide.html'
+        }).state('guide3', {
+          url: '/guide3',
+          title: 'Track Guide',
+          templateUrl: 'views/track-guide.html'
+        }).state('guide4', {
+          url: '/guide4',
+          title: 'Notification Guide',
+          templateUrl: 'views/notification-guide.html'
+        }).state('guide5', {
+          url: '/guide5',
+          title: 'Find Guide',
+          templateUrl: 'views/find-guide.html'
         }).state('home', {
           url: '/home',
           title: 'Home',

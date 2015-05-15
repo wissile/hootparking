@@ -7,11 +7,51 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-#guide-blue {
-  background-color: #01afdb;
+.guide {
   text-align: center;
   color: #fff;
   clear: both;
+  overflow: hidden;
+}
+
+.guide.blue {
+  background-color: #01afdb;
+}
+
+.guide.green {
+  background-color: #61af23;
+}
+
+.guide.orange {
+  background-color: #fea427;
+}
+
+.guide.purple {
+  background-color: #8d58d3;
+}
+
+.guide.red {
+  background-color: #f24965;
+}
+
+.guide-control.blue {
+  border-top: 1px solid #47c8e5;
+}
+
+.guide-control.green {
+  border-top: 1px solid #80bd4c;
+}
+
+.guide-control.orange {
+  border-top: 1px solid #feb959;
+}
+
+.guide-control.purple {
+  border-top: 1px solid #a67cdc;
+}
+
+.guide-control.red {
+  border-top: 1px solid #f47d97;
 }
 
 .guide-content {
@@ -31,13 +71,25 @@ body {
 }
 
 .guide-control {
-  border-top: 1px solid #47c8e5;
+  text-align: center;
+  height: 100%;
 }
+
+.guide-control ul {
+  padding: 0;
+}
+
+
 
 .guide-control ul li {
   display: inline-block;
-  padding: 10px 0px;
+  padding: 15px 40px 5px 40px;
   text-align: center;
+}
+
+.guide-control ul li a {
+  color: #fff;
+  text-decoration: none;
 }
 
 .guide-control ul li span {
@@ -119,7 +171,6 @@ body {
 
 .main {
   /*margin: 60px 0px 80px 0px;*/
-  border: 1px solid red;
   background-color: transparent;
   width: 100%;
 }
@@ -182,7 +233,6 @@ body {
       padding: 0;
       margin: 0;
       clear: both;
-      border: 1px solid red;
       background-color: transparent;
     }
 
@@ -445,36 +495,33 @@ md-switch .md-switch-thumb .md-label {
   text-align: center;
 }
 
-#geosection {
-  padding: 0;
-  margin: 10px 20px;
-}
-
-#geosection li {
-  margin: 50px 0px;
-}
-
-#geosection li:last-child {
-  margin-bottom: 0px;
-}
-
-.geosecline {
-  padding-bottom: 10px;
-  white-space: nowrap;
-}
-
-.test {
-  display: inline-block;
-  vertical-align: top;
+.address-container {
+  height: 35px;
+  width: 100%;
   margin: 0;
+  display: table;
+  padding: 0px 10px;
+  background-color: rgba(255,255,255,0.2);
+  border: 1px solid #f1f1f1;
+}
+
+.address-container > span {
+  font-size: 18px;
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
 }
 
 #address {
-  font-size: 26px;
-  font-weight: 100;
+  font-size: 14px;
+  width: 94%;
+  font-weight: 400;
   color: #4d4d4d;
   white-space: normal;
   margin-left: 10px;
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
 }
 
 .sectionline {
@@ -521,15 +568,14 @@ md-switch .md-switch-thumb .md-label {
 .getpark {
   display: block;
   width: 100%;
-  height: 50px;
-  padding: 3.5% 0%;
-  margin-top: 20px;
+  height: 35px;
+  padding: 1.5% 0%;
   text-transform: uppercase;
-  font-size: 14px;
-  border: 1px solid #29A5DC;
-  color: #29A5DC;
+  font-size: 12px;
+  border: 1px solid transparent;
+  background-color: #f25d59;
+  color: #fff;
   font-weight: 800;
-  background-color: #fff;
   vertical-align: middle;
   cursor: pointer;
   text-align: center;
@@ -550,8 +596,9 @@ input, button {
 }
 
 .getpark:hover {
-  background-color: #29A5DC;
-  color: #fff;
+  background-color: #fff;
+  color: #f25d59;
+  border: 1px solid #f25d59;
   text-decoration: none;
 }
 
@@ -665,14 +712,30 @@ input, button {
   text-align: center;
 }
 
-#Autocomplete {
-  width: 100%;
-  height: 50px;
+.home-search {
   border: 1px solid #f1f1f1;
+  display: table;
+  width: 100%;
+  padding: 0px 10px 0px 0px;
+}
+
+.home-search span {
+  font-size: 18px;
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+}
+
+#Autocomplete {
+  width: 94%;
+  height: 35px;
+  display: table-cell;
+  border: none;
+  text-align: left;
   padding: 5px 15px;
   box-sizing: border-box;
-  font-size: 22px;
-  font-weight: 100;
+  font-size: 14px;
+  font-weight: 400;
   font-family: "Roboto";
   color: #4d4d4d;
 }
