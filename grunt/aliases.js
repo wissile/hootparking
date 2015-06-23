@@ -179,6 +179,10 @@ module.exports = function (grunt, options) {
       'cordova-run'
     ],
 
+    'clean_env':[
+        'clean:environment'
+    ],
+
     'default':[
       'newer:jshint',
       'test',

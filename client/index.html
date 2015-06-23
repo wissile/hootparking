@@ -40,13 +40,16 @@
 
       <md-sidenav class="md-sidenav-left darkblue" md-component-id="left">
         <div class="sidenav-header">
-          <div class="main-nav-photo"><img src="images/jen.png" width="35" height="35"/></div>
+          <div class="main-nav-photo"><img class="circle" src="images/jen.png" width="35" height="35"/></div>
           <div class="main-nav-name">{{ getCurrentUser.firstName }} {{ getCurrentUser.lastName }}<span>September 2013</span></div>
+            <div class="close-menu" ng-controller="LeftCtrl">
+                <span ng-click="close()" class="glyphicon glyphicon-remove"></span>
+            </div>
         </div><!-- end sidenav-header -->
           <ul class="main-nav" ng-controller="LeftCtrl">
               <li><a class="waves-effect" ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search</span></a></li>
               <li><a ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
-              <li><a ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-user"> Profile</span></a></li>
+              <li><a ui-sref="notifications" ng-click="close()"><span class="glyphicon glyphicon-bell"> Notifications</span></a></li>
               <li><a ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Settings</span></a></li>
               <li><a ui-sref="guide" ng-click="close()"><span class="glyphicon glyphicon-question-sign"> Guide</span></a></li>
           </ul>
@@ -56,7 +59,7 @@
 
             <div class="header">
               <ul class="header-items">
-                <li><button class="main-menu-toggle" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></button></li>
+                <li><button class="main-menu-toggle waves-effect" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></button></li>
                 <li><h2 ng-bind="pageTitle"></h2></li>
               </ul><!-- end header-items -->
             </div><!-- end header -->
@@ -106,6 +109,8 @@
   function onDeviceReady() {
     navigator.splashscreen.hide()
   }
+
+
 </script>
 
 

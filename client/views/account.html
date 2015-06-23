@@ -1,153 +1,80 @@
-<div class="account-user-info-container">
-<div class="account-photo-container"><img src="images/jen.png" width="80" height="80"/></div>
-<p>{{ getCurrentUser.firstName }} {{ getCurrentUser.lastName }} {{ getCurrentUser.date }}</p>
+<div class="account-user-info-container card">
+<div class="account-photo-container"><img class="circle" src="images/jen.png" width="80" height="80"/></div>
+<!--<p>{{ getCurrentUser.firstName }} {{ getCurrentUser.lastName }}</p>-->
+<!--<div class="account-name-container">-->
+    <p>Wissile Sogoyou</p>
+    <p>March, 5th 1990</p>
+<!--</div>-->
 </div>
 
-<ul class="account-setting-list">
-    <li><div class="switch-label">Parking sweeping</div>
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
+
+<div class="account-container">
+    <h5>Profile</h5>
+    <div class="input-field col s6">
+        <input id="first_name" type="text" class="validate">
+        <label for="first_name">First Name</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="last_name" type="text" class="validate">
+        <label for="last_name">Last Name</label>
+    </div>
+    <div class="input-field col s6">
+        <span class="glyphicon glyphicon-calendar prefix"></span>
+        <input id="birthday" type="date" class="datepicker">
+        <label for="birthday">Birthday</label>
+    </div>
+
+
+
+
+    <h5>Account</h5>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
         </div>
-    </li>
-    <li>Parking cleaning
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="email" type="email" class="validate">
+            <label for="email" data-error="wrong" data-success="right">Email</label>
         </div>
-    </li>
-    <li>Reached max budget
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
+    </div>
+    <div class="row">
+        <input id="icon_telephone" type="tel" class="validate">
+        <label for="icon_telephone">Telephone</label>
+    </div>
+</div>
+
+
+
+
+
+<p>
+    <input class="with-gap" name="group3" type="radio" id="test5" checked />
+    <label for="test5">Red</label>
+</p>
+
+<form action="#">
+    <p>
+        <input type="checkbox" id="test5" />
+        <label for="test5">Red</label>
+    </p>
+    <p>
+        <input type="checkbox" id="test6" checked="checked" />
+        <label for="test6">Yellow</label>
+    </p>
+   </form>
+
+
+<form action="#">
+    <div class="file-field input-field">
+        <input class="file-path validate" type="text"/>
+        <div class="btn">
+            <span>File</span>
+            <input type="file" />
         </div>
-    </li>
-    <li>Parking fare change
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </li>
-    <li>Parking time
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </li>
-    <li>Move car
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </li>
-    <li>Set spending budget
-        <!-- Switch -->
-        <div class="switch">
-            <label>
-                Off
-                <input type="checkbox">
-                <span class="lever"></span>
-                On
-            </label>
-        </div>
-    </li>
-</ul>
+    </div>
+</form>
 
 
-
-
-
-
-
-
-<!--<ul class="account-notifications">-->
-  <!--<li class="acc-label"><div class="switch-label">Parking sweeping</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb1" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb1 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Parking cleaning</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb2" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb2 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Reached max budjet</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb3" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb3 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Parking fare change</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb4" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb4 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Parking time</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb5" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb5 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Move car</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb6" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb6 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-  <!--<div class="account-sep-line"></div>-->
-  <!--<li class="acc-label"><div class="switch-label">Set spending budget</div></li>-->
-  <!--<li class="acc-switch">-->
-    <!--<md-switch ng-model="data.cb7" ng-true-value="'ON'" ng-false-value="'OFF'">-->
-      <!--<div class="inside-bar">{{ data.cb7 }}</div>-->
-    <!--</md-switch>-->
-  <!--</li>-->
-<!--</ul>-->
-
-<!--<div class="account-profile">-->
-  <!--<div class="add-profile-photo"><span>+</span><p>Upload Photo</p></div>-->
-  <!--<ul>-->
-    <!--<li><md-text-float label="FirstName" ng-model="user.firstName"> </md-text-float></li>-->
-    <!--<li><md-text-float label="LastName" ng-model="user.lastName"> </md-text-float></li>-->
-    <!--<li><md-text-float label="Email" ng-model="user.email"> </md-text-float></li>-->
-    <!--<li><md-text-float label="Password" ng-model="user.password"> </md-text-float></li>-->
-  <!--</ul>-->
-
-<!--</div>-->

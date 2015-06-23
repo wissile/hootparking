@@ -64,6 +64,11 @@ angular
           templateUrl: 'views/account.html',
           controller: 'AccountCtrl',
           authenticate: true
+        }).state('notifications', {
+          url: '/notifications',
+          title: 'Notifications',
+          templateUrl: 'views/notifications.html',
+          authenticate: true
         }).state('login', {
           url: '/login',
           title: 'Login',

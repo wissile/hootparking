@@ -26,5 +26,20 @@ module.exports = {
       ]
     }]
   },
+    environment: {
+        files: [{
+            dot: true,
+            src: [
+                './www',
+                './node_modules',
+                './client/bower_components',
+                '<%= config.tmp %>',
+                '<%= config.dist %>/*',
+                '!<%= config.dist %>/.git*',
+                '!<%= config.dist %>/.openshift',
+                '!<%= config.dist %>/Procfile'
+            ]
+        }]
+    },
   server: '<%= config.tmp %>'
 };
