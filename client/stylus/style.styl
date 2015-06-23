@@ -2,6 +2,23 @@
 
 @import url('http://fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700');
 
+
+#map {
+  height:420px;
+  width:600px;
+}
+.infoWindowContent {
+  font-size:  14px !important;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+
+
+
+
+
+
 body {
   font-family: "Roboto", Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -12,6 +29,10 @@ body {
   color: #fff;
   clear: both;
   overflow: hidden;
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
 }
 
 .guide.blue {
@@ -72,7 +93,11 @@ body {
 
 .guide-control {
   text-align: center;
-  height: 100%;
+  height: 50px;
+  width: 100%;
+  max-width: 400px;
+  position: fixed;
+  bottom:0;
 }
 
 .guide-control ul {
@@ -83,18 +108,27 @@ body {
 
 .guide-control ul li {
   display: inline-block;
-  padding: 15px 40px 5px 40px;
   text-align: center;
 }
 
 .guide-control ul li a {
   color: #fff;
+  display: block;
   text-decoration: none;
 }
 
-.guide-control ul li span {
+.guide-control ul li:first-child a {
+  padding: 15px 50px 10px 50px;
+}
+
+.guide-control ul li:last-child a {
+  padding: 15px 50px 10px 50px;
+}
+
+.guide-control ul li > span {
   color: #fff;
   font-size: 16px;
+  padding: 15px 0px 10px 0px;
 }
 
 .guide-control ul li:first-child {
@@ -215,6 +249,7 @@ body {
           color: #a7a9b1;
           display: inline-block;
           vertical-align: middle;
+          text-transform: capitalize;
         }
 
 .main-nav-name span {
@@ -230,7 +265,7 @@ body {
     .header {
       width: 100%;
       display: block;
-      padding: 0;
+      padding: 15px 0px 0px 0px;
       margin: 0;
       clear: both;
       background-color: transparent;
@@ -294,6 +329,7 @@ body {
   color: #a7a9b1;
   font-size: 18px;
   text-align: center;
+  text-transform: capitalize;
 }
 
 .account-notifications {
@@ -486,6 +522,7 @@ md-switch .md-switch-thumb .md-label {
   max-width: 400px;
   border: 1px solid transparent;
   box-sizing: border-box;
+  height: 100vh;
 }
 
 .altsign {
@@ -500,7 +537,7 @@ md-switch .md-switch-thumb .md-label {
   width: 100%;
   margin: 0;
   display: table;
-  padding: 0px 10px;
+  padding: 10px;
   background-color: rgba(255,255,255,0.2);
   border: 1px solid #f1f1f1;
 }
@@ -568,7 +605,9 @@ md-switch .md-switch-thumb .md-label {
 .getpark {
   display: block;
   width: 100%;
-  height: 35px;
+  height: 45px;
+  margin: 0 auto;
+  border-radius: none;
   padding: 1.5% 0%;
   text-transform: uppercase;
   font-size: 12px;
@@ -589,18 +628,18 @@ input, button {
   outline: 0;
 }
 
-.getstats a:hover {
-  background-color: #29A5DC;
-  color: #fff;
-  text-decoration: none;
-}
+/*.getstats a:hover {*/
+  /*background-color: #29A5DC;*/
+  /*color: #fff;*/
+  /*text-decoration: none;*/
+/*}*/
 
-.getpark:hover {
-  background-color: #fff;
-  color: #f25d59;
-  border: 1px solid #f25d59;
-  text-decoration: none;
-}
+/*.getpark:hover {*/
+  /*background-color: #fff;*/
+  /*color: #f25d59;*/
+  /*border: 1px solid #f25d59;*/
+  /*text-decoration: none;*/
+/*}*/
 
 /*.header {*/
   /*width: 100%;*/
@@ -728,7 +767,8 @@ input, button {
 
 #Autocomplete {
   width: 94%;
-  height: 35px;
+  height: 40px;
+  margin:0;
   display: table-cell;
   border: none;
   text-align: left;
@@ -739,6 +779,7 @@ input, button {
   font-family: "Roboto";
   color: #4d4d4d;
 }
+
 
 #registerlist {
   padding: 0;

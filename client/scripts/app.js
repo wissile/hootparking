@@ -19,13 +19,13 @@ angular
       'ngTouch',
       'ngAutocomplete',
       'backButton',
-        'ngMaterial',
+      'ngMaterial',
       'config'
     ])
     .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
       //noinspection JSCheckFunctionSignatures
 
-      $urlRouterProvider.otherwise('/guide');
+      $urlRouterProvider.otherwise('/home');
 
       $stateProvider
         .state('guide', {

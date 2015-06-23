@@ -238,8 +238,8 @@ angular.module('easyparkangularApp')
                 directionsDisplay.setDirections(response);
                 /*jshint camelcase: false */
                 var latLng = response.routes[0].legs[0].end_location;
-                var lat = latLng.k;
-                var lon = latLng.D;
+                var lat = latLng.A;
+                var lon = latLng.F;
                 var radius = 2;
                 var uom = 'mile';
                 parkingSpots.getParkingSpots(lat, lon, radius, uom)

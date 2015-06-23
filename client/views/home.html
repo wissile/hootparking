@@ -1,26 +1,28 @@
 <div id="geolocate">
 
-
+  <div ng-app="easyparkangularApp" ng-controller="MainCtrl">
 
       <form ng-submit="calcRoute()">
         <div class="home-search">
           <input id="Autocomplete" type="text" placeholder="Enter name or address..."
                  ng-autocomplete="result" details="details" options="options"/>
           <span class="glyphicon glyphicon-screenshot"></span>
-        </div>
+        </div><!-- end home-search -->
+        <div ng-include src="'views/parkingspotslist.html'"></div>
 
-        <div class="address-container"><span id="address">{{formattedAddress}}</span><span class="glyphicon glyphicon-map-marker"></span></div>
-        <input type="submit" class="getpark" value="Search Parking"/>
+
+
+        <div class="address-container">
+          <span id="address">{{formattedAddress}}</span>
+          <span id="error">{{addressError}}</span>
+          <span class="glyphicon glyphicon-map-marker"></span>
+        </div><!-- end address container -->
+
+        <input type="submit" class="getpark waves-effect" value="Search Parking"/>
+
       </form>
-      <p>
 
-      <p id="error">{{addressError}}</p>
-
-      <div ng-include src="'views/parkingspotslist.html'"></div>
-
-
-
-
+</div>
 </div>
 <div id="map-canvas"></div>
 

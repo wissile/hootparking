@@ -2,20 +2,30 @@
 <widget id="com.herokuapp.easyparkapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>hootParking</name>
     <description>
-        The most complete parking app.
+        A parking app you'll love
     </description>
     <author email="wissile@hootparking.com" href="http://www.hootparking.com">
         hootParking Team
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <preference name="fullscreen" value="true" />
+    <preference name="Fullscreen" value="true" />
     <preference name="webviewbounce" value="true" />
     <preference name="SplashScreen" value="screen" />
     <preference name="SplashScreenDelay" value="10000" />
+    <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="FadeSplashScreenDuration" value="1.0" />
 
     <platform name="android">
-      <icon src="www/res/android/logoicon.png" platform="android" width="57" height="57" density="mdpi" />
+      <icon src="www/res/android/logoicon.png" width="57" height="57" density="mdpi" />
       <splash src="www/res/android/splash.png" density="land-mdpi"/>
     </platform>
+
+    <platform name="ios">
+        <icon src="www/res/ios/logoicon.png" width="57" height="57" density="mdpi" />
+        <splash src="www/res/ios/splash.png" density="land-mdpi"/>
+    </platform>
+
 </widget>
