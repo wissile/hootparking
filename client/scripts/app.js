@@ -64,6 +64,18 @@ angular
           templateUrl: 'views/account.html',
           controller: 'AccountCtrl',
           authenticate: true
+        }).state('new-user', {
+          url: '/new-user',
+          title: 'New User',
+          templateUrl: 'views/new-user.html',
+          controller: 'AccountCtrl',
+          authenticate: true
+        }).state('edit-account', {
+           url: '/edit-account',
+           title: 'Edit Account',
+           templateUrl: 'views/edit-account.html',
+           controller: 'AccountCtrl',
+           authenticate: true
         }).state('notifications', {
           url: '/notifications',
           title: 'Notifications',

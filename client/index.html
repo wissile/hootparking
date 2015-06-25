@@ -8,6 +8,7 @@
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
   <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
     <link rel="stylesheet" href="http://www.justinaguilar.com/animations/css/animations.css" />
   <!-- build:css(client) styles/vendor.css -->
@@ -40,18 +41,27 @@
 
       <md-sidenav class="md-sidenav-left darkblue" md-component-id="left">
         <div class="sidenav-header">
-          <div class="main-nav-photo"><img class="circle" src="images/jen.png" width="35" height="35"/></div>
-          <div class="main-nav-name">{{ getCurrentUser.firstName }} {{ getCurrentUser.lastName }}<span>September 2013</span></div>
-            <div class="close-menu" ng-controller="LeftCtrl">
-                <span ng-click="close()" class="glyphicon glyphicon-remove"></span>
+            <!--<div class="">-->
+              <!--<div class="main-nav-photo"><img class="circle" src="images/jen.png" width="35" height="35"/></div>-->
+              <!--<div class="main-nav-name">{{ getCurrentUser.firstName }} {{ getCurrentUser.lastName }}<span>September 2013</span></div>-->
+                <!--<div class="close-menu" ng-controller="LeftCtrl">-->
+                    <!--<span ng-click="close()" class="glyphicon glyphicon-remove"></span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div>
+                <div class="main-nav-photo"><img class="circle" src="http://hootparking.com/img/logoicon2.png" width="35" height="35"/></div>
+                <div class="main-nav-name orange-text">hootParking</div>
+
             </div>
+
         </div><!-- end sidenav-header -->
           <ul class="main-nav" ng-controller="LeftCtrl">
               <li><a class="waves-effect" ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search</span></a></li>
-              <li><a ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
-              <li><a ui-sref="notifications" ng-click="close()"><span class="glyphicon glyphicon-bell"> Notifications</span></a></li>
-              <li><a ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Settings</span></a></li>
-              <li><a ui-sref="guide" ng-click="close()"><span class="glyphicon glyphicon-question-sign"> Guide</span></a></li>
+              <li><a class="waves-effect" ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
+              <li><a class="waves-effect" ui-sref="notifications" ng-click="close()"><span class="glyphicon glyphicon-bell"> Notifications</span></a></li>
+              <li class="divider"></li>
+              <li><a class="waves-effect" ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Settings</span></a></li>
+              <li><a class="waves-effect" ui-sref="guide" ng-click="close()"><span class="glyphicon glyphicon-question-sign"> Guide</span></a></li>
           </ul>
       </md-sidenav>
       <div flex class="md-padding">
@@ -59,7 +69,7 @@
 
             <div class="header">
               <ul class="header-items">
-                <li><button class="main-menu-toggle waves-effect" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></button></li>
+                <li><a class="main-menu-toggle waves-effect" ng-click="toggleLeft()"><span class="glyphicon glyphicon-align-justify"></span></a></li>
                 <li><h2 ng-bind="pageTitle"></h2></li>
               </ul><!-- end header-items -->
             </div><!-- end header -->
@@ -109,6 +119,7 @@
   function onDeviceReady() {
     navigator.splashscreen.hide()
   }
+
 
 
 </script>

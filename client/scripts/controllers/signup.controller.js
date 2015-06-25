@@ -18,7 +18,7 @@ angular.module('easyparkangularApp')
         })
         .then( function() {
           // Account created, redirect to home
-          $location.path('/home');
+          $location.path('/new-user');
         })
         .catch( function(err) {
           err = err.data;
