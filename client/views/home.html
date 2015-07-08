@@ -6,7 +6,7 @@
         <div class="home-search">
           <input id="Autocomplete" type="text" placeholder="Search for name or address..."
                  ng-autocomplete="result" details="details" options="options"/>
-          <span class="glyphicon glyphicon-screenshot"></span>
+          <span class="glyphicon glyphicon-search"></span>
         </div><!-- end home-search -->
         <div ng-include src="'views/parkingspotslist.html'"></div>
 
@@ -18,7 +18,8 @@
           <span id="address">{{formattedAddress}}</span>
           <span id="error">{{addressError}}</span>
         </div><!-- end address container -->
-        <input type="submit" class="getpark waves-effect" value="Search Parking"/>
+        <!--<input type="submit" class="getpark waves-effect" value="Search Parking"/>-->
+           <button type="submit" class="getpark waves-effect">Search Parking</button>
        </div>
 
 

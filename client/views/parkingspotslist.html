@@ -1,47 +1,37 @@
 <div ng-controller="ParkingspotslistCtrl">
   <!--I found {{spots.length}} spots. Filter by:-->
   <!--<input type="checkbox" ng-model="typeFilter" ng-true-value="'OFF'" ng-false-value="'ON'"> Garage-->
-  <div class="list-group">
-    <a class="list-group-item" ng-click="saveParkingSpot(spot)"
-       ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
 
-      <div class="parking-name">{{spot.NAME}}</div>
-      <div class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</div>
-      <div class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</div>
-      <div class="status">{{spot.TYPE}}</div>
-      <div class="right-data">
-        <div class="price"><span>$</span>{{spot.currentRate.RATE | number:1}}</div>
-        <div class="distance">{{spot.distance | number:1}}<span>mi</span></div>
-      </div>
-    </a>
-  </div>
+  <!--<div class="list-group">-->
+    <!--<a class="list-group-item" ng-click="saveParkingSpot(spot)"-->
+       <!--ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">-->
+
+      <!--<div class="parking-name">{{spot.NAME}}</div>-->
+      <!--<div class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</div>-->
+      <!--<div class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</div>-->
+      <!--<div class="status">{{spot.TYPE}}</div>-->
+      <!--<div class="right-data">-->
+        <!--<div class="price"><span>$</span>{{spot.currentRate.RATE | number:1}}</div>-->
+        <!--<div class="distance">{{spot.distance | number:1}}<span>mi</span></div>-->
+      <!--</div>-->
+    <!--</a>-->
+  <!--</div>-->
 
     <ul class="collection">
 
-        <li class="collection-item avatar">
-            <i class="material-icons circle">24</i>
-            <span class="title">Union Square</span>
-            <p>Garage
-            <ul class="parking-list-details"><li>$3.5</li><li><span>0.7mi</span></li></ul>
+        <li class="collection-item avatar"
+            ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
+            <i class="material-icons circle yellow">insert_chart</i>
+            <span class="title">{{spot.NAME}}</span>
+            <p><span class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</span>
+            <span class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</span>
+            <ul class="parking-list-details"><li><span>$</span>{{spot.currentRate.RATE | number:1}}</li>
+            <li>{{spot.distance | number:1}}<span>mi</span></li></ul>
             </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">$3.5</i><i class="material-icons">0.7mi</i></a>
+            <a class="secondary-content" ng-click="saveParkingSpot(spot)">
+                <i class="material-icons circle yellow">play_arrow</i></a>
         </li>
-        <li class="collection-item avatar">
-            <i class="material-icons circle green">insert_chart</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-                Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
-        <li class="collection-item avatar">
-            <i class="material-icons circle red">play_arrow</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-                Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-        </li>
+
     </ul>
 
 </div>
