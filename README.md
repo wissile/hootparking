@@ -4,29 +4,19 @@ This README would normally document whatever steps are necessary to get your app
 
 ### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+* HootParking app repo based of cordova & mean stack
+* Version 0.2.12
+* [App Site](http://hootparking.com/)
 
 ### Contribution guidelines ###
 
-* Writing tests
-* Code review
-* Other guidelines
+* Writing tests need TBD
+* Code review will be submitted as pull request and will be review by QA and owner
 
 ### Who do I talk to? ###
 
-* Repo owner or admin
-* Other community or team contact
+* Repo owner or admin is Wissile Sogoyou - wissile@hootparking.com
+* Other community or team contact - info@hootparking.com
 
 ### app requirements ###
 * java jdk & sdk
@@ -57,3 +47,13 @@ This README would normally document whatever steps are necessary to get your app
 ### run app
 * $ sudo mongod
 * $ grunt serve on second window
+
+
+### How do I get set up? ###
+
+* Summary of set up
+* Configuration
+* Dependencies
+* Database configuration
+* How to run tests
+* Deployment instructions
