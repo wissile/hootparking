@@ -45,7 +45,7 @@ This README would normally document whatever steps are necessary to get your app
 * copy the generated link
 * write $ git clone [url] in the terminal
 * cd into hootparking folder
-****** wont have to do this anymore in the future ***
+*** wont have to do next steps in the future ***
 * $ git branch develop & || [other branch created]
 * $ git checkout [that last branch]
 * $ git pull origin [that same branch]
