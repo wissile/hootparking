@@ -38,22 +38,23 @@ This README would normally document whatever steps are necessary to get your app
 * npm grunt install
 * npm bower install
 
-### Download the repo ###
+### Download the repo
 * login to bitbucket
 * access the hootparking repo
 * click on the right hand corner HTTPS 
 * copy the generated link
 * write $ git clone [url] in the terminal
 * cd into hootparking folder
+*
 ----- wont have to do this anymore in the future ------
 * $ git branch develop & || [other branch created]
 * $ git checkout [that last branch]
 * $ git pull origin [that same branch]
 
-### Setting app dependencies ### 
+### Setting app dependencies
 * $ npm install
 * $ bower install
 
-### run app ### 
+### run app
 * $ sudo mongod
 * $ grunt serve on second window
