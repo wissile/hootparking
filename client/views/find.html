@@ -1,0 +1,46 @@
+<div id="geolocate">
+
+  <ul id="geosection">
+    <li class="geosecline">
+
+      <p class="test"> <div class="preloader-wrapper small active">
+
+      <div id="doughnutChart" class="chart"></div>
+
+
+        <div class="spinner-layer spinner-yellow-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+    </div></p>
+
+      <p class="test" id="address">{{formattedAddress}}</p>
+
+      <p class="sectionline">Your location</p>
+    </li>
+    <li class="geosecline">
+      <p class="test"><img src="images/carloc.png"/></p>
+
+      <p class="test" id="address">{{carLocation.DESC}}</p>
+
+      <p class="sectionline">Car location</p>
+
+      <p>
+
+      <div class="getstats"><a href="">Find my Car</a></div>
+      </p>
+    </li>
+  </ul>
+  <div id="map-canvas"></div>
+</div>
+
+<ul id="carinfo">
+  <li><img src="images/walk.png"/>12min<p>walking</p></li>
+  <li>|</li>
+  <li><img src="images/time.png"/>1h16<p>parking time</p></li>
+</ul>
