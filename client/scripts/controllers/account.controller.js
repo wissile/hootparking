@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('AccountCtrl', function ($scope, Auth) {
+  .controller('AccountCtrl', function ($scope, Auth, $location, $window) {
 
-    //$scope.appBackground='#2b2f3d';
+      //$scope.appBackground='#2b2f3d';
 
-    $scope.getCurrentUser = Auth.getCurrentUser();
+      $scope.getCurrentUser = Auth.getCurrentUser();
 
-
+      $scope.logout = function () {
+          Auth.logout();
+      }
   });

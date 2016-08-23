@@ -1,28 +1,63 @@
-<div>
-  <div id="profile-intro"><p><img src="images/profile.png"/></p>Create an account<p>Enjoy benefits that saves you time
-    and money</p></div>
-  <form class="form" name="form" ng-submit="register(form)" novalidate>
+<div class="background_signup" style="background: #2A2C3B">
+    <div id="profile-intro">
+        <p>
+            <img src="images/profile.png" /></p>
+        <font style="color: White">Set up your account</font>
+        <p style="text-align: center; color: Maroon; font-size: 16px; margin: 5px">
+            ion of letters, as opposed to using Cotents here,</p>
+        <p style="text-align: center; color: Maroon; font-size: 16px; margin: 5px">
+            content here', making it loo
+        </p>
+    </div>
+    <form class="form" name="form" ng-submit="register(form)" novalidate>
     <ul id="registerlist">
-      <li class="name">
-        <input class="register" type="text" placeholder="First name" ng-model="user.firstName"
-               required/>
-      </li>
-      <li class="name">
+        <li>
+            <!--class="name"-->
+            <input class="register" type="text" placeholder="Username" ng-model="user.firstName"
+                required />
+        </li>
+        <!-- <li class="name">
         <input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
                required/>
-      </li>
-      <li>
-        <input class="register" type="text" placeholder="Enter email" ng-model="user.email"
-               required/>
-      </li>
-      <li>
-        <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
-               ng-minlength="3"
-               required/>
-
-        <p><input type="submit" class="getpark" value="Sign up"/></p>
-        <div class="altsign">Already have an account, please <a  ui-sref="login">Sign in</a></div>
-      </li>
+      </li>-->
+        <li>
+            <input class="register" type="text" placeholder="Email" ng-model="user.email" required />
+        </li>
+        <li>
+            <input class="register" type="password" name="pwd" placeholder="Password" ng-model="user.password"
+                ng-minlength="3" required />
+        </li>
+        <li>
+            <div ng-controller="SignupCtrl1">
+             
+                    <a class="main-nav-name1 orange-text ">REGISTER</a> <a class="main-nav-name1 orange-text "
+                        ng-click="Facebook_login">FACEBOOK</a>
+            
+            </div>
+            <br />
+            <br />
+            <br />
+        </li>
+        <li>
+            <p class="" style="color: White">
+                <span class="main-nav-name1">Already a hooter</span>
+                <!-- </div>
+            <div class="" style="text-align: right">-->
+                <span class="main-nav-name1" style="text-align: right" ui-sref="login">SKIP ></span>
+            </p>
+            <!--for div class="altsign"-->
+        </li>
     </ul>
-  </form>
+    </form>
 </div>
+<script>
+    angular.module('easyparkangularApp', [])
+.controller('myCtrl', ['$scope', function ($scope) {
+    debugger;
+
+    $scope.fb_login = function () {
+        debugger;
+
+    };
+} ]);
+</script>
