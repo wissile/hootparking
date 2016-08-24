@@ -17,6 +17,11 @@ angular.module('easyparkangularApp')
         params: {
           id:'me'
         }
-      }
+  },
+  save: {
+      method: 'POST',
+      
+  }
+
 	  });
   });
