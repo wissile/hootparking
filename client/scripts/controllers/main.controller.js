@@ -15,7 +15,7 @@ angular.module('easyparkangularApp')
         $scope.details = '';
         var map;
         var geocoder = new google.maps.Geocoder();
-        var marker;
+       
         function initialize() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (p) {
@@ -23,30 +23,21 @@ angular.module('easyparkangularApp')
                     var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
                     var mapOpt = {
 
-                        //               center: new google.maps.LatLng(51.508742, -0.120850),
+                        //                      center: new google.maps.LatLng(51.508742, -0.120850),
                         center: LatLng,
                         zoom: 15,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
                     map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt);
-
-
-                    // lat_lng.push(myLatlng);
-                    marker = new google.maps.Marker({
+                    var marker = new google.maps.Marker({
                         position: LatLng,
                         map: map,
-                        
-                        animation: google.maps.Animation.DROP
-                    });
-                    google.maps.event.addListener(marker, 'click', function (e) {
-                        var infoWindow = new google.maps.InfoWindow();
-                        infoWindow.setContent(marker.title);
-                        infoWindow.open(map, marker);
-                        console.log(e);
+                        animation: google.maps.Animation.BOUNCE
+
                     });
 
                     geocoder.geocode({ 'latLng': LatLng }, function (results, status) {
-                        if (status === window.google.maps.GeocoderStatus.OK) {
+                        if (status === google.maps.GeocoderStatus.OK) {
                             if (results[0]) {
                                 /*jshint camelcase: false */
                                 $scope.formattedAddress = results[0].formatted_address;
@@ -54,7 +45,20 @@ angular.module('easyparkangularApp')
                             }
                         }
                     });
-                    console.log(p);
+                    //                    var input = document.getElementById('Autocomplete');
+                    //                    var searchBox = new google.maps.places.SearchBox(input);
+                    //                    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                    //                    map.addListener('bounds_changed', function () {
+                    //                        searchBox.setBounds(map.getBounds());
+                    //                    });
+
+                    google.maps.event.addListener(marker, 'click', function (e) {
+                        var infoWindow = new google.maps.InfoWindow();
+                        infoWindow.setContent(marker.title);
+                        infoWindow.open(map, marker);
+                        console.log(e);
+                    });
                 });
             }
         }
@@ -71,36 +75,24 @@ angular.module('easyparkangularApp')
                     var latitude = results[0].geometry.location.lat();
                     var longitude = results[0].geometry.location.lng();
                     console.log(latitude, longitude);
-                    $scope.formattedAddress = results[0].formatted_address;  
-                    var markers = [{ 'latitude': '18.508868', 'longitude': '73.789819' }, { 'title': 'Shinde Farm', 'latitude': '18.5088463', 'longitude': '73.789881'}];
-                    // var LatLng = new google.maps.LatLng(latitude, longitude);
-                    var LatLng = new google.maps.LatLng(markers[0].latitude, markers[0].longitude);
+                    $scope.formattedAddress = results[0].formatted_address;
+
+                    var LatLng = new google.maps.LatLng(latitude, longitude);
                     var mapOpt = {
 
-                        //    center: new google.maps.LatLng(51.508742, -0.120850),
+                        //                      center: new google.maps.LatLng(51.508742, -0.120850),
                         center: LatLng,
                         zoom: 15,
                         mapTypeId: google.maps.MapTypeId.ROADMAP
                     };
                     map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt);
+                    var marker = new google.maps.Marker({
+                        position: LatLng,
+                        map: map,
+                        animation: google.maps.Animation.BOUNCE
 
-                    for (var i = 0; i < markers.length; i++) {
-                        var data = markers[i];
-                        LatLng = new google.maps.LatLng(data.latitude, data.longitude);
-                        marker = new google.maps.Marker({
-                            position: LatLng,
-                            map: map,
-                            title: data.title,
-                            animation: google.maps.Animation.DROP
-
-                        });
-                    }
-                    google.maps.event.addListener(marker, 'click', function (e) {
-                        var infoWindow = new google.maps.InfoWindow();
-                        infoWindow.setContent(marker.title);
-                        infoWindow.open(map, marker);
-                        console.log(e);
                     });
+                    console.log(marker);
                 } else {
                     $scope.addressError = 'Unable to retrieve your address';
                 }

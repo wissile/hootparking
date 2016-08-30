@@ -41,16 +41,16 @@ angular.module('easyparkangularApp')
 
     
     $scope.facebookLogin = function() {
-        debugger;
-        alert("Hi");
+     ///   debugger;
+     //   alert("Hi");
     };
 
     $scope.register = function(form) {
       $scope.submitted = true;
-      var data = $scope.user;
-      debugger;
+     // var data = $scope.user;
+   //   debugger;
       if(form.$valid) {
-      debugger;
+  //    debugger;
         Auth.createUser({
           name: $scope.user.name,
          // firstName: $scope.user.firstName,
@@ -73,7 +73,7 @@ angular.module('easyparkangularApp')
           });
         });
       }
-      debugger;
+//      debugger;
     };
 
  
