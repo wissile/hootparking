@@ -1,39 +1,22 @@
-
-<div style="background: #2A2C3B">
+<div>
   <div id="profile-intro"><p><img src="images/profile.png"/></p>
 
     <p>Your profile</p></div>
-  <form class="form" name="form" ng-submit="login(form)" action="" novalidate>
-
-    
-        <input  id="inputName" class ="register " type="text" name="email" ng-model="user.email" placeholder="Enter email" required/>
-    
-        <input  id="inputName" class ="register inputName" type="password" name="password" ng-model="user.password" placeholder="Enter password"
+  <form class="form" name="form" ng-submit="login(form)" novalidate>
+    <ul id="registerlist">
+      <li>
+        <input class="register" type="text" name="email" ng-model="user.email" placeholder="Enter email" required/>
+      </li>
+      <li>
+        <input class="register" type="password" name="password" ng-model="user.password" placeholder="Enter password"
                required/>
-    <br /><br />
+
         <!--<div class="getstats"><a ng-click="">Sign in</a></div>-->
-        <div style="margin-left:42%;">
-        <p><input type="submit" class="getpark" value="Sign in"/></p></div>
-        <div class="altsign">Don't have an account, please <a ui-sref="signup">Sign up</a></div>
-        
-  </form>
-</div>
-
-
-
-<!-- <ul id="Ul1">
-      <li>
-        <input  class ="register" type="text" name="email" ng-model="user.email" placeholder="Enter email" required/>
-     </li>
-      <li>
-        <input  class ="register" type="password" name="password" ng-model="user.password" placeholder="Enter password"
-               required/>
-    </li>  
-    <li>
-        <!--<div class="getstats"><a ng-click="">Sign in</a></div>
         <p><input type="submit" class="getpark" value="Sign in"/></p>
         <div class="altsign">Don't have an account, please <a ui-sref="signup">Sign up</a></div>
-     </li> 
-    </ul>-->
+      </li>
+    </ul>
+  </form>
+</div>
 
 
