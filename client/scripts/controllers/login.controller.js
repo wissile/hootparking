@@ -5,7 +5,9 @@ angular.module('easyparkangularApp')
     $scope.user = {};
     $scope.errors = {};
 
-    $scope.login = function(form) {
+    $scope.login = function(form)
+    {
+    debugger;
       $scope.submitted = true;
 
       if(form.$valid) {
@@ -14,10 +16,11 @@ angular.module('easyparkangularApp')
             password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
+          //Logged in, redirect to home
           $location.path('/home');
         })
-        .catch( function(err) {
+        .catch( function(err) 
+        {
           $scope.errors.other = err.message;
         });
       }
