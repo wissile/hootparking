@@ -12,6 +12,12 @@ angular.module('easyparkangularApp')
           controller:'password'
         }
       },
+      updateUser: {
+          method: 'PUT',
+          params: {
+              controller: 'data'
+          }
+      },
       get: {
         method: 'GET',
         params: {

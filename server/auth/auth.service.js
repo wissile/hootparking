@@ -34,7 +34,8 @@ function isAuthenticated() {
       });
     });
 }
-
+ 
+    
 /**
  * Checks if the user role meets the minimum requirements of the route
  */

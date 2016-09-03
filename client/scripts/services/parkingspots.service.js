@@ -208,7 +208,6 @@ angular.module('easyparkangularApp')
           // Instantiate an info window to hold step text.
           stepDisplay = new window.google.maps.InfoWindow();
         },
-
         calcRoute: function () {
           //calculateRoute();
           parkingSpots.geolocateUser().then(function () {
@@ -216,7 +215,6 @@ angular.module('easyparkangularApp')
             for (var i = 0; i < markerArray.length; i++) {
               markerArray[i].setMap(null);
             }
-
             // Now, clear the array itself.
             markerArray = [];
 

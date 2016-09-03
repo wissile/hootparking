@@ -80,6 +80,7 @@ angular
           url: '/notifications',
           title: 'Notifications',
           templateUrl: 'views/notifications.html',
+          controller:'',
           authenticate: true
         }).state('login', {
           url: '/login',
