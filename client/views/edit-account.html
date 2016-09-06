@@ -1,40 +1,46 @@
-<div class="account-container">
+<div class="account-container" style="background: #2A2C3B">
     <h5>Profile</h5>
+
+<form class="form" name="form" ng-submit="SaveEditData()" novalidate>
     <div class="input-field col s6">
-        <input id="first_name" type="text" class="validate">
-        <label for="first_name">First Name</label>
+        <input id="first_name" type="text" ng-model="User.name" class="validate inputEdit">
+        <label  ng-class="User.name ? 'active' : ''  " for="first_name">First Name</label>
     </div>
     <div class="input-field col s6">
-        <input id="last_name" type="text" class="validate">
-        <label for="last_name">Last Name</label>
+        <input id="last_name" type="text" ng-model="User.lastname" class="validate inputEdit">
+        <label ng-class="User.lastname ? 'active' : ''  " for="last_name">Last Name</label>
     </div>
     <div class="input-field col s6">
         <span class="glyphicon glyphicon-calendar prefix"></span>
-        <input id="birthday" type="date" class="datepicker">
-        <label for="birthday">Birthday</label>
+        <input id="birthday" type="text" ng-model="User.dob" class="datepicker inputEdit">
+        <label ng-class="User.dob ? 'active' : ''  " for="birthday">Birthday</label>
     </div>
-
-
-
 
     <h5>Account</h5>
     <div class="row">
         <div class="input-field col s12">
-            <input id="password" type="password" class="validate">
-            <label for="password">Password</label>
+            <input id="password" type="password" ng-model="User.password" class="validate inputEdit">
+            <label ng-class="User.password ? 'active' : ''  " for="password">Password</label>
         </div>
     </div>
     <div class="row">
         <div class="input-field col s12">
-            <input id="email" type="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
+            <input id="email" type="email" ng-model="User.email" class="validate inputEdit">
+            <label ng-class="User.email ? 'active' : ''  " for="email" data-error="wrong" data-success="right">Email</label>
         </div>
     </div>
     <div class="row">
-        <input id="icon_telephone" type="tel" class="validate">
+        <input id="icon_telephone" type="tel" class="validate inputEdit">
         <label for="icon_telephone">Telephone</label>
     </div>
+    <div class="row">
+    <p><input type="submit" class=" main-nav-name1 orange-text getpark regtext" style = "border: 1px solid #A9A9A9;" value="SAVE"/>
+    
+    </p>
+    </div>
+    </form>
 </div>
+
 
 
 

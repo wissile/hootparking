@@ -1,13 +1,48 @@
-<div>
-  <div id="profile-intro"><p><img src="images/profile.png"/></p>Create an account<p>Enjoy benefits that saves you time
-    and money</p></div>
+<div  style="background: #2A2C3B">
+  <div id="profile-intro" ">
+        
+        <font style="color: White">Set up your account !</font>
+        <p style="text-align: center; color: Red; font-size: 16px; margin: 5px">
+            ion of letters, as opposed to using 'Cotents here,</p>
+        <p style="text-align: center; color: Red; font-size: 16px; margin: 5px">
+            content here', making it loo
+        </p>
+       <!-- <p>
+            <img src="images/profile.png" /></p>-->
+            <div id="circle" style="display: -moz-inline-grid;border: solid;background: none;border-color: red;width: 55px;height: 54px; border-width:thin;">
+                <div>
+                    <div>
+                         <p><img  src="/images/logoicon.png" style="height:53%; width:73%; margin-top: 20%;" ></p>
+                    </div>
+                </div>
+            </div>
+            
+            
+</div>
+
+<br />
   <form class="form" name="form" ng-submit="register(form)" novalidate>
-    <ul id="registerlist">
-      <li class="name">
-        <input class="register" type="text" placeholder="First name" ng-model="user.firstName"
+  
+        <input  id="inputName" class="register glowing-border" type="text" placeholder="User Name" ng-model="user.name"
                required/>
-      </li>
-      <li class="name">
+         
+   
+        <!--<input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
+               required/>-->
+     
+        <input  id="inputName" class="register" type="text" placeholder="Enter email" ng-model="user.email"
+               required/>
+     
+        <input  id="inputName" class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
+               ng-minlength="3"
+               required/>
+<br /><br />
+    <ul id="registerlist">
+      <!--<li class="name">
+        <input class="register glowing-border" type="text" placeholder="First name" ng-model="user.name"
+               required/>
+      </li>     
+      <!--<li class="name">
         <input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
                required/>
       </li>
@@ -18,11 +53,32 @@
       <li>
         <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
                ng-minlength="3"
-               required/>
+               required/>-->
+           <li>   
+        <p><input type="submit" class=" main-nav-name1 orange-text getpark regtext" style = "border-right: 1px solid #A9A9A9;" value="REGISTER"/>
+        
+        <input type="submit" class=" main-nav-name1 orange-text regtext" value="FACEBOOK"/></p>
 
-        <p><input type="submit" class="getpark" value="Sign up"/></p>
-        <div class="altsign">Already have an account, please <a  ui-sref="login">Sign in</a></div>
-      </li>
+     <!--   <a class="main-nav-name1 orange-text "
+                        ng-click="facebookLogin();">FACEBOOK</a>
+                        </p>
+-->
+        
+                     
+
+         </li>
+
+         <li><br /><br /> <br /><br />
+         <div class="altsign">
+            <p>
+                <span class="main-nav-name1 testname">Already a hooter</span>
+                <!-- </div>
+            <div class="" style="text-align: right">-->
+                <span class="main-nav-name1 testname" style="text-align: right; margin-left: -30px;" ui-sref="login">SKIP ></span>
+            </p></div>
+            <!--for div class="altsign"-->
+        </li>
+             
     </ul>
   </form>
 </div>

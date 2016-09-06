@@ -13,13 +13,39 @@ var validationError = function(res, err) {
  * Get list of users
  * restriction: 'admin'
  */
-exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.send(500, err);
-    res.json(200, users);
-  });
+exports.index = function (req, res) {
+        User.find({}, '-salt -hashedPassword', function (err, users) {
+        if (err) return res.send(500, err);
+        res.json(200, users);
+    });
 };
+exports.updateUser = function (req, res, next) {
 
+    var userId = req.user._id;
+    console.log(userId);
+
+    //var decodedDatalist = decodeURIComponent(req.params.data);
+    var lastname = String(req.body.lastname);
+    var dob = String(req.body.dob);
+    console.log("Last Name");
+    console.log(lastname);
+    console.log("Date of birth");
+    console.log(dob);
+
+
+    User.findById(userId, function (err, user) {
+        user.lastname = lastname;
+        user.dob = dob;
+        user.save(function (err, userdt) {
+            res.json(userdt);
+
+        });
+
+    });
+
+    //User.update({ "id": userId }, { $set: { "lastname": "konde"} });
+    //res.json(lastname);
+};
 /**
  * Creates a new user
  */
@@ -82,15 +108,15 @@ exports.changePassword = function(req, res, next) {
 /**
  * Get my info
  */
-exports.me = function(req, res, next) {
-  var userId = req.user._id;
-  User.findOne({
-    _id: userId
-  }, '-salt -hashedPassword', function(err, user) { // don't ever give out the password or salt
-    if (err) return next(err);
-    if (!user) return res.json(401);
-    res.json(user);
-  });
+exports.me = function (req, res, next) {
+    var userId = req.user._id;
+    User.findOne({
+        _id: userId
+    }, '-salt -hashedPassword', function (err, user) { // don't ever give out the password or salt
+        if (err) return next(err);
+        if (!user) return res.json(401);
+        res.json(user);
+    });
 };
 
 /**

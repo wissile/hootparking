@@ -5,10 +5,12 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
+console.log(Schema);
 var UserSchema = new Schema({
   name: String,
   firstName: String,
-  lastName: String,
+  lastname: String,
+  dob: String,
   email: { type: String, lowercase: true },
   role: {
     type: String,
@@ -22,7 +24,15 @@ var UserSchema = new Schema({
   google: {},
   github: {}
 });
-
+ UserSchema
+  .virtual('data')
+  .set(function(lastname, dob) {
+     this.lastname= lastname;
+     this.dob = dob;
+     })
+ .get(function() {
+    return this.lastname;
+  });
 /**
  * Virtuals
  */

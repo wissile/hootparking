@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
-
+  //grunt.loadNpmTasks('grunt-node-inspector');
   require('load-grunt-config')(grunt, {
     // path to task.js files, defaults to grunt dir
     configPath: path.join(process.cwd(), 'grunt'),
@@ -39,7 +39,9 @@ module.exports = function (grunt) {
       pattern: 'grunt-*',
       config: require('./package.json'),
       scope: 'devDependencies'
-    }
+  },
+  loadNpmTasks:('grunt-node-inspector')
+
 
   });
 };

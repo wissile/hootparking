@@ -6,9 +6,7 @@ angular.module('easyparkangularApp')
     if($cookieStore.get('token')) {
       currentUser = User.get();
     }
-
     return {
-
       /**
        * Authenticate user and save token
        *
@@ -16,26 +14,29 @@ angular.module('easyparkangularApp')
        * @param  {Function} callback - optional
        * @return {Promise}
        */
-      login: function(user, callback) {
+      
+      login: function(user, callback)
+       {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
-
-        $http.post('/auth/local', {
+        $http.post('/auth/local', 
+        {
           email: user.email,
           password: user.password
         }).
-        success(function(data) {
+        success(function(data) 
+        {
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
           return cb();
         }).
-        error(function(err) {
+        error(function(err) 
+        {
           this.logout();
           deferred.reject(err);
           return cb(err);
         }.bind(this));
-
         return deferred.promise;
       },
 
@@ -47,6 +48,7 @@ angular.module('easyparkangularApp')
       logout: function() {
         $cookieStore.remove('token');
         currentUser = {};
+        $location.path('/login');
       },
 
       /**
@@ -58,7 +60,6 @@ angular.module('easyparkangularApp')
        */
       createUser: function(user, callback) {
         var cb = callback || angular.noop;
-
         return User.save(user,
           function(data) {
             $cookieStore.put('token', data.token);
@@ -69,6 +70,20 @@ angular.module('easyparkangularApp')
             this.logout();
             return cb(err);
           }.bind(this)).$promise;
+      },
+       updateUser: function(user, callback) {
+        var cb = callback || angular.noop;
+        var deferred = $q.defer();
+        console.log(user);
+        return User.updateUser({ id: currentUser._id }, {
+          lastname: user.lastname,
+          dob: user.dob
+   
+        }, function(user) {
+          return cb(user);
+        }, function(err) {
+          return cb(err);
+        }).$promise;
       },
 
       /**

@@ -1,25 +1,32 @@
 <div id="geolocate">
 
   <div ng-app="easyparkangularApp" ng-controller="MainCtrl">
+        
+       <form ng-submit="calcRoute()" id="calc-route-form">
 
-      <form ng-submit="calcRoute()" id="calc-route-form">
-        <div class="home-search">
-          <input id="Autocomplete" type="text" placeholder="Search for name or address..."
-                 ng-autocomplete="result" details="details" options="options"/>
-          <span class="glyphicon glyphicon-search"></span>
-        </div><!-- end home-search -->
-        <div ng-include src="'views/parkingspotslist.html'"></div>
+       <!-- Start home-search -->
+       
+       <!-- end home-search -->
+     
+       <div id="map-canvas" style="height:380px;"></div>
 
-
+       <div ng-include src="'views/parkingspotslist.html'"></div>
 
        <div class="home-footer">
-        <div class="address-container">
-          <div class="home-address-title"><span class="glyphicon glyphicon-map-marker"></span> Your location</div>
-          <span id="address">{{formattedAddress}}</span>
-          <span id="error">{{addressError}}</span>
+
+       <!-- Start address container -->
+         <div class="home-search">
+       <input id="Autocomplete" type="text" placeholder="Search for name or address..."
+       ng-autocomplete="result" details="details" options="options" ng-model="address" />
+       <span class="glyphicon glyphicon-search" ng-click="writeAddressName(result);"></span></div>
+       <div class="address-container">
+       <div class="home-address-title"><span class="glyphicon glyphicon-map-marker"></span> Your location</div>
+       <span id="address">{{formattedAddress}}</span>
+       <span id="error">{{addressError}}</span>
         </div><!-- end address container -->
         <!--<input type="submit" class="getpark waves-effect" value="Search Parking"/>-->
-           <button type="submit" class="getpark waves-effect">Search Barbara</button>
+       <button type="submit" class="getpark waves-effectButton">Search Parking Now</button>
+       <button type="submit" class="getpark waves-effectRelocateButton">Relocate</button>
        </div>
 
 
@@ -27,7 +34,7 @@
 
 </div>
 </div>
-<div id="map-canvas"></div>
+
 
 
 

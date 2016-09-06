@@ -1,11 +1,23 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
     $scope.user = {};
     $scope.errors = {};
 
-    $scope.login = function(form) {
+     $http.post('/api/notification').success(function(data) 
+     { 
+       debugger; 
+          //return cb(); 
+        }).error(function(err) 
+        { 
+          //return cb(err); 
+          });
+          
+
+     $scope.login = function(form)
+    {
+    debugger;
       $scope.submitted = true;
 
       if(form.$valid) {
@@ -14,10 +26,11 @@ angular.module('easyparkangularApp')
             password: $scope.user.password
         })
         .then( function() {
-          // Logged in, redirect to home
+          //Logged in, redirect to home
           $location.path('/home');
         })
-        .catch( function(err) {
+        .catch( function(err) 
+        {
           $scope.errors.other = err.message;
         });
       }

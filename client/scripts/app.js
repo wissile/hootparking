@@ -80,6 +80,7 @@ angular
           url: '/notifications',
           title: 'Notifications',
           templateUrl: 'views/notifications.html',
+          controller:'',
           authenticate: true
         }).state('login', {
           url: '/login',
@@ -101,7 +102,22 @@ angular
           title: 'Profile',
           templateUrl: 'views/profile.html',
           controller: ''
-        });
+      }).state('Share', {
+          url: '/Share',
+          title: 'Share',
+          templateUrl: 'views/Share.html',
+          controller: ''
+      }).state('Aboutus', {
+          url: '/Aboutus',
+          title: 'About Us',
+          templateUrl: 'views/About-Us.html',
+          controller: ''
+      }).state('Contact', {
+          url: '/Contact',
+          title: 'Contact Us',
+          templateUrl: 'views/Contact-Us.html',
+          controller: ''
+      }); 
 
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
 
