@@ -14,7 +14,9 @@ var post = new Notification({
     provider: 'local',
     Sweep: 0,
     Clean: 0, 
-  TimeLimit: 0});
+  TimeLimit: 0,
+  userId:this._id
+ });
 
 //save model to MongoDB
 post.save(function (err) {

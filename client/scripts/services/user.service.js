@@ -27,7 +27,10 @@ angular.module('easyparkangularApp')
   save: {
       method: 'POST',
       
-  }
-
+  },
+  saveFB: {
+      method: 'POST',
+      
+  },
 	  });
   });

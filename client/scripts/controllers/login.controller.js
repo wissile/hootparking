@@ -4,15 +4,15 @@ angular.module('easyparkangularApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
     $scope.user = {};
     $scope.errors = {};
-
-     $http.post('/api/notification').success(function(data) 
-     { 
-       debugger; 
-          //return cb(); 
-        }).error(function(err) 
-        { 
-          //return cb(err); 
-          });
+//   
+//     $http.post('/api/notification').success(function(data) 
+//     { 
+//       debugger; 
+//          //return cb(); 
+//        }).error(function(err) 
+//        { 
+//          //return cb(err); 
+//          });
           
 
      $scope.login = function(form)
