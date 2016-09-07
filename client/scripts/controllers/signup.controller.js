@@ -29,7 +29,7 @@ angular.module('easyparkangularApp')
 //})
 
 //;
-
+ 
 
 
 
@@ -122,25 +122,25 @@ $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider; 
     }; 
  
+ window.fbAsyncInit = function () {
+         FB.init({
+             appId: '1763685530568368',  //'1231500983547179', 
+             status: true,
+             cookie: true,
+             xfbml: true,
+             version: 'v2.7'
+         });
+     };
+
+     (function (d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) { return; }
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+     } (document, 'script', 'facebook-jssdk')); 
  
-     window.fbAsyncInit = function () { 
-             FB.init({ 
-                 appId: '1763685530568368',  //'1231500983547179', 
-                 status: true, 
-                 cookie: true, 
-                 xfbml: true, 
-                 version: 'v2.7' 
-             }); 
-         }; 
- 
-         (function (d, s, id) { 
-             var js, fjs = d.getElementsByTagName(s)[0]; 
-             if (d.getElementById(id)) { return; } 
-             js = d.createElement(s); js.id = id; 
-             js.src = "//connect.facebook.net/en_US/sdk.js"; 
-             fjs.parentNode.insertBefore(js, fjs); 
-         } (document, 'script', 'facebook-jssdk')); 
- 
+    
  
        $scope.getMyLastName = function () { 
             debugger; 
@@ -163,42 +163,13 @@ $scope.loginOauth = function(provider) {
  
                 FB.login(function (responce){ 
                   //   $location.path('/home'); 
- 
-                  debugger; 
-                  Auth.createFBUser({ 
-                    //   name: $scope.user.name, 
-                    // firstName: $scope.user.firstName, 
-                    //  lastName: $scope.user.lastName, 
-                    email: 'dev.net.asp@gmail.com', 
-                    password: 'FacebookPassword' 
-                    }) 
-                    .then( function() { 
-                    // Account created, redirect to home 
-                    $location.path('/new-user'); 
-                    }) 
-                    .catch( function(err) { 
-                    // err = err.data; 
-                    $scope.errors = {}; 
- 
-                    // Update validity of form fields that match the mongoose errors 
-                    angular.forEach(err.errors, function(error, field) { 
-                    form[field].$setValidity('mongoose', false); 
-                    $scope.errors[field] = error.message; 
-                    }); 
-                    }); //catch closed 
- 
- 
-//                   Auth.login({ 
-//                    email: response.email, 
-//                    password: $scope.user.password 
-//                    }) 
-//                    .then( function() { 
-//                        // Logged in, redirect to home 
-//                        $location.path('/home'); 
-//                    }) 
-//                    .catch( function(err) { 
-//                    $scope.errors.other = err.message; 
-//                    }); 
+                 FB.getLoginStatus(function (response) {
+                  if (response.status === 'connected') { 
+                 alert("Login Successfully");
+                 }
+                 });
+               
+
  
                 }); 
  

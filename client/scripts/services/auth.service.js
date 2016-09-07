@@ -85,20 +85,16 @@ angular.module('easyparkangularApp')
             return cb(err);
           }.bind(this)).$promise;
       },
-       updateUser: function(user, callback) {
-        var cb = callback || angular.noop;
-        var deferred = $q.defer();
-        console.log(user);
-        return User.updateUser({ id: currentUser._id }, {
-          lastname: user.lastname,
-          dob: user.dob
+       updateUser: function(user) { 
    
-        }, function(user) {
-          return cb(user);
-        }, function(err) {
-          return cb(err);
-        }).$promise;
-      },
+        $http.put('/api/users/'+user). 
+                success(function(data) { 
+           debugger; return true; 
+                }). 
+                error(function(err) { 
+         
+                }); 
+        },
 
 
       /**

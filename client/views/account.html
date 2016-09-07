@@ -9,14 +9,13 @@
             <img class="circle" style="margin-left: 40%;" src="images/jen.png" width="80" height="80"/>
             <!--  <p class="title">Wissile Sogoyou<p>wissile@hootparking.com</p>-->
             <div class="title" style="display: flex; justify-content: center;" > {{getCurrentUser.name}} </div>
-            
-        <div style="margin-left: 24%;">
-            <a ui-sref="edit-account">EDIT ACCOUNT</a> &nbsp;&nbsp;
-            <p id="circle" style="display: -moz-inline-grid;"></p>&nbsp;&nbsp;
-            <a style="cursor: pointer;" ng-click="logout();">SIGN OUT</a>
-            <!--<a ui-sref="edit-account" class="btn-floating btn-large waves-effect waves-light blue right"><span class="glyphicon glyphicon-pencil"></span></a>-->
-        </div>
-
+          <div style="margin-left: 23%;"> 
+            <a ui-sref="edit-account" style ="float:left;">EDIT ACCOUNT</a>  
+            <p id="circle" style="float:left; margin-left:3%; margin-top: 1%;"></p> 
+            <a style="cursor: pointer; margin-right: 40%; float:right;" ng-click="logout();">SIGN OUT</a> 
+            <!--<a ui-sref="edit-account" class="btn-floating btn-large waves-effect waves-light blue right"><span class="glyphicon glyphicon-pencil"></span></a>--> 
+        </div> 
+        <br />
         <h5>Personal Info</h5>
         <span class="glyphicon glyphicon-earphone sHeight"></span> 872-216-0525<br/>
         <span class="glyphicon glyphicon-check sHeight"></span>{{getCurrentUser.email}}
@@ -43,7 +42,7 @@
 
      <li class="collection-item">
          <h5>Connected Account</h5>
-            <p><span class="glyphicon glyphicon-bookmark sHeight"></span>LINK FACEBOOK </p>    
+            <p ng-click="getMyLastName();"><span class="glyphicon glyphicon-bookmark sHeight"></span>LINK FACEBOOK </p>    
             <div>
                <input style="height: 50px; width: 400px;border:none;background-color:gray; color:White; font-size:18px" type="button" class="getpark" value="ACCOUNT SUMMARY"/>
             </div>

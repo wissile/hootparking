@@ -22,8 +22,12 @@ exports.show = function (req, res, next) {
 };
 exports.create = function (req, res, next) {
     var userId = req.params.id;
-    var newUser = new notification({ Sweep: 0, Clean: 0,
-        TimeLimit: 0, userId: userId
+    var newUser = new notification({ ParkingSweeping: 0,
+        ParkingClean: 0,
+        TimeLimit: 0,
+        ReachedBudget: 0,
+        ParkingFareChange: 0,
+        ParkingTime: 0, userId: userId
     });
     newUser.save(function (err, user) {
         if (err) return validationError(res, err);
@@ -37,17 +41,24 @@ exports.Update = function (req, res, next) {
     var decodedDatalist = decodeURIComponent(req.params.setting);
     var datalist = JSON.parse(decodedDatalist);
     console.log(req.params.setting);
-        var userId = datalist.userId;
-        notification.find({ userId: userId }, function (err, users) {
+    var userId = datalist.userId;
+    notification.find({ userId: userId }, function (err, users) {
         var user = users[0];
         console.log(user);
-        if (datalist.data == 'Sweep')
-            user.Sweep = datalist.value;
-        if (datalist.data == 'Clean')
-            user.Clean = datalist.value;
+        console.log(datalist.data);
+        if (datalist.data == 'ParkingSweeping')
+            user.ParkingSweeping = datalist.value;
+        if (datalist.data == 'ParkingClean')
+            user.ParkingClean = datalist.value;
         if (datalist.data == 'TimeLimit')
             user.TimeLimit = datalist.value;
-       user.save(function (err, userdt) {
+        if (datalist.data == 'ReachedBudget')
+            user.ReachedBudget = datalist.value;
+        if (datalist.data == 'ParkingFareChange')
+            user.ParkingFareChange = datalist.value;
+        if (datalist.data == 'ParkingTime')
+            user.ParkingTime = datalist.value;
+        user.save(function (err, userdt) {
             res.json(userdt);
 
         });
