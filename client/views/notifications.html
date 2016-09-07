@@ -7,7 +7,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="notificationSetting.Sweep" ng-change="NotificationEvent(notificationSetting.Sweep,'Sweep')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -18,7 +18,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="notificationSetting.Clean" ng-change="NotificationEvent(notificationSetting.clean,'Clean')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -29,7 +29,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="notificationSetting.TimeLimit" ng-change="NotificationEvent(notificationSetting.TimeLimit,'TimeLimit')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -51,7 +51,8 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+            
+                <input type="checkbox" ng-model="Sweep">
                 <span class="lever"></span>
             </label>
         </div>

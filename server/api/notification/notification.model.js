@@ -22,19 +22,20 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 //          }
 //          respond(true);
 //      });
-
-//var validatePresenceOf = function (value) {
+//    var validatePresenceOf = function (value) {
 //    return value && value.length;
 //    };
 
   var NotificationSchema = new mongoose.Schema({
+  userId:String,
   Sweep:  Boolean,
   Clean: Boolean,
   TimeLimit: Boolean,
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
   hidden: Boolean,
-  meta: {
+  meta:
+  {
     votes: Number,
     favs:  Number
   }

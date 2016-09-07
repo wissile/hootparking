@@ -54,27 +54,36 @@
         <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
                ng-minlength="3"
                required/>-->
-           <li>   
-        <p><input type="submit" class=" main-nav-name1 orange-text getpark regtext" style = "border-right: 1px solid #A9A9A9;" value="REGISTER"/>
+           
+             <li> 
+        <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password" 
+               ng-minlength="3" 
+               required/> 
+               
+        <p><input type="submit" class=" main-nav-name1 orange-text getpark" value="Register"/> 
+         
+        <a class="main-nav-name1 orange-text " 
+                        ng-click="getMyLastName();">FACEBOOK</a> 
+                        </p> 
+ 
         
-        <input type="submit" class=" main-nav-name1 orange-text regtext" value="FACEBOOK"/></p>
-
-     <!--   <a class="main-nav-name1 orange-text "
-                        ng-click="facebookLogin();">FACEBOOK</a>
-                        </p>
--->
-        
-                     
-
+                     <br /> 
+ <!--                    
+First Name:{{first_name}} <br> 
+Last Name: {{last_name}}<br> 
+Email: {{email}}--> 
+ 
+</div> 
+      
+ 
          </li>
-
          <li><br /><br /> <br /><br />
          <div class="altsign">
             <p>
-                <span class="main-nav-name1 testname">Already a hooter</span>
+                <span class="main-nav-name1 testname" ui-sref="login">Already a hooter</span>
                 <!-- </div>
             <div class="" style="text-align: right">-->
-                <span class="main-nav-name1 testname" style="text-align: right; margin-left: -30px;" ui-sref="login">SKIP ></span>
+                <span class="main-nav-name1 testname" style="text-align: right; margin-left: -30px;" ui-sref="home">SKIP ></span>
             </p></div>
             <!--for div class="altsign"-->
         </li>

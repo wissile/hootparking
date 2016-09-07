@@ -71,6 +71,20 @@ angular.module('easyparkangularApp')
             return cb(err);
           }.bind(this)).$promise;
       },
+
+      createFBUser: function(user, callback) {
+        var cb = callback || angular.noop;
+        return User.save(user,
+          function(data) {
+            $cookieStore.put('token', data.token);
+            currentUser = User.get();
+            return cb(user);
+          },
+          function(err) {
+            this.logout();
+            return cb(err);
+          }.bind(this)).$promise;
+      },
        updateUser: function(user, callback) {
         var cb = callback || angular.noop;
         var deferred = $q.defer();
@@ -85,6 +99,7 @@ angular.module('easyparkangularApp')
           return cb(err);
         }).$promise;
       },
+
 
       /**
        * Change password
