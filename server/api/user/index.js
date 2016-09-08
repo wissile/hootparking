@@ -14,5 +14,6 @@ router.put('/:data', auth.isAuthenticated(), controller.updateUser);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+router.post('/fbuser/:fbdata', controller.createFbUser);
 
 module.exports = router;

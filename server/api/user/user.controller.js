@@ -54,6 +54,31 @@ exports.create = function (req, res, next)
 /**
  * Get a single user
  */
+
+/** 
+* Creates a new fbuser 
+*/
+exports.createFbUser = function (req, res, next) {
+    var decodedDatalist = decodeURIComponent(req.params.fbdata);
+    var datalist = JSON.parse(decodedDatalist);
+    datalist.provider = 'local';
+    datalist.hashedPassword = 'facebook';
+    var newUser = new User(datalist);
+    console.log(datalist);
+    newUser.save(function (err, user) {
+        console.log("2");
+        //   res.json(err); 
+        if (err)
+            return validationerror(res, err);
+        var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresinminutes: 60 * 5 });
+        console.log("3");
+        res.json({ token: token, user: user });
+    });
+    // res.json(datalist); 
+};
+/** 
+* Creates a new fbuser end 
+*/
 exports.show = function (req, res, next) {
   var userId = req.params.id;
 

@@ -122,61 +122,14 @@ $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider; 
     }; 
  
- window.fbAsyncInit = function () {
-         FB.init({
-             appId: '1763685530568368',  //'1231500983547179', 
-             status: true,
-             cookie: true,
-             xfbml: true,
-             version: 'v2.7'
-         });
-     };
-
-     (function (d, s, id) {
-         var js, fjs = d.getElementsByTagName(s)[0];
-         if (d.getElementById(id)) { return; }
-         js = d.createElement(s); js.id = id;
-         js.src = "//connect.facebook.net/en_US/sdk.js";
-         fjs.parentNode.insertBefore(js, fjs);
-     } (document, 'script', 'facebook-jssdk')); 
- 
-    
- 
-       $scope.getMyLastName = function () { 
-            debugger; 
-            FB.getLoginStatus(function (response) { 
-                debugger; 
- 
-                if (response.status === 'connected') { 
-                    console.log('Logged in.'); 
-                    $scope.userID = response.authResponse.userID; 
-                    service.getMyLastName($scope.userID).then(function (response) { 
-                        debugger; 
-                           $location.path('/home'); 
-//                        $scope.firstName = response.last_name; 
-//                        $scope.first_name = response.first_name; 
-//                        $scope.last_name = response.last_name; 
-//                        $scope.email = response.email; 
-                    }); 
-                } 
-                else { 
- 
-                FB.login(function (responce){ 
-                  //   $location.path('/home'); 
-                 FB.getLoginStatus(function (response) {
-                  if (response.status === 'connected') { 
-                 alert("Login Successfully");
-                 }
-                 });
-               
 
  
-                }); 
- 
-                        
-                }   //else closed 
-            }); 
-        }; 
+       $scope.fbLogin = function () {  
+       Auth.fbLogin1(function(data) { 
+          //Logged in, redirect to home 
+          $location.path('/home'); 
+        }); 
+  }
   
 
   });
