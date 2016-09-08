@@ -32,10 +32,30 @@ angular.module('easyparkangularApp')
           });
       };
 
-      $scope.UserOfFacebook = function () {
+      $scope.fbLoginUser = function () {
+          Auth.fbLoginNewUser(function (data) {
+              debugger; var fb = {};
+
+              console.log(data);
+              fb.id = data.id;
+              fb.name = data.name;
+              fb.email = data.email;
+              $scope.User.facebook = fb;
+              var dob = new Date($scope.User.dob);
+              var datalistUser = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, dob: dob, password: $scope.User.password, email: $scope.User.email ,facebook:fb }));
+              //Logged in, redirect to home 
+              // $location.path('/home');
+              Auth.updateUser(datalistUser, function (data) {
+                  // Logged in, redirect to home 
+                  $location.path('/account');
+              });
+          });
+      };
+
+      $scope.UserOfFacebook = function (UserId) {
           debugger;
           console.log($scope.getCurrentUser.id);
-          window.open('https://www.facebook.com/' + $scope.getCurrentUser.id, '_system')
+          window.open('https://www.facebook.com/' + UserId, '_system')
       };
   });
 

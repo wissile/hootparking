@@ -42,8 +42,9 @@
 
      <li class="collection-item">
          <h5>Connected Account</h5>
-            <p ng-click="fbLogin();" ng-if="getCurrentUser.userType!='Facebook'"><span class="glyphicon glyphicon-bookmark sHeight"></span>LINK FACEBOOK {{getCurrentUser.userType}} </p> 
-             <p ng-click="UserOfFacebook();"ng-if="getCurrentUser.userType=='Facebook'"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.name}}</a> </p>       
+            <p ng-click="fbLoginUser();" ng-if="getCurrentUser.userType!='Facebook' && !getCurrentUser.facebook.id "><span class="glyphicon glyphicon-bookmark sHeight"></span>LINK FACEBOOK {{getCurrentUser.userType}} </p> 
+             <p ng-click="UserOfFacebook(getCurrentUser,id);"ng-if="getCurrentUser.userType=='Facebook'"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.name}}</a> </p> 
+              <p ng-click="UserOfFacebook(getCurrentUser.facebook.id);"ng-if="!getCurrentUser.userType && getCurrentUser.facebook.id"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.facebook.name}}</a> </p>             
             <div>
                <input style="height: 50px; width: 400px;border:none;background-color:gray; color:White; font-size:18px" type="button" class="getpark" value="ACCOUNT SUMMARY"/>
             </div>

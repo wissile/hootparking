@@ -20,7 +20,7 @@ var UserSchema = new Schema({
   salt: String, 
   userType:String, 
   id:String, 
-  facebook: {}, 
+  facebook:{id:String,email:String,name:String}, 
   twitter: {}, 
   google: {}, 
   github: {} 

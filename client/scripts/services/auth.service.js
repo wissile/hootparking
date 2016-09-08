@@ -141,6 +141,36 @@ angular.module('easyparkangularApp')
  
   }); 
       },
+
+       fbLoginNewUser: function(callback){ 
+       debugger;
+        var cb = callback || angular.noop; 
+        var deferred = $q.defer(); 
+                   FB.getLoginStatus(function (response) {  
+                   debugger;
+                if (response.status === 'connected') {  
+                     FB.api('/me',{fields: fields},function(response) { 
+                     debugger; 
+                           return cb(response);
+                     }); 
+                }  
+                else {  
+                FB.login(function (response){  
+                debugger;
+                  FB.getLoginStatus(function (response) {  
+                      if (response.status === 'connected') {  
+                      FB.api('/me',{fields: fields},function(response) { 
+                      debugger;
+                         return cb(response); 
+                     }); 
+                  }    
+                  });    
+            }); 
+        };  
+   
+ 
+  }); 
+      },
       /**
        * Delete access token and user info
        *
