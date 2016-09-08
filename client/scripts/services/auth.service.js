@@ -186,15 +186,20 @@ angular.module('easyparkangularApp')
             return cb(err);
           }.bind(this)).$promise;
       },
-       updateUser: function(user) { 
-   
+
+      /**
+       * Update User
+       *
+       */
+
+      updateUser: function(user,callback) { 
+        var cb = callback || angular.noop;
         $http.put('/api/users/'+user). 
-                success(function(data) { 
-           debugger; return true; 
-                }). 
-                error(function(err) { 
-         
-                }); 
+        success(function(data) { 
+           return cb(data);
+        }). 
+        error(function(err) { 
+        }); 
         },
 
 

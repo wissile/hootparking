@@ -2,12 +2,11 @@
 
 angular.module('easyparkangularApp')
     .controller('NotificationCtrl', function ($scope, Auth, $http) {
-        debugger;
         $scope.Sweep = true;
+        $scope.appBackground = "#ede9e9";
         $scope.getCurrentUser = Auth.getCurrentUser();
         $scope.User = $scope.getCurrentUser;
         $http.get('/api/notification/' + $scope.User._id).success(function (data) {
-            debugger;
             //return cb(); 
             $scope.notificationSetting = data[0];
 
@@ -16,10 +15,8 @@ angular.module('easyparkangularApp')
         });
 
         $scope.NotificationEvent = function (value, data) {
-            debugger;           
-             var datalist = encodeURIComponent(JSON.stringify({ value: value, data: data, userId: $scope.User._id }));
+            var datalist = encodeURIComponent(JSON.stringify({ value: value, data: data, userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {
-                debugger;
                 //return cb(); 
                 //  $scope.notificationSetting = data;
 
