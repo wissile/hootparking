@@ -28,9 +28,12 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
   var NotificationSchema = new mongoose.Schema({
   userId:String,
-  Sweep:  Boolean,
-  Clean: Boolean,
+  ParkingSweeping:  Boolean,
+  ParkingClean: Boolean,
   TimeLimit: Boolean,
+  ReachedBudget:Boolean,
+  ParkingFareChange:Boolean,
+  ParkingTime:Boolean,
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
   hidden: Boolean,

@@ -7,7 +7,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox" ng-model="notificationSetting.Sweep" ng-change="NotificationEvent(notificationSetting.Sweep,'Sweep')">
+                <input type="checkbox" ng-model="notificationSetting.ParkingSweeping" ng-change="NotificationEvent(notificationSetting.ParkingSweeping,'ParkingSweeping')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -18,7 +18,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox" ng-model="notificationSetting.Clean" ng-change="NotificationEvent(notificationSetting.clean,'Clean')">
+                <input type="checkbox" ng-model="notificationSetting.ParkingClean" ng-change="NotificationEvent(notificationSetting.ParkingClean,'ParkingClean')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -52,7 +52,7 @@
         <div class="switch">
             <label>
             
-                <input type="checkbox" ng-model="Sweep">
+                <input type="checkbox" ng-model="notificationSetting.ReachedBudget" ng-change="NotificationEvent(notificationSetting.ReachedBudget,'ReachedBudget')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -63,7 +63,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="notificationSetting.ParkingFareChange" ng-change="NotificationEvent(notificationSetting.ParkingFareChange,'ParkingFareChange')">
                 <span class="lever"></span>
             </label>
         </div>
@@ -74,7 +74,7 @@
         <!-- Switch -->
         <div class="switch">
             <label>
-                <input type="checkbox">
+                <input type="checkbox" ng-model="notificationSetting.ParkingTime" ng-change="NotificationEvent(notificationSetting.ParkingTime,'ParkingTime')">
                 <span class="lever"></span>
             </label>
         </div>

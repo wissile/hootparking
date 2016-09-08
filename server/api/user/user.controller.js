@@ -4,7 +4,7 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
-
+ var crypto = require('crypto');
 var validationError = function(res, err) {
   return res.json(422, err);
 };
@@ -20,31 +20,21 @@ exports.index = function (req, res) {
     });
 };
 exports.updateUser = function (req, res, next) {
+    var decodedDatalist = decodeURIComponent(req.params.data);
+    var datalist = JSON.parse(decodedDatalist);
 
-    var userId = req.user._id;
-    console.log(userId);
+    // datalist.hashedPassword = encryptPassword(datalist.password); 
+    User.findById(datalist.id, function (err, user) {
+        datalist.hashedPassword = user.encryptPassword(datalist.password);
+        console.log(datalist.hashedPassword);
 
-    //var decodedDatalist = decodeURIComponent(req.params.data);
-    var lastname = String(req.body.lastname);
-    var dob = String(req.body.dob);
-    console.log("Last Name");
-    console.log(lastname);
-    console.log("Date of birth");
-    console.log(dob);
+        // var dob = String(datalist.dob); 
 
-
-    User.findById(userId, function (err, user) {
-        user.lastname = lastname;
-        user.dob = dob;
-        user.save(function (err, userdt) {
+        console.log(datalist.dob);
+        User.update({ _id: datalist.id }, datalist, function (err, userdt) {
             res.json(userdt);
-
         });
-
     });
-
-    //User.update({ "id": userId }, { $set: { "lastname": "konde"} });
-    //res.json(lastname);
 };
 /**
  * Creates a new user
@@ -64,6 +54,31 @@ exports.create = function (req, res, next)
 /**
  * Get a single user
  */
+
+/** 
+* Creates a new fbuser 
+*/
+exports.createFbUser = function (req, res, next) {
+    var decodedDatalist = decodeURIComponent(req.params.fbdata);
+    var datalist = JSON.parse(decodedDatalist);
+    datalist.provider = 'local';
+    datalist.hashedPassword = 'facebook';
+    var newUser = new User(datalist);
+    console.log(datalist);
+    newUser.save(function (err, user) {
+        console.log("2");
+        //   res.json(err); 
+        if (err)
+            return validationerror(res, err);
+        var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresinminutes: 60 * 5 });
+        console.log("3");
+        res.json({ token: token, user: user });
+    });
+    // res.json(datalist); 
+};
+/** 
+* Creates a new fbuser end 
+*/
 exports.show = function (req, res, next) {
   var userId = req.params.id;
 

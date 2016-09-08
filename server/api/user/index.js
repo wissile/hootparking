@@ -10,9 +10,10 @@ var router = express.Router();
 router.get('/', auth.hasRole('admin'), controller.index);
 router.delete('/:id', auth.hasRole('admin'), controller.destroy);
 router.get('/me', auth.isAuthenticated(), controller.me);
-router.put('/:id/data', auth.isAuthenticated(), controller.updateUser);
+router.put('/:data', auth.isAuthenticated(), controller.updateUser);
 router.put('/:id/password', auth.isAuthenticated(), controller.changePassword);
 router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
+router.post('/fbuser/:fbdata', controller.createFbUser);
 
 module.exports = router;

@@ -1,7 +1,63 @@
 'use strict';
+window.fbAsyncInit = function () {  
+             FB.init({  
+                 appId: '1763685530568368',  //'1231500983547179',  
+                 status: true,  
+                 cookie: true,  
+                 xfbml: true,  
+                 version: 'v2.7'  
+             });  
+         };  
+  
+         (function (d, s, id) {  
+             var js, fjs = d.getElementsByTagName(s)[0];  
+             if (d.getElementById(id)) { return; }  
+             js = d.createElement(s); js.id = id;  
+             js.src = "//connect.facebook.net/en_US/sdk.js";  
+             fjs.parentNode.insertBefore(js, fjs);  
+         } (document, 'script', 'facebook-jssdk')); 
 
 angular.module('easyparkangularApp')
   .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+   var fields = [
+          'id',
+          'name',
+          'first_name',
+          'middle_name',
+          'last_name',
+          'gender',
+          'locale',
+          'languages',
+          'link',
+          'third_party_id',
+          'installed',
+          'timezone',
+          'updated_time',
+          'verified',
+          'age_range',
+          'bio',
+          'birthday',
+          'cover',
+          'currency',
+          'devices',
+          'education',
+          'email',
+          'hometown',
+          'interested_in',
+          'location',
+          'political',
+          'payment_pricepoints',
+          'favorite_athletes',
+          'favorite_teams',
+          'picture',
+          'quotes',
+          'relationship_status',
+          'religion',
+          'significant_other',
+          'video_upload_limits',
+          'website',
+          'work'
+          ].join(',');
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -40,6 +96,51 @@ angular.module('easyparkangularApp')
         return deferred.promise;
       },
 
+
+      
+      /** 
+       * facebook 
+       * 
+       * @param  {Function} 
+       */ 
+ 
+      fbLogin1: function(callback){ 
+        var cb = callback || angular.noop; 
+        var deferred = $q.defer(); 
+                   FB.getLoginStatus(function (response) {  
+                if (response.status === 'connected') {  
+                     FB.api('/me',{fields: fields},function(response) { 
+                     debugger; 
+                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
+                       $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                            $cookieStore.put('token', data.token); 
+                            currentUser = User.get(); 
+                            deferred.resolve(data); 
+                            return cb(); 
+                       }); 
+                     }); 
+                }  
+                else {  
+                FB.login(function (response){  
+                  FB.getLoginStatus(function (response) {  
+                      if (response.status === 'connected') {  
+                      FB.api('/me',{fields: fields},function(response) { 
+                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
+                       $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                            $cookieStore.put('token', data.token); 
+                            currentUser = User.get(); 
+                            deferred.resolve(data); 
+                            return cb(); 
+                       }); 
+                     }); 
+                  }    
+                  });    
+            }); 
+        };  
+   
+ 
+  }); 
+      },
       /**
        * Delete access token and user info
        *
@@ -85,20 +186,16 @@ angular.module('easyparkangularApp')
             return cb(err);
           }.bind(this)).$promise;
       },
-       updateUser: function(user, callback) {
-        var cb = callback || angular.noop;
-        var deferred = $q.defer();
-        console.log(user);
-        return User.updateUser({ id: currentUser._id }, {
-          lastname: user.lastname,
-          dob: user.dob
+       updateUser: function(user) { 
    
-        }, function(user) {
-          return cb(user);
-        }, function(err) {
-          return cb(err);
-        }).$promise;
-      },
+        $http.put('/api/users/'+user). 
+                success(function(data) { 
+           debugger; return true; 
+                }). 
+                error(function(err) { 
+         
+                }); 
+        },
 
 
       /**

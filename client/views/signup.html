@@ -9,12 +9,12 @@
         </p>
        <!-- <p>
             <img src="images/profile.png" /></p>-->
-            <div id="circle" style="display: -moz-inline-grid;border: solid;background: none;border-color: red;width: 55px;height: 54px; border-width:thin;">
-                <div>
-                    <div>
-                         <p><img  src="/images/logoicon.png" style="height:53%; width:73%; margin-top: 20%;" ></p>
-                    </div>
-                </div>
+            <div id="circle" style=" margin-left: 42%;border: solid;background: none;border-color: red;width: 55px;height: 54px; border-width:thin;"> 
+                <div> 
+                    <div> 
+                         <p><img  src="/images/logoicon.png" style="height:53%; width:73%; margin-top: 20%;" ></p> 
+                    </div> 
+                </div> 
             </div>
             
             
@@ -54,30 +54,14 @@
         <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
                ng-minlength="3"
                required/>-->
-           
-             <li> 
-        <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password" 
-               ng-minlength="3" 
-               required/> 
-               
-        <p><input type="submit" class=" main-nav-name1 orange-text getpark" value="Register"/> 
-         
-        <a class="main-nav-name1 orange-text " 
-                        ng-click="getMyLastName();">FACEBOOK</a> 
-                        </p> 
- 
-        
-                     <br /> 
- <!--                    
-First Name:{{first_name}} <br> 
-Last Name: {{last_name}}<br> 
-Email: {{email}}--> 
- 
-</div> 
-      
- 
+           <li>     
+        <p> 
+        <input type="submit" class=" getpark regtext" style = "border-right: 1px solid #A9A9A9; width:50%;color: red; 
+" value="REGISTER"/>  
+        <input type="text" class="  getpark regtext" style = "border:none !important;width:22%;color: red; margin-left:10%" value="FACEBOOK" ng-click="fbLogin();"/>  
          </li>
-         <li><br /><br /> <br /><br />
+
+         <li>
          <div class="altsign">
             <p>
                 <span class="main-nav-name1 testname" ui-sref="login">Already a hooter</span>
