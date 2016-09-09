@@ -3,10 +3,11 @@
 
 
 
-<ul class="collection">
+<ul class="collection" ng-init="label=1"> 
     <li class="collection-item">
-       
+            <div style="Background-color:#f25d59;wdith:100%;height:50%;">
             <img class="circle" style="margin-left: 40%;" src="images/jen.png" width="80" height="80"/>
+            </div>
             <!--  <p class="title">Wissile Sogoyou<p>wissile@hootparking.com</p>-->
             <div class="title" style="display: flex; justify-content: center;" > {{getCurrentUser.name}} </div>
           <div style="margin-left: 23%;"> 
@@ -27,7 +28,9 @@
              <span class="glyphicon glyphicon-star sHeight" ></span>
              <ul>
             <li><b> Home</b></li>
-            <li>811 Stiggins ave, San Francisco, CA</li>
+            <li><label ng-show="label" ng-click="input1=1"> 811 Stiggins ave, San Francisco, CA</label>
+            <input type="text" ng-show="input1" ng-click="label=0" value="kkkaaaa, CA"/> 
+            </li>
             </ul>
            </div>
 
