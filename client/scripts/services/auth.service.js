@@ -310,6 +310,15 @@ angular.module('easyparkangularApp')
        */
       getToken: function() {
         return $cookieStore.get('token');
+      },
+
+      forgetPass: function(email,callback){
+        var cb = callback || angular.noop;
+       $http.post('/api/users/forgetpassword/'+email).success(function(data) {  
+       return cb(data);
+       });
+     
       }
+
     };
   });

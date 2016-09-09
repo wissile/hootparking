@@ -4,7 +4,8 @@ var User = require('./user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
- var crypto = require('crypto');
+var crypto = require('crypto');
+var nodemailer = require('nodemailer');
 var validationError = function(res, err) {
   return res.json(422, err);
 };
@@ -54,6 +55,66 @@ exports.create = function (req, res, next)
 /**
  * Get a single user
  */
+
+/**
+* Forget Password
+*/
+exports.forgetPassword = function (req, res, next) {
+    User.findOne({ email: req.params.email }, function (err, user) {
+        if (user.userType) {
+            if (user.userType == 'Facebook')
+                res.json(user.userType);
+        }
+        else {
+            User.findById(user._id, function (err, user) {
+               var hashedPassword = user.encryptPassword('Password1');
+                User.update({ _id: user._id }, { 'hashedPassword': hashedPassword }, function (err, userdt) {
+                    
+                    console.log(userdt);
+                    var subject = "";
+                    var text = "";
+                    subject = "Forget Password Request";
+                    text = "Dear user" +
+                    "<br/><br/><br />" +
+                    "<table style='border-collapse: collapse'>" +
+                    "<tr><td ><b>User Name</b> : " + req.params.email + "</td></tr>" +
+                    "<tr><td ><b>Password</b> : " + 'Password1' + "</td></tr>" +
+                    "</table>" +
+                    "<br /><br />" +
+                    "<br /><br />" +
+                    "Sincerely," +
+                  "<br /><br /><br />" +
+                  "The Hootparking Team";
+
+                    var msg = {
+                        transport: nodemailer.createTransport('SMTP', {
+                            host: 'smtp.gmail.com',
+                            secureConnection: true,
+                            port: 465,
+                            auth: {
+                                user: "dev.net.asp@gmail.com",
+                                pass: "Wel@come123"
+                            }
+                        }),
+                        html: text,
+                        from: "info@cns.com",
+                        subject: subject,
+                        to: req.params.email
+                    };
+                    msg.transport.sendMail(msg, function (err) {
+                        if (err) {
+                            console.log('Sending to ' + msg.to + ' failed: ' + err);
+                        }
+                        console.log('Sent to ' + msg.to);
+                        msg.transport.close();
+                        res.json(msg.to);
+                    });
+                });
+            });
+        }
+    });
+};
+
 
 /** 
 * Creates a new fbuser 
@@ -147,3 +208,4 @@ exports.me = function (req, res, next) {
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
 };
+

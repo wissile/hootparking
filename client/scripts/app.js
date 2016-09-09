@@ -117,6 +117,11 @@ angular
           title: 'Contact Us',
           templateUrl: 'views/Contact-Us.html',
           controller: ''
+      }).state('forgetPassword', {
+          url: '/forget',
+          title: 'Forget Password',
+          templateUrl: 'views/forgetPassword.html',
+          controller: 'ForgetPasswordCtrl'
       }); 
 
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
