@@ -4,20 +4,10 @@ angular.module('easyparkangularApp')
   .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
     $scope.user = {};
     $scope.errors = {};
-//   
-//     $http.post('/api/notification').success(function(data) 
-//     { 
-//       debugger; 
-//          //return cb(); 
-//        }).error(function(err) 
-//        { 
-//          //return cb(err); 
-//          });
-          
+    $scope.compulsaryfield=false;
 
-     $scope.login = function(form)
-    {
-    debugger;
+     $scope.login = function(form){
+    $scope.compulsaryfield=false;
       $scope.submitted = true;
 
       if(form.$valid) {
@@ -33,6 +23,9 @@ angular.module('easyparkangularApp')
         {
           $scope.errors.other = err.message;
         });
+      }
+      else{
+      $scope.compulsaryfield=true;
       }
     };
 

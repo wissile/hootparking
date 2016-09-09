@@ -4,12 +4,15 @@ angular.module('easyparkangularApp')
   .controller('SignupCtrl', function ($scope, Auth, $location, $window,$http) {
     $scope.user = {};
     $scope.errors = {};
-
+    $scope.errMessagesShow=false;
+    $scope.compulsaryfield=false;
+   
     $scope.register = function(form) {
+      $scope.errMessagesShow=false;
+      $scope.compulsaryfield=false;
       $scope.submitted = true;
    
       if(form.$valid) {
- 
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
@@ -36,6 +39,9 @@ angular.module('easyparkangularApp')
           });
         });
       }
+      else{
+      $scope.compulsaryfield=true;
+      }
     };
     
     $scope.loginOauth = function(provider) { 
@@ -43,9 +49,15 @@ angular.module('easyparkangularApp')
     }; 
  
     $scope.fbLogin = function () {  
+    $scope.errMessagesShow=false;
        Auth.fbLogin1(function(data) { 
-          //Logged in, redirect to home 
-          $location.path('/home'); 
+       if(data.err){
+       $scope.errMessage=data.err.errors.email.message;
+       $scope.errMessagesShow=true;
+       }
+       else{
+       $location.path('/home'); //Logged in, redirect to home 
+       }
         }); 
     }
 

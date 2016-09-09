@@ -23,20 +23,22 @@
 <br />
   <form class="form" name="form" ng-submit="register(form)" novalidate>
   
-        <input  id="inputName" class="register glowing-border" type="text" placeholder="User Name" ng-model="user.name"
+        <input  id="inputName" name="inputName" class="register glowing-border" type="text" placeholder="User Name" ng-model="user.name"
                required/>
          
    
         <!--<input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
                required/>-->
      
-        <input  id="inputName" class="register" type="text" placeholder="Enter email" ng-model="user.email"
+        <input  id="inputName" name="inputEmail" class="register" type="text" placeholder="Enter email" ng-model="user.email"
                required/>
      
-        <input  id="inputName" class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
+        <input  id="inputName" name="inputPassword" class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
                ng-minlength="3"
                required/>
 <br /><br />
+                <span style="margin-left: 14%;" class="errMessage" show="errMessagesShow">{{errMessage}}</span>
+               <span style="margin-left: 30%;" class="errMessage" ng-show="compulsaryfield">All fields are required.</span>
     <ul id="registerlist">
       <!--<li class="name">
         <input class="register glowing-border" type="text" placeholder="First name" ng-model="user.name"

@@ -110,13 +110,17 @@ angular.module('easyparkangularApp')
                    FB.getLoginStatus(function (response) {  
                 if (response.status === 'connected') {  
                      FB.api('/me',{fields: fields},function(response) { 
-                     debugger; 
                       var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                       if(data.err){
+                        return cb(data);
+                       }
+                       else{
                             $cookieStore.put('token', data.token); 
                             currentUser = User.get(); 
                             deferred.resolve(data); 
-                            return cb(); 
+                            return cb(data); 
+                            }
                        }); 
                      }); 
                 }  
@@ -127,10 +131,15 @@ angular.module('easyparkangularApp')
                       FB.api('/me',{fields: fields},function(response) { 
                       var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                            if(data.err){
+                        return cb(data);
+                       }
+                       else{
                             $cookieStore.put('token', data.token); 
                             currentUser = User.get(); 
                             deferred.resolve(data); 
-                            return cb(); 
+                            return cb(data); 
+                            }
                        }); 
                      }); 
                   }    
@@ -143,24 +152,19 @@ angular.module('easyparkangularApp')
       },
 
        fbLoginNewUser: function(callback){ 
-       debugger;
         var cb = callback || angular.noop; 
         var deferred = $q.defer(); 
                    FB.getLoginStatus(function (response) {  
-                   debugger;
                 if (response.status === 'connected') {  
                      FB.api('/me',{fields: fields},function(response) { 
-                     debugger; 
                            return cb(response);
                      }); 
                 }  
                 else {  
                 FB.login(function (response){  
-                debugger;
                   FB.getLoginStatus(function (response) {  
                       if (response.status === 'connected') {  
                       FB.api('/me',{fields: fields},function(response) { 
-                      debugger;
                          return cb(response); 
                      }); 
                   }    
@@ -207,6 +211,9 @@ angular.module('easyparkangularApp')
         var cb = callback || angular.noop;
         return User.save(user,
           function(data) {
+          if(data.err){
+           console.log(data.err.errors)
+          }
             $cookieStore.put('token', data.token);
             currentUser = User.get();
             return cb(user);

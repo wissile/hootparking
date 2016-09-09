@@ -1,15 +1,13 @@
 'use strict';
 angular.module('easyparkangularApp')
 
-  .controller('AccountCtrl', function ($scope, Auth, $location) {
+  .controller('AccountCtrl', function ($scope, Auth, $location, $filter) {
 
       $scope.getCurrentUser = Auth.getCurrentUser();
-      $scope.appBackground = "#ede9e9";
+      //$scope.appBackground = "#ede9e9";
       var date = $scope.getCurrentUser.dob;
-      if (date) {
-          var numbers = date.match(/\d+/g);
-          $scope.dob = new Date(numbers[2], numbers[0] - 1, numbers[1]);
-      }
+      if (date)
+      $scope.dob = $filter('date')(date, "yyyy-MM-dd");
       $scope.User = $scope.getCurrentUser;
       $scope.logout = function () {
           Auth.logout();
@@ -34,8 +32,7 @@ angular.module('easyparkangularApp')
 
       $scope.fbLoginUser = function () {
           Auth.fbLoginNewUser(function (data) {
-              debugger; var fb = {};
-
+               var fb = {};
               console.log(data);
               fb.id = data.id;
               fb.name = data.name;
@@ -53,7 +50,6 @@ angular.module('easyparkangularApp')
       };
 
       $scope.UserOfFacebook = function (UserId) {
-          debugger;
           console.log($scope.getCurrentUser.id);
           window.open('https://www.facebook.com/' + UserId, '_system')
       };

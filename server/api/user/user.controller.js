@@ -61,20 +61,26 @@ exports.create = function (req, res, next)
 exports.createFbUser = function (req, res, next) {
     var decodedDatalist = decodeURIComponent(req.params.fbdata);
     var datalist = JSON.parse(decodedDatalist);
-    datalist.provider = 'local';
-    datalist.hashedPassword = 'facebook';
-    var newUser = new User(datalist);
-    console.log(datalist);
-    newUser.save(function (err, user) {
-        console.log("2");
-        //   res.json(err); 
-        if (err)
-            return validationerror(res, err);
-        var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresinminutes: 60 * 5 });
-        console.log("3");
-        res.json({ token: token, user: user });
+    User.findOne({ id: datalist.id }, function (err, user) {
+        if (!user) {
+            datalist.provider = 'local';
+            datalist.hashedPassword = 'facebook';
+            console.log(datalist);
+            var newUser = new User(datalist);
+            newUser.save(function (err, user) {
+                if (err) {
+                    res.json({ err: err });
+                } else {
+                    var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresinminutes: 60 * 5 });
+                    res.json({ token: token, user: user });
+                }
+            });
+        }
+        else {
+            var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresinminutes: 60 * 5 });
+            res.json({ token: token, user: user });
+        }
     });
-    // res.json(datalist); 
 };
 /** 
 * Creates a new fbuser end 
