@@ -1,11 +1,11 @@
 <div style="background: #2A2C3B">
     <div id="profile-intro">
-        <div id="circle" style="margin-left: 42%; border: solid; background: none; border-color: red;
-            width: 55px; height: 54px; border-width: thin;">
+        <div id="circle" style="margin-left: 42%; border: solid; background: none; border-color: #f25d59;
+            width: 72px; height: 66px; border-width: thin;">
             <div>
                 <div>
                     <p>
-                        <img src="/images/logoicon.png" style="height: 53%; width: 73%; margin-top: 20%;"></p>
+                        <img src="/images/logoicon.png" style="height: 57%; width: 78%; margin-top: 7%;"></p>
                 </div>
             </div>
         </div>
@@ -19,15 +19,15 @@
         placeholder="Enter password" required />
     <br />
    
-    <span style="margin-left: 30%;" class="errMessage" ng-show="compulsaryfield">All fields
+    <span style="margin-left: 30%; color: #f25d59;" class="errMessage" ng-show="compulsaryfield">All fields
         are required.</span>
+         <span ng-show="errMessage" style="margin-left: 30%;; color: #f25d59;" class="errMessage" ng-show="compulsaryfield">{{errors.other}}</span> 
         
-     <span ng-show="errMessage" style="margin-left: 30%;" class="errMessage" ng-show="compulsaryfield">{{errors.other}}</span>
-      <br />
-       <br />
-    <div style="margin-left: 42%;">
+    <div style="margin-left: 34%;">
         <p>
-            <input type="submit" class="getpark" value="Sign in" /></p>
+        <input type="submit" class=" getpark regtext" style = "width:40%;color: #f25d59;font-size:large; 
+" value="Sign in"/>
+            
           
             <button  ui-sref="forgetPassword" class="getpark" value="forget Password" >fp</button>
     </div>

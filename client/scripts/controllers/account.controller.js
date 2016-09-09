@@ -22,6 +22,7 @@ angular.module('easyparkangularApp')
               $location.path('/account');
           });
       };
+
       $scope.fbLogin = function () {
           Auth.fbLogin1(function (data) {
               console.log(data);
@@ -48,7 +49,6 @@ angular.module('easyparkangularApp')
               });
           });
       };
-
       $scope.UserOfFacebook = function (UserId) {
           console.log($scope.getCurrentUser.id);
           window.open('https://www.facebook.com/' + UserId, '_system')

@@ -5,11 +5,11 @@ angular.module('easyparkangularApp')
     $scope.user = {};
     $scope.errors = {};
     $scope.compulsaryfield=false;
-
+    $scope.errMessage=false;
      $scope.login = function(form){
     $scope.compulsaryfield=false;
       $scope.submitted = true;
-
+       $scope.errMessage=false;
       if(form.$valid) {
         Auth.login({
             email: $scope.user.email,
@@ -22,6 +22,7 @@ angular.module('easyparkangularApp')
         .catch( function(err) 
         {
           $scope.errors.other = err.message;
+          $scope.errMessage=true;
         });
       }
       else{

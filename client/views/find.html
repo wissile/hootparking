@@ -1,14 +1,10 @@
-<div id="geolocate"> 
- 
-  <div ng-app="easyparkangularApp" ng-controller="MainCtrl"> 
-         
-       <form ng-submit="calcRoute()" id="calc-route-form"> 
-        
+<div id="geolocate">  
+  <div ng-app="easyparkangularApp" ng-controller="MainCtrl">         
+       <form ng-submit="calcRoute()" id="calc-route-form">        
        <div id="map-canvas" style="height:470px;" ></div>   
            <div style=" z-index: 1; position: relative;"> 
                <ul id="Ul1" > 
-                 <li class="geosecline"> 
-                 
+                 <li class="geosecline">                  
                     <p class="sectionline" style="font-size: 23px; color: white;margin-left: 65px;">LOCATION</p> 
                     <div><p class="test" id="P1" style="margin-left: 65px;color: #cebcbc">{{formattedAddress}}</p></div>  
                  </li> 
@@ -21,8 +17,7 @@
                  </div> 
                  </li> 
                </ul> 
-           </div> 
-        
+           </div>         
       </form> 
 </div> 
 </div>  
