@@ -11,6 +11,10 @@ angular.module('easyparkangularApp')
                         $scope.errMessage = "User is Already registered using Facebook, Please login through Facebook.";
                         $scope.errMessageShow = true;
                     }
+                    else if (data.userNotFound) {
+                        $scope.errMessage = "User is not registered with hootparking.";
+                        $scope.errMessageShow = true;
+                    }
                     else {
                         $scope.emailSuccess = "Email is sent Successfully, Please check Email.";
                         $scope.emailSuccessShow = true;

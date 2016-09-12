@@ -33,6 +33,7 @@
                     class="errMessage" ng-show="compulsaryfield">All fields are required.</span>
         <span style="color: #f25d59;" class="errMessage" ng-show="form.inputEmail.$invalid && form.inputEmail.$dirty">
             Invalid EmailID.</span>
+            <span style="color:#f25d59;" class="errMessage" ng-show="errMessagesShow1">{{errMessageUserExit}}</span>
     </div>
     <ul id="registerlist">
         <li>

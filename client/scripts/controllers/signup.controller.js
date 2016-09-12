@@ -6,9 +6,11 @@ angular.module('easyparkangularApp')
     $scope.errors = {};
     $scope.errMessagesShow=false;
     $scope.compulsaryfield=false;
+    $scope.errMessagesShow1=false;
    
     $scope.register = function(form) {
       $scope.errMessagesShow=false;
+      $scope.errMessagesShow1=false;
       $scope.compulsaryfield=false;
       $scope.submitted = true;
    
@@ -19,6 +21,13 @@ angular.module('easyparkangularApp')
           password: $scope.user.password
         })
         .then( function(data) {
+        $scope.errMessagesShow1=false;
+        if(data.UserAvailable)
+        {
+        $scope.errMessagesShow1=true;
+        $scope.errMessageUserExit='User Already Exist';
+        }
+        else{
           $location.path('/new-user');
        $http.post('/api/notification/'+data.user._id).success(function(data) 
        { 
@@ -27,6 +36,7 @@ angular.module('easyparkangularApp')
         { 
           //return cb(err); 
           });
+          }
         })
         .catch( function(err) {
          // err = err.data;

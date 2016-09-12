@@ -23,15 +23,8 @@ exports.index = function (req, res) {
 exports.updateUser = function (req, res, next) {
     var decodedDatalist = decodeURIComponent(req.params.data);
     var datalist = JSON.parse(decodedDatalist);
-
-    // datalist.hashedPassword = encryptPassword(datalist.password); 
     User.findById(datalist.id, function (err, user) {
         datalist.hashedPassword = user.encryptPassword(datalist.password);
-        console.log(datalist.hashedPassword);
-
-        // var dob = String(datalist.dob); 
-
-        console.log(datalist.dob);
         User.update({ _id: datalist.id }, datalist, function (err, userdt) {
             res.json(userdt);
         });
@@ -40,16 +33,26 @@ exports.updateUser = function (req, res, next) {
 /**
  * Creates a new user
  */
-exports.create = function (req, res, next) 
-{
-  var newUser = new User(req.body);
-  newUser.provider = 'local';
-  newUser.role = 'user';
-  newUser.save(function(err, user) {
-    if (err) return validationError(res, err);
-    var token = jwt.sign({_id: user._id }, config.secrets.session, { expiresInMinutes: 60*5 });
-    res.json({ token: token,user:user });
-  });
+exports.create = function (req, res, next) {
+    User.findOne({ 'email': req.body.email }, function (err, user) {
+        console.log(req.params.email);
+        console.log('user is exit' + user);
+        if (!user) {
+            var newUser = new User(req.body);
+            newUser.provider = 'local';
+            newUser.role = 'user';
+            newUser.save(function (err, user) {
+                if (err) return validationError(res, err);
+                var token = jwt.sign({ _id: user._id }, config.secrets.session, { expiresInMinutes: 60 * 5 });
+                res.json({ token: token, user: user });
+            });
+        }
+        else {
+            var UserAvailable = true;
+            res.json({ 'UserAvailable': true });
+        }
+    });
+
 };
 
 /**
@@ -61,20 +64,26 @@ exports.create = function (req, res, next)
 */
 exports.forgetPassword = function (req, res, next) {
     User.findOne({ email: req.params.email }, function (err, user) {
-        if (user.userType) {
-            if (user.userType == 'Facebook')
-                res.json(user.userType);
+
+        if (user == null) {
+            var userNotFound = true;
+            console.log(userNotFound);
+            res.json({ 'userNotFound': true });
         }
-        else {
-            User.findById(user._id, function (err, user) {
-               var hashedPassword = user.encryptPassword('Password1');
-                User.update({ _id: user._id }, { 'hashedPassword': hashedPassword }, function (err, userdt) {
-                    
-                    console.log(userdt);
-                    var subject = "";
-                    var text = "";
-                    subject = "Forget Password Request";
-                    text = "Dear user" +
+        if (user != null)
+            if (user.userType) {
+                if (user.userType == 'Facebook')
+                    res.json(user.userType);
+            }
+            else {
+                User.findById(user._id, function (err, user) {
+                    var hashedPassword = user.encryptPassword('Password1');
+                    User.update({ _id: user._id }, { 'hashedPassword': hashedPassword }, function (err, userdt) {
+                        console.log(userdt);
+                        var subject = "";
+                        var text = "";
+                        subject = "Forget Password Request";
+                        text = "Dear user" +
                     "<br/><br/><br />" +
                     "<table style='border-collapse: collapse'>" +
                     "<tr><td ><b>User Name</b> : " + req.params.email + "</td></tr>" +
@@ -86,32 +95,32 @@ exports.forgetPassword = function (req, res, next) {
                   "<br /><br /><br />" +
                   "The Hootparking Team";
 
-                    var msg = {
-                        transport: nodemailer.createTransport('SMTP', {
-                            host: 'smtp.gmail.com',
-                            secureConnection: true,
-                            port: 465,
-                            auth: {
-                                user: "dev.net.asp@gmail.com",
-                                pass: "Wel@come123"
+                        var msg = {
+                            transport: nodemailer.createTransport('SMTP', {
+                                host: 'smtp.gmail.com',
+                                secureConnection: true,
+                                port: 465,
+                                auth: {
+                                    user: "dev.net.asp@gmail.com",
+                                    pass: "Wel@come123"
+                                }
+                            }),
+                            html: text,
+                            from: "info@cns.com",
+                            subject: subject,
+                            to: req.params.email
+                        };
+                        msg.transport.sendMail(msg, function (err) {
+                            if (err) {
+                                console.log('Sending to ' + msg.to + ' failed: ' + err);
                             }
-                        }),
-                        html: text,
-                        from: "info@cns.com",
-                        subject: subject,
-                        to: req.params.email
-                    };
-                    msg.transport.sendMail(msg, function (err) {
-                        if (err) {
-                            console.log('Sending to ' + msg.to + ' failed: ' + err);
-                        }
-                        console.log('Sent to ' + msg.to);
-                        msg.transport.close();
-                        res.json(msg.to);
+                            console.log('Sent to ' + msg.to);
+                            msg.transport.close();
+                            res.json(msg.to);
+                        });
                     });
                 });
-            });
-        }
+            }
     });
 };
 
