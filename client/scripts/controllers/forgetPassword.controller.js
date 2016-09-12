@@ -4,7 +4,6 @@ angular.module('easyparkangularApp')
     .controller('ForgetPasswordCtrl', function ($scope, Auth) {
 
         $scope.forgetPassword = function (form) {
-            debugger;
             if (form.$valid) {
                 Auth.forgetPass($scope.Email, function (data) {
                     if (data == 'Facebook') {
