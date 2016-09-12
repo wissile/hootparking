@@ -1,11 +1,11 @@
 <div style="background: #2A2C3B">
     <div id="profile-intro">
-        <div id="circle" style="margin-left: 42%; border: solid; background: none; border-color: #f25d59;
-            width: 72px; height: 66px; border-width: thin;    border-radius: 35px;">
+         <div id="circle" style="margin-left: 38%; border: solid; background: none; border-color: #f25d59; 
+            width: 104px; height: 100px; border-width: thin; border-radius: 183px;"> 
             <div>
                 <div>
                     <p>
-                        <img src="/images/logoicon.png" style="height: 57%; width: 78%; margin-top: 7%;"></p>
+                        <img src="/images/logoicon.png" style="height: 40%; width: 70%; margin-top: 18%;"></p>
                 </div>
             </div>
         </div>
@@ -18,23 +18,20 @@
     <input id="inputName" class="register" type="password" name="password" ng-model="user.password"
         placeholder="Enter password" required />
     <br />
-   
-    <span style="margin-left: 30%; color: #f25d59;" class="errMessage" ng-show="compulsaryfield">All fields
-        are required.</span>
-         <span ng-show="errMessage" style="margin-left: 30%;; color: #f25d59;" class="errMessage" ng-show="compulsaryfield">{{errors.other}}</span> 
-        
-    <div style="margin-left: 34%;">
-        <p>
-        <input type="submit" class=" getpark regtext" style = "width:40%;color: #f25d59;font-size:large; 
-" value="Sign in"/>
-            
-          
-            
-           
+    <div align="center">
+        <span style="color: #f25d59;" class="errMessage" ng-show="compulsaryfield">
+            All fields are required.</span> <span ng-show="errMessage" style="color: #f25d59;"
+                class="errMessage" ng-show="compulsaryfield">{{errors.other}}</span>
     </div>
-    <input type="text"  ui-sref="forgetPassword" class=" getpark regtext" style = "width:40%;border:none;font-size:small;margin-left: 34%;color: #f25d59; 
-" value="Forget Password"/>
+    <div align="center">
+        <input type="submit" class="getpark regtext" style="width: 40%; color: #f25d59; font-size: large;"
+            value="Sign in" />
+    </div>
+      <div align="center">
+             <input type="text" ui-sref="forgetPassword" class="getpark regtext" style="border: none !important;
+                    cursor: pointer; color: #f25d59;height: 16px !important;text-align: center;" value="Forget Password"  />
+    </div>
     <div class="altsign">
-        Don't have an account, please <a ui-sref="signup" style="cursor:pointer;">Sign up</a></div>
+        Don't have an account, please <a ui-sref="signup" style="cursor: pointer;">Sign up</a></div>
     </form>
 </div>

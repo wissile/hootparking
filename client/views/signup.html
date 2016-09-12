@@ -1,79 +1,50 @@
-<div  style="background: #2A2C3B">
-  <div id="profile-intro" ">
-        
+<div style="background: #2A2C3B">
+    <div id="profile-intro">
         <font style="color: White">Set up your account !</font>
-        <p style="text-align: center; color: #f25d59; font-size: 15px; margin: -13px;margin-top: 1px;">
+        <p style="text-align: center; color: #f25d59; font-size: 15px; margin: -13px; margin-top: 1px;">
             ion of letters, as opposed to using 'Cotents here,</p>
         <p style="text-align: center; color: #f25d59; font-size: 15px; margin: 5px">
             content here', making it loo
         </p>
-       <!-- <p>
+        <!-- <p>
             <img src="images/profile.png" /></p>-->
-            <div id="circle" style=" margin-left: 42%;border:1px solid;background: none;border-color:#f25d59;width: 72px;height: 66px; border-width:thin;border-radius: 35px;"> 
-                <div> 
-                    <div> 
-                         <p><img  src="/images/logoicon.png" style="height:57%; width:78%; margin-top: 7%;" ></p> 
-                    </div> 
-                </div> 
-            </div>           
-            
-</div>
-
-<br />
-  <form class="form" name="form" ng-submit="register(form)" novalidate>
-  
-        <input  id="inputName" name="inputName" class="register glowing-border" type="text" placeholder="Username" ng-model="user.name"
-               required/>
-         
-   
-        <!--<input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
-               required/>-->
-     
-        <input  id="inputName" name="inputEmail" class="register" type="text" placeholder="Email" ng-model="user.email"
-               required/>
-     
-        <input  id="inputName" name="inputPassword" class="register" type="password" name="pwd" placeholder="Password" ng-model="user.password"
-               ng-minlength="3"
-               required/>
-
-                <span style="margin-left: 10%;color:#f25d59;" class="errMessage" ng-show="form.inputPassword.$error.minlength">Password should contain atleast 3 characters.</span>
-                 <span style="margin-left: 18%;color:#f25d59;" class="errMessage" ng-show="errMessagesShow">{{errMessage}}</span>
-               <span style="margin-left: 18%;color:#f25d59;" class="errMessage" ng-show="compulsaryfield">All fields are required.</span>
+        <div id="circle" style="margin-left: 38%; border: 1px solid; background: none; border-color: #f25d59;
+            width: 104px; height: 100px; border-width: thin; border-radius: 183px;">
+            <div>
+                <div>
+                    <p>
+                        <img src="/images/logoicon.png" style="height: 40%; width: 70%; margin-top: 18%;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <form class="form" name="form" ng-submit="register(form)" novalidate>
+    <input id="inputName" name="inputName" class="register glowing-border" type="text"
+        placeholder="Username" ng-model="user.name" required />
+    <input id="inputName" name="inputEmail" class="register" type="email" placeholder="Email"
+        ng-model="user.email" required />
+    <input id="inputName" name="inputPassword" class="register" type="password" name="pwd"
+        placeholder="Password" ng-model="user.password" ng-minlength="3" required />
+    <div align="center">
+        <span style="color: #f25d59;" class="errMessage" ng-show="form.inputPassword.$error.minlength">
+            Password should contain atleast 3 characters.</span> <span style="color: #f25d59;"
+                class="errMessage" ng-show="errMessagesShow">{{errMessage}}</span> <span style="color: #f25d59;"
+                    class="errMessage" ng-show="compulsaryfield">All fields are required.</span>
+        <span style="color: #f25d59;" class="errMessage" ng-show="form.inputEmail.$invalid && form.inputEmail.$dirty">
+            Invalid EmailID.</span>
+    </div>
     <ul id="registerlist">
-      <!--<li class="name">
-        <input class="register glowing-border" type="text" placeholder="First name" ng-model="user.name"
-               required/>
-      </li>     
-      <!--<li class="name">
-        <input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
-               required/>
-      </li>
-      <li>
-        <input class="register" type="text" placeholder="Enter email" ng-model="user.email"
-               required/>
-      </li>
-      <li>
-        <input class="register" type="password" name="pwd" placeholder="Enter password" ng-model="user.password"
-               ng-minlength="3"
-               required/>-->
-           <li>     
-        <p> 
-        <input type="submit" class=" getpark regtext" style = "border-right: 1px solid #A9A9A9;cursor:pointer; width:50%;color: #f25d59; 
-" value="REGISTER"/>  
-        <input type="text" class="  getpark regtext" style = "border:none !important;width:22%;cursor:pointer;color: #f25d59; margin-left:10%" value="FACEBOOK" ng-click="fbLogin();"/>  
-         </li>
-
-         <li>
-         <div class="altsign">
+        <li>
             <p>
-                <span class="main-nav-name1 testname" ui-sref="login" style="cursor:pointer;">Already a hooter</span>
-                <!-- </div>
-            <div class="" style="text-align: right">-->
-                <span class="main-nav-name1 testname" style="text-align: right;cursor:pointer; margin-left: -30px;" ui-sref="home">SKIP ></span>
-            </p></div>
-            <!--for div class="altsign"-->
+                <input type="submit" class=" getpark regtext" style="border-right: 1px solid #A9A9A9;
+                    cursor: pointer; width: 50%; color: #f25d59;" value="REGISTER" />
+                <input type="text" class="  getpark regtext" style="border: none !important; width: 22%;
+                    cursor: pointer; color: #f25d59; margin-left: 10%" value="FACEBOOK" ng-click="fbLogin();" />
         </li>
-             
+       <li style="padding-left:10px;padding-right:10px"><span class="main-nav-name1 testname" ui-sref="login" style="cursor: pointer;">Already a
+            hooter</span> <span class="main-nav-name1 testname" style="text-align: right; cursor: pointer;"
+                ui-sref="home">SKIP ></span></li>
     </ul>
-  </form>
+    </form>
 </div>
