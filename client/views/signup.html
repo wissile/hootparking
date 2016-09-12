@@ -9,7 +9,7 @@
         </p>
        <!-- <p>
             <img src="images/profile.png" /></p>-->
-            <div id="circle" style=" margin-left: 42%;border:1px solid;background: none;border-color:#f25d59;width: 72px;height: 66px; border-width:thin;"> 
+            <div id="circle" style=" margin-left: 42%;border:1px solid;background: none;border-color:#f25d59;width: 72px;height: 66px; border-width:thin;border-radius: 35px;"> 
                 <div> 
                     <div> 
                          <p><img  src="/images/logoicon.png" style="height:57%; width:78%; margin-top: 7%;" ></p> 
@@ -29,14 +29,15 @@
         <!--<input class="register" type="text" placeholder="Last name" ng-model="user.lastName"
                required/>-->
      
-        <input  id="inputName" name="inputEmail" class="register" type="text" placeholder=Email" ng-model="user.email"
+        <input  id="inputName" name="inputEmail" class="register" type="text" placeholder="Email" ng-model="user.email"
                required/>
      
         <input  id="inputName" name="inputPassword" class="register" type="password" name="pwd" placeholder="Password" ng-model="user.password"
                ng-minlength="3"
                required/>
 
-                <span style="margin-left: 18%;color:#f25d59;" class="errMessage" show="errMessagesShow">{{errMessage}}</span>
+                <span style="margin-left: 10%;color:#f25d59;" class="errMessage" ng-show="form.inputPassword.$error.minlength">Password should contain atleast 3 characters.</span>
+                 <span style="margin-left: 18%;color:#f25d59;" class="errMessage" ng-show="errMessagesShow">{{errMessage}}</span>
                <span style="margin-left: 18%;color:#f25d59;" class="errMessage" ng-show="compulsaryfield">All fields are required.</span>
     <ul id="registerlist">
       <!--<li class="name">
