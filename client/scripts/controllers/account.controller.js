@@ -28,7 +28,7 @@ angular.module('easyparkangularApp')                           // jshint ignore:
       //              console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
       //          });
       //      };
-      $scope.submit = function () { //function to call on form submit 
+      $scope.submit = function () { // jshint ignore:line
 
           if ($scope.file) { //check if from is valid 
               $scope.upload($scope.file); //call upload function 
@@ -40,7 +40,6 @@ angular.module('easyparkangularApp')                           // jshint ignore:
 
 
       $scope.upload = function (file) {
-
           var id = $scope.getCurrentUser._id;
           Upload.upload({    // jshint ignore:line
               url: '/api/users/upload/' + id, //webAPI exposed to upload the file 
@@ -76,11 +75,11 @@ angular.module('easyparkangularApp')                           // jshint ignore:
 
 
 
-      $scope.SaveEditData = function (form) {                             // jshint ignore:line
+      $scope.SaveEditData = function (form) {  // jshint ignore:line                           
 
           $scope.submitted = true;
-          var dob = new Date($scope.User.dob);
-          var datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, dob: dob, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress }));       // jshint ignore:line
+         
+          var datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress }));       // jshint ignore:line
 
           Auth.updateUser(datalist, function (data) {                       // jshint ignore:line
               // Logged in, redirect to home 
@@ -89,7 +88,7 @@ angular.module('easyparkangularApp')                           // jshint ignore:
       };
 
       $scope.fbLogin = function () {
-          Auth.fbLogin1(function (data) {
+          Auth.fbLogin1(function (data) {// jshint ignore:line
               console.log(data);
               //Logged in, redirect to home 
               $location.path('/home');

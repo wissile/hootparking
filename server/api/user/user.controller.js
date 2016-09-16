@@ -149,14 +149,14 @@ exports.create = function (req, res, next) {
 exports.forgetPassword = function (req, res, next) {
     User.findOne({ email: req.params.email }, function (err, user) {
 
-        if (user == null) {
+        if (user === null) {
             var userNotFound = true;
             console.log(userNotFound);
             res.json({ 'userNotFound': true });
         }
-        if (user != null)
+        if (user !== null)
             if (user.userType) {
-                if (user.userType == 'Facebook')
+                if (user.userType ==='Facebook')
                     res.json(user.userType);
             }
             else {
