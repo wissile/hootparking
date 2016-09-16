@@ -14,30 +14,30 @@ angular.module('easyparkangularApp')
         $scope.options = null;
         $scope.details = '';
         var map;
-        var geocoder = new google.maps.Geocoder();
+        var geocoder = new google.maps.Geocoder();  // jshint ignore:line
        
         function initialize() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (p) {
 
-                    var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude);
+                    var LatLng = new google.maps.LatLng(p.coords.latitude, p.coords.longitude); // jshint ignore:line
                     var mapOpt = {
 
                         //                      center: new google.maps.LatLng(51.508742, -0.120850),
                         center: LatLng,
                         zoom: 15,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                        mapTypeId: google.maps.MapTypeId.ROADMAP // jshint ignore:line
                     };
-                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt);
-                    var marker = new google.maps.Marker({
+                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt); // jshint ignore:line
+                    var marker = new google.maps.Marker({                                                               // jshint ignore:line
                         position: LatLng,
                         map: map,
-                        animation: google.maps.Animation.BOUNCE
+                        animation: google.maps.Animation.BOUNCE // jshint ignore:line
 
                     });
 
                     geocoder.geocode({ 'latLng': LatLng }, function (results, status) {
-                        if (status === google.maps.GeocoderStatus.OK) {
+                        if (status === google.maps.GeocoderStatus.OK) {                                            // jshint ignore:line
                             if (results[0]) {
                                 /*jshint camelcase: false */
                                 $scope.formattedAddress = results[0].formatted_address;
@@ -53,8 +53,8 @@ angular.module('easyparkangularApp')
                     //                        searchBox.setBounds(map.getBounds());
                     //                    });
 
-                    google.maps.event.addListener(marker, 'click', function (e) {
-                        var infoWindow = new google.maps.InfoWindow();
+                    google.maps.event.addListener(marker, 'click', function (e) {                  // jshint ignore:line 
+                        var infoWindow = new google.maps.InfoWindow();                              // jshint ignore:line
                         infoWindow.setContent(marker.title);
                         infoWindow.open(map, marker);
                         console.log(e);
@@ -77,19 +77,19 @@ angular.module('easyparkangularApp')
                     console.log(latitude, longitude);
                     $scope.formattedAddress = results[0].formatted_address;
 
-                    var LatLng = new google.maps.LatLng(latitude, longitude);
+                    var LatLng = new google.maps.LatLng(latitude, longitude);                       // jshint ignore:line
                     var mapOpt = {
 
                         //                      center: new google.maps.LatLng(51.508742, -0.120850),
                         center: LatLng,
                         zoom: 15,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
+                        mapTypeId: google.maps.MapTypeId.ROADMAP   // jshint ignore:line
                     };
-                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt);
-                    var marker = new google.maps.Marker({
+                    map = new google.maps.Map(document.getElementById('map-canvas'), mapOpt); // jshint ignore:line
+                    var marker = new google.maps.Marker({                                       // jshint ignore:line
                         position: LatLng,
                         map: map,
-                        animation: google.maps.Animation.BOUNCE
+                        animation: google.maps.Animation.BOUNCE // jshint ignore:line
 
                     });
                     console.log(marker);

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
     $scope.user = {};
     $scope.errors = {};
     $scope.compulsaryfield=false;

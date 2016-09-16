@@ -7,7 +7,7 @@ angular.module('easyparkangularApp')
     $scope.errMessagesShow=false;
     $scope.compulsaryfield=false;
     $scope.errMessagesShow1=false;
-   
+   $scope.background='#2A2C3B';
     $scope.register = function(form) {
       $scope.errMessagesShow=false;
       $scope.errMessagesShow1=false;
@@ -29,10 +29,10 @@ angular.module('easyparkangularApp')
         }
         else{
           $location.path('/new-user');
-       $http.post('/api/notification/'+data.user._id).success(function(data) 
+       $http.post('/api/notification/'+data.user._id).success(function(data) // jshint ignore:line
        { 
           //return cb(); 
-        }).error(function(err) 
+        }).error(function(err) // jshint ignore:line
         { 
           //return cb(err); 
           });
@@ -61,6 +61,7 @@ angular.module('easyparkangularApp')
     $scope.fbLogin = function () {  
     $scope.errMessagesShow=false;
        Auth.fbLogin1(function(data) { 
+        $scope.FacebookImage=data.FacebookImage;     
        if(data.err){
        $scope.errMessage=data.err.errors.email.message;
        $scope.errMessagesShow=true;
@@ -69,7 +70,7 @@ angular.module('easyparkangularApp')
        $location.path('/home'); //Logged in, redirect to home 
        }
         }); 
-    }
+    };
 
   });
 

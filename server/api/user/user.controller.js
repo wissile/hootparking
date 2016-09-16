@@ -6,6 +6,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 var crypto = require('crypto');
 var nodemailer = require('nodemailer');
+var multer = require('multer');
 var validationError = function(res, err) {
   return res.json(422, err);
 };
@@ -14,6 +15,89 @@ var validationError = function(res, err) {
  * Get list of users
  * restriction: 'admin'
  */
+//var upload = multer({ //multer settings
+//    storage: storage
+//}).single('file');
+
+//var Imagename;
+//var storage = multer.diskStorage({ //multers disk storage settings
+//    destination: function (req, file, cb) {
+//        console.log('file destination data here' + file);
+//        cb(null, '/Images');
+//    },
+//    filename: function (req, file, cb) {
+//        console.log('file' + file);
+//       
+//        console.log('file data here' + file);
+//        Imagename = 'Tulig' + '.' + "jpg";
+//        cb(null, Imagename);
+
+//        // cb(null, file.originalname);
+
+//    }
+//});
+
+//exports.imageUpload = ('/upload', function (req, res) {
+//    var Imagename;
+//    console.log('hi upload function' + req.params.id);
+//    Imagename = req.params.id;
+
+//    var upload = multer({ //multer settings
+//        storage: storage
+//    }).single('file');
+
+//    var storage = multer.diskStorage({ //multers disk storage settings
+//        destination: function (req, file, cb) {
+//            console.log('file destination data here' + file);
+//            cb(null, '/Images/');
+//            cb(new Error('I don\'t have a clue!'))
+//        },
+//        filename: function (req, file, cb) {
+//            console.log('file' + file);
+
+//            console.log('file data here' + file);
+//            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length - 1])
+//            Imagename = 'Tulig' + '.' + "jpg";
+//            cb(null, Imagename);
+//            cb(new Error('I don\'t have a clue!'))
+//            // cb(null, file.originalname);
+
+//        }
+//    });
+var Imagename; 
+var storage = multer.diskStorage({ //multers disk storage settings
+    destination: function (req, file, cb) {
+        console.log('file here' + file);
+        cb(null, './server/Images/');
+    },
+    filename: function (req, file, cb) {
+        console.log('Filename here' + Imagename);
+        var datetimestamp = Date.now();
+        Imagename = Imagename + '.' + "jpg";
+        cb(null, Imagename);
+        
+    }
+});
+
+var upload = multer({ //multer settings
+    storage: storage
+}).single('file');
+
+/** API path that will upload the files */
+var Imagename; 
+exports.imageUpload = ('/upload', function (req, res) {
+    Imagename = req.params.id;
+    console.log('hi upload function' + req.params.id);
+    upload(req, res, function (err) {
+        console.log('Error is here' + err);
+        if (err) {
+            res.json({ error_code: 1, err_desc: err });
+            return;
+        }
+        res.json({ error_code: 0, err_desc: null, Image: Imagename });
+    });
+});
+
 exports.index = function (req, res) {
         User.find({}, '-salt -hashedPassword', function (err, users) {
         if (err) return res.send(500, err);

@@ -20,7 +20,8 @@ angular
       'ngAutocomplete',
       'backButton',
       'ngMaterial',
-      'config'
+      'config',
+      'ngFileUpload'
     ])
     .config(function ($locationProvider, $httpProvider, $stateProvider, $urlRouterProvider) {
       //noinspection JSCheckFunctionSignatures
@@ -74,7 +75,7 @@ angular
            url: '/edit-account',
            title: 'Edit Account',
            templateUrl: 'views/edit-account.html',
-           controller: 'AccountCtrl',
+           controller: 'EditAccountCtrl',
            authenticate: true
         }).state('notifications', {
           url: '/notifications',
