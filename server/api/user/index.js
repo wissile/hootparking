@@ -16,6 +16,7 @@ router.get('/:id', auth.isAuthenticated(), controller.show);
 router.post('/', controller.create);
 router.post('/fbuser/:fbdata', controller.createFbUser);
 router.post('/forgetpassword/:email', controller.forgetPassword);
+router.post('/upload/:id',controller.imageUpload);
 
 
 module.exports = router;

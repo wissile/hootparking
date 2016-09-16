@@ -1,7 +1,44 @@
 <div class="account-container" style="background: #2A2C3B">
     <h5 style="color:White;">Profile</h5> 
 
-<form class="form" name="form" ng-submit="SaveEditData(form)" novalidate>
+<form class="form" name="form" novalidate>
+<div class="input-field col s6">
+         <div> 
+           <img class="circle" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file || '{{FacebookImage}}'"/> 
+            <div align="center">
+            <form  name="upload_form">
+                <input 
+                type="file" 
+                ngf-select 
+                ng-model="file" 
+                name="file" 
+                 ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="20MB" 
+                />                 
+                 </form>
+                 </div>
+            </div>           
+  <!--<div class="button" ngf-select ng-model="image" name="file" id="upload" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+    ngf-resize="{width: 100, height: 100}">Select</div> src="images/jen.png"
+     <input 
+               type="file" 
+               ngf-select 
+               ng-model="up.file" 
+               name="file" 
+               ngf-pattern="'image/*'"
+               accept="image/*" 
+               ngf-max-size="20MB"
+               id="upload" 
+               />
+                                    <div> 
+                                        <a href="" id="A1" for="file" ng-disabled="disablefield" ng-click="SaveData();">Upload </a>
+                                        </div>-->
+                                        <!--<input type='file' accept='image/*' onchange='openFile(event)'>-->
+
+                
+    </div>
     <div class="input-field col s6">
         <input id="first_name" type="text" ng-model="User.name" class="validate inputEdit">
         <label  ng-class="User.name ? 'active' : ''  " for="first_name">First Name</label>
@@ -10,12 +47,25 @@
         <input id="last_name" type="text" ng-model="User.lastname" class="validate inputEdit">
         <label ng-class="User.lastname ? 'active' : ''  " for="last_name">Last Name</label>
     </div>
-    <div class="input-field col s6">
+    <!--<div class="input-field col s6">
         <span class="glyphicon glyphicon-calendar prefix"></span>
         <input id="birthday" type="date" value="{{User.dob | date: 'yyyy-MM-dd'}}" ng-model="User.dob" class="datepicker inputEdit"> 
         <label ng-class="User.dob ? 'active' : ''  " for="birthday">Birthday</label>
-    </div>
+    </div>-->
+    <div class="input-field col s6">
+        <input id="mobile_number" type="text" ng-model="User.mobileno" class="validate inputEdit">
+        <label ng-class="User.mobileno ? 'active' : ''  " for="mobile_number">Mobile Number</label>
+            </div>
 
+    <div class="input-field col s6">
+        <input id="home_address" type="text" ng-model="User.homeaddress" class="validate inputEdit">
+        <label ng-class="User.homeaddress ? 'active' : ''  " for="home_address">Home Address</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="work_address" type="text" ng-model="User.workaddress" class="validate inputEdit">
+        <label ng-class="User.workaddress ? 'active' : ''  " for="work_address">Work Address</label>
+    </div>
+    <br />
     <h5 style="color:White;">Account</h5> 
     <div class="row">
         <div class="input-field col s12">
@@ -35,7 +85,7 @@
     </div>-->
     <div class="row">
     <p>
-    <input type="submit" class=" main-nav-name1 orange-text getpark regtext" style = "margin-left: 27%;border: 1px solid #A9A9A9;" value="SAVE"/>
+    <input type="submit" class=" main-nav-name1 orange-text getpark regtext" ng-click="submit()" style = "margin-left: 27%;border: 1px solid #A9A9A9;" value="SAVE"/>
     </p>
     </div>
     </form>
@@ -43,7 +93,22 @@
 
 
 
+<script>
+    var openFile = function (event) {
+        debugger;
+        var input = event.target;
+        alert(input);
+        var reader = new FileReader();
+        reader.onload = function () {
+            debugger;
+            var dataURL = reader.result;
 
+            alert(dataURL);
+        };
+        var re = reader.readAsDataURL(input.files[0]);
+        alert(re);
+    };
+</script>
 
 
 <!--<p>

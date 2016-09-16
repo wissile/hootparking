@@ -43,28 +43,32 @@ exports.Update = function (req, res, next) {
     var datalist = JSON.parse(decodedDatalist);
     console.log(req.params.setting);
     var userId = datalist.userId;
-    notification.find({ userId: userId }, function (err, users) {
-        var user = users[0];
-        console.log('hi this is uere'+users);
-        console.log(datalist.data);
-        console.log(datalist.value);
-        if (datalist.data == 'ParkingSweeping')
-            user.ParkingSweeping = datalist.value;
-        if (datalist.data == 'ParkingClean')
-            user.ParkingClean = datalist.value;
-        if (datalist.data == 'TimeLimit')
-            user.TimeLimit = datalist.value;
-        if (datalist.data == 'ReachedBudget')
-            user.ReachedBudget = datalist.value;
-        if (datalist.data == 'ParkingFareChange')
-            user.ParkingFareChange = datalist.value;
-        if (datalist.data == 'ParkingTime')
-            user.ParkingTime = datalist.value;
-        user.save({ userId: userId }, datalist, function (err, userdt) {
-            res.json(userdt);
+    notification.findOne({ userId: userId }, function (err, users) {
+        //var user = users[0];
+        if (users) {
+            console.log('hi this is uere' + users);
+            console.log(datalist.data);
+            console.log(datalist.value);
+            if (datalist.data === 'ParkingSweeping')
+                users.ParkingSweeping = datalist.value;
+            if (datalist.data === 'ParkingClean')
+                users.ParkingClean = datalist.value;
+            if (datalist.data === 'TimeLimit')
+                users.TimeLimit = datalist.value;
+            if (datalist.data === 'ReachedBudget')
+                users.ReachedBudget = datalist.value;
+            if (datalist.data === 'ParkingFareChange')
+                users.ParkingFareChange = datalist.value;
+            if (datalist.data === 'ParkingTime')
+                users.ParkingTime = datalist.value;
+            users.save({ userId: userId }, datalist, function (err, userdt) {
+                res.json(userdt);
 
-        });
-
+            });
+        }
+        else {
+            console.log(err);
+        }
     });
 
     //User.update({ "id": userId }, { $set: { "lastname": "konde"} });
@@ -83,7 +87,7 @@ exports.Update = function (req, res, next) {
 //};
 
 exports.changePassword = function (req, res, next) {
-    User.find(function (err, user) {
+    User.find(function (err, user) {   // jshint ignore:line
         res.json(user);
     });
 };

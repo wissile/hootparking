@@ -1,6 +1,6 @@
 'use strict';
 window.fbAsyncInit = function () {  
-             FB.init({  
+             FB.init({    // jshint ignore:line
                  appId: '1763685530568368',  //'1231500983547179',  
                  status: true,  
                  cookie: true,  
@@ -13,7 +13,7 @@ window.fbAsyncInit = function () {
              var js, fjs = d.getElementsByTagName(s)[0];  
              if (d.getElementById(id)) { return; }  
              js = d.createElement(s); js.id = id;  
-             js.src = "//connect.facebook.net/en_US/sdk.js";  
+             js.src = '//connect.facebook.net/en_US/sdk.js';  
              fjs.parentNode.insertBefore(js, fjs);  
          } (document, 'script', 'facebook-jssdk')); 
 
@@ -107,11 +107,16 @@ angular.module('easyparkangularApp')
       fbLogin1: function(callback){ 
         var cb = callback || angular.noop; 
         var deferred = $q.defer(); 
-                   FB.getLoginStatus(function (response) {  
+                   FB.getLoginStatus(function (response) {    // jshint ignore:line
                 if (response.status === 'connected') {  
-                     FB.api('/me',{fields: fields},function(response) { 
-                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
+                
+                     FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line
+                     
+                     var FacebookImage=response.picture.data.url;
+                      $cookieStore.put('FacebookImage', FacebookImage); 
+                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'}));    // jshint ignore:line
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                       data.FacebookImage=FacebookImage;
                        if(data.err){
                         return cb(data);
                        }
@@ -119,22 +124,27 @@ angular.module('easyparkangularApp')
                             $cookieStore.put('token', data.token); 
                             currentUser = User.get(); 
                             deferred.resolve(data); 
-                            return cb(data); 
+                            return cb({data:data,FacebookImage:FacebookImage}); 
                             }
                        }); 
                      }); 
                 }  
                 else {  
-                FB.login(function (response){  
-                  FB.getLoginStatus(function (response) {  
+                FB.login(function (response){   // jshint ignore:line 
+                  FB.getLoginStatus(function (response) {    // jshint ignore:line
                       if (response.status === 'connected') {  
-                      FB.api('/me',{fields: fields},function(response) { 
-                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'})); 
+                      FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line 
+                     
+                      var FacebookImage=response.picture.data.url;
+                      $cookieStore.put('FacebookImage', FacebookImage); 
+                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'}));   // jshint ignore:line
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                       data.FacebookImage=FacebookImage;
                             if(data.err){
                         return cb(data);
                        }
                        else{
+                       
                             $cookieStore.put('token', data.token); 
                             currentUser = User.get(); 
                             deferred.resolve(data); 
@@ -145,7 +155,7 @@ angular.module('easyparkangularApp')
                   }    
                   });    
             }); 
-        };  
+        }  
    
  
   }); 
@@ -153,24 +163,24 @@ angular.module('easyparkangularApp')
 
        fbLoginNewUser: function(callback){ 
         var cb = callback || angular.noop; 
-        var deferred = $q.defer(); 
-                   FB.getLoginStatus(function (response) {  
+        var deferred = $q.defer();  // jshint ignore:line
+                   FB.getLoginStatus(function (response) {    // jshint ignore:line
                 if (response.status === 'connected') {  
-                     FB.api('/me',{fields: fields},function(response) { 
+                     FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line
                            return cb(response);
                      }); 
                 }  
                 else {  
-                FB.login(function (response){  
-                  FB.getLoginStatus(function (response) {  
+                FB.login(function (response){    // jshint ignore:line
+                  FB.getLoginStatus(function (response) {     // jshint ignore:line
                       if (response.status === 'connected') {  
-                      FB.api('/me',{fields: fields},function(response) { 
+                      FB.api('/me',{fields: fields},function(response) {    // jshint ignore:line
                          return cb(response); 
                      }); 
                   }    
                   });    
             }); 
-        };  
+        }  
    
  
   }); 
@@ -217,7 +227,7 @@ angular.module('easyparkangularApp')
         return User.save(user,
           function(data) {
           if(data.err){
-           console.log(data.err.errors)
+           console.log(data.err.errors);
           }
             $cookieStore.put('token', data.token);
             currentUser = User.get();
@@ -240,7 +250,7 @@ angular.module('easyparkangularApp')
         success(function(data) { 
            return cb(data);
         }). 
-        error(function(err) { 
+        error(function(err) {  // jshint ignore:line
         }); 
         },
 
@@ -271,6 +281,7 @@ angular.module('easyparkangularApp')
        *
        * @return {Object} user
        */
+       
       getCurrentUser: function() {
         return currentUser;
       },
@@ -313,6 +324,12 @@ angular.module('easyparkangularApp')
       /**
        * Get auth token
        */
+       FacebookImageDisplay:function()
+       {
+      
+       return $cookieStore.get('FacebookImage');         
+       },
+
       getToken: function() {
         return $cookieStore.get('token');
       },
