@@ -1,13 +1,25 @@
 ﻿<div class="collection with-header">
-        <div class="collection-header"><h5>Help & Feedback</h5></div>
-        <a href="#!" class="collection-item">Help</a>
-        <a href="#!" class="collection-item">Send feedback</a>
-        <a href="#!" class="collection-item">Hootparking.com</a>
+    <div class="collection-header">
+        <h5>
+            Help & Feedback</h5>
+    </div>
+    <a href="#!" class="collection-item">Help</a> <a ng-click="show_feedback_option();"
+       ng-if="getCurrentUser.userType=='Facebook' || getCurrentUser.userType=='HootparkingUser'"
+
+        class="collection-item">Send feedback</a>
+    <div class="collection-item" style="display: none" id="textarea_sendfeedback">
+        <textarea  ng-model="feedback.feedbackData" rows="20" cols="50">Write contents to sent Feedback here</textarea>
+        <button  ng-click="SaveFeedback();"  id="">
+            Send</button>
+    </div>
+    <a href="#!" class="collection-item">Hootparking.com</a>
 </div>
 <div class="collection with-header">
-        <div class="collection-header"><h5>Legal</h5></div>
-        <a href="#!" class="collection-item">Terms of service</a>
-        <a href="#!" class="collection-item">Privacy policy</a>
-        <a href="#!" class="collection-item">Version</a>
-        <a href="#!" class="collection-item">Usage policy</a>
+    <div class="collection-header">
+        <h5>
+            Legal</h5>
     </div>
+    <a href="#!" class="collection-item">Terms of service</a> <a href="#!" class="collection-item">
+        Privacy policy</a> <a href="#!" class="collection-item">Version</a> <a href="#!"
+            class="collection-item">Usage policy</a>
+</div>
