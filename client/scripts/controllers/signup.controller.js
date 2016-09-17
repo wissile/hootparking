@@ -18,8 +18,9 @@ angular.module('easyparkangularApp')
         Auth.createUser({
           name: $scope.user.name,
           email: $scope.user.email,
-          password: $scope.user.password
-        })
+          password: $scope.user.password,
+          userType: 'HootparkingUser' 
+         })
         .then( function(data) {
         $scope.errMessagesShow1=false;
         if(data.UserAvailable)
