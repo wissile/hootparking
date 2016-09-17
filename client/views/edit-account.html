@@ -4,7 +4,8 @@
 <form class="form" name="form" novalidate>
 <div class="input-field col s6">
          <div> 
-           <img class="circle" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file || '{{FacebookImage}}'"/> 
+           <img class="circle" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'images/jen.png'"/> 
+            <img class="circle" ng-if="User.usertype=='facebook'" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="'{{FacebookImage}}' ||'images/jen.png'"/>
             <div align="center">
             <form  name="upload_form">
                 <input 
@@ -14,8 +15,9 @@
                 name="file" 
                  ngf-pattern="'image/*'"
                 accept="image/*" 
-                ngf-max-size="20MB" 
-                />                 
+                ngf-max-size="20MB"
+                    />        
+                          
                  </form>
                  </div>
             </div>           
