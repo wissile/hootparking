@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
     $scope.user = {};
     $scope.errors = {};
     $scope.compulsaryfield=false;
@@ -15,9 +15,18 @@ angular.module('easyparkangularApp')
             email: $scope.user.email,
             password: $scope.user.password
         })
-        .then( function() {
+        .then( function(data) {
+     
+        $http.post('/api/notification/'+data.user._id).success(function(data) // jshint ignore:line
+       { 
+                //return cb(); 
+        }).error(function(err) // jshint ignore:line
+        { 
+          //return cb(err); 
+          });
           //Logged in, redirect to home
           $location.path('/home');
+
         })
         .catch( function(err) 
         {
