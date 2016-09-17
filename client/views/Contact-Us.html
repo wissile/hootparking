@@ -6,7 +6,8 @@
     <a href="#!" class="collection-item">Help</a> <a ng-click="show_feedback_option();"
        ng-if="getCurrentUser.userType=='Facebook' || getCurrentUser.userType=='HootparkingUser'"
 
-        class="collection-item">Send feedback</a>
+        class="collection-item">Send feedback<span ng-show="errMessage" style="color: #f25d59;"
+                ng-show="compulsaryfield" ng-class="compulsaryfield?'':ng-hide">Feedback is save!!</span></a>
     <div class="collection-item" style="display: none" id="textarea_sendfeedback">
         <textarea  ng-model="feedback.feedbackData" rows="20" cols="50">Write contents to sent Feedback here</textarea>
         <button  ng-click="SaveFeedback();"  id="">
