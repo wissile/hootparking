@@ -1,5 +1,5 @@
 'use strict';
-
+  
 var notification = require('./notification.model');
 var passport = require('passport');
 var config = require('../../config/environment');
@@ -21,19 +21,28 @@ exports.show = function (req, res, next) {
 };
 exports.create = function (req, res, next) {
     var userId = req.params.id;
-    var newUser = new notification({ 
-        ParkingSweeping: 0,
-        ParkingClean: 0,
-        TimeLimit: 0,
-        ReachedBudget: 0,
-        ParkingFareChange: 0,
-        ParkingTime: 0,
-        userId: userId
-    });
-    newUser.save(function (err, user) {
-        if (err) return validationError(res, err);
-        console.log(user);
-        res.json(userId);
+    notification.findOne({ userId: userId }, function (err, users) {
+        console.log(userId + 'for adding new user');
+        console.log('Already user' + users);
+        if (users) {
+            console.log('ji');
+        }
+        else {
+            var newUser = new notification({
+                ParkingSweeping: 0,
+                ParkingClean: 0,
+                TimeLimit: 0,
+                ReachedBudget: 0,
+                ParkingFareChange: 0,
+                ParkingTime: 0,
+                userId: userId
+            });
+            newUser.save(function (err, user) {
+                if (err) return validationError(res, err);
+                console.log(user);
+                res.json(userId);
+            });
+        }
     });
 };
 
