@@ -117,7 +117,7 @@ angular
           url: '/Contact',
           title: 'Contact Us',
           templateUrl: 'views/Contact-Us.html',
-          controller: ''
+          controller: 'ContactUsCtrl'
       }).state('forgetPassword', {
           url: '/forget',
           title: 'Forget Password',
