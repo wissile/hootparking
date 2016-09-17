@@ -73,6 +73,7 @@ angular.module('easyparkangularApp')
       
       login: function(user, callback)
        {
+       
         var cb = callback || angular.noop;
         var deferred = $q.defer();
         $http.post('/auth/local', 
@@ -82,9 +83,9 @@ angular.module('easyparkangularApp')
         }).
         success(function(data) 
         {
-          $cookieStore.put('token', data.token);
+           $cookieStore.put('token', data.token);
           currentUser = User.get();
-          deferred.resolve(data);
+           deferred.resolve(data);
           return cb();
         }).
         error(function(err) 
