@@ -4,7 +4,9 @@
 <div style="width:100%; height:85px;background-color: #ffffff;">
                 <div style="Background-color:#f25d59;height:57%; width: 400px;"> 
                     <div class="circle" style="background-color:#ffffff; width: 100px; height: 106px;margin-left: 38%;">
-                    <img class="circle" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" src="images/jen.png"/> 
+                    <img class="circle" ng-if="User.userType=='HootparkingUser'" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{User.image}}"/> 
+                    <img class="circle" ng-if="User.userType=='Facebook'" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="{{FacebookImage}}"/> 
+                    
                     </div>
                 </div>
 </div>

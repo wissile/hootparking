@@ -3,9 +3,10 @@
 
 <form class="form" name="form" novalidate>
 <div class="input-field col s6">
-         <div> 
-           <img class="circle" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'images/jen.png'"/> 
-            <img class="circle" ng-if="User.usertype=='facebook'" style="margin-left: 40%;" src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="'{{FacebookImage}}' ||'images/jen.png'"/>
+         <div id="result">           
+           <img class="circle" ng-if="User.userType=='HootparkingUser'" style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/> 
+            <img class="circle" ng-if="User.userType=='Facebook'"style="margin-left: 40%;" ng-src="{{FacebookImage}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file||'{{FacebookImage}}'"/>
+             <span class="glyphicon glyphicon-camera" style="float: right; margin-top: -4%; margin-right: 41%; color:White;font-size:140%" onclick ="javascript:document.getElementById('imagefile').click();"></span>
             <div align="center">
             <form  name="upload_form">
                 <input 
@@ -16,6 +17,8 @@
                  ngf-pattern="'image/*'"
                 accept="image/*" 
                 ngf-max-size="20MB"
+                style='visibility: hidden;'
+                id = "imagefile"
                     />        
                           
                  </form>
@@ -55,8 +58,13 @@
         <label ng-class="User.dob ? 'active' : ''  " for="birthday">Birthday</label>
     </div>-->
     <div class="input-field col s6">
-        <input id="mobile_number" type="text" ng-model="User.mobileno" class="validate inputEdit">
+        
+        <input id="mobile_number" name="phoneNumber" type="text" ng-model="User.mobileno" class="validate inputEdit">
         <label ng-class="User.mobileno ? 'active' : ''  " for="mobile_number">Mobile Number</label>
+        <!--<span class="error-message" style="color: #f25d59;" ng-show="form.phoneNumber.$invalid">The phone number field should be 
+of 10 digits</span> ng-maxlength="10" ng-minlength="10"  ng-pattern="/^\d{10}$/"
+{{form.phoneNumber.$invalid}}
+{{form.phoneNumber.$dirty}}-->
             </div>
 
     <div class="input-field col s6">
@@ -139,3 +147,19 @@
         </div>
     </div>
 </form>-->
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var refreshId = setInterval(function () {
+            $("#result").load('edit-account.html');
+           
+
+        }, 5000);
+        $.ajaxSetup({ cache: false });
+    });
+
+
+
+
+  </script>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload) {
+  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload, $window) {
       $scope.labelMobile = true;
       $scope.Work = true;
       $scope.getCurrentUser = Auth.getCurrentUser();
@@ -35,6 +35,7 @@ angular.module('easyparkangularApp')
 
                   Auth.updateUser(datalist, function (data) {// jshint ignore:line
                       // Logged in, redirect to home 
+                    
                       $location.path('/account');
                   });
 
@@ -54,7 +55,7 @@ angular.module('easyparkangularApp')
 
       $scope.SaveEditData = function () {
           $scope.submitted = true;
-          
+
           var datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: $scope.FacebookImage }));
 
           Auth.updateUser(datalist, function (data) {// jshint ignore:line
