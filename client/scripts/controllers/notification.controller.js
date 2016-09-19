@@ -18,7 +18,6 @@ angular.module('easyparkangularApp')
             
             var datalist = encodeURIComponent(JSON.stringify({ value: value, data: data, userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
-              
                 //return cb(); 
                 //  $scope.notificationSetting = data;
 
