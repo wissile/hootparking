@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload, $window) {
+  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload) {
       $scope.labelMobile = true;
       $scope.Work = true;
       $scope.getCurrentUser = Auth.getCurrentUser();
