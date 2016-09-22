@@ -39,8 +39,21 @@
 
 <div class="collection with-header">
     <div class="collection-header"><h5><span class="glyphicon glyphicon-cog"></span> Settings</h5></div>
-    <a href="#!" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set spending budget</a>
-    <a href="#!" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set parking time reminder</a>
+    <a ng-click="ShowSpendingBudget();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set spending budget</a>
+     <div  id="SpendingBudget" style="display: none" >
+        <input type="text"  />
+        <button  ng-click="SaveSpendingBudget();"  id="Button2">
+            Save</button>
+    </div>
+    <a ng-click="ShowReminder();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set parking time reminder</a>
+    <div id="SpendingReminder" style="display: none" >
+        <input type="text"  ng-model="" />
+        <input type="text"  ng-model="" />
+          <button  ng-click="ToggleTime();" value="AM"  id="Button3" />
+            <br />
+        <button  ng-click="SaveParkingReminder();"  id="Button1">
+            Save</button>
+    </div>
 </div>
 
 <ul class="account-setting-list">
