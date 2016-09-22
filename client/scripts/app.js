@@ -107,7 +107,7 @@ angular
           url: '/Share',
           title: 'Share',
           templateUrl: 'views/Share.html',
-          controller: ''
+          controller: 'shareCtrl'
       }).state('Aboutus', {
           url: '/Aboutus',
           title: 'About Us',
