@@ -4,8 +4,11 @@
 <form class="form" name="form" novalidate>
 <div class="input-field col s6">
          <div id="result">           
-           <img class="circle" ng-if="User.userType=='HootparkingUser'" style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/> 
-            <img class="circle" ng-if="User.userType=='Facebook'"style="margin-left: 40%;" ng-src="{{FacebookImage}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file||'{{FacebookImage}}'"/>
+           <img class="circle" ng-if="User.userType=='HootparkingUser'&& User.image " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/> 
+            <img class="circle" ng-if="User.userType=='HootparkingUser'&& !User.image " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/profile.png" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/profile.png'"/> 
+            <img class="circle" ng-if="User.userType=='Facebook' && FacebookImage"style="margin-left: 40%;" ng-src="{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file||'{{User.image}}'"/>
+             <img class="circle" ng-if="User.userType=='Facebook'&& !FacebookImage && !facebookNewImage " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/profile.png" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/profile.png'"/>
+             <img class="circle" ng-if="User.userType=='Facebook'&& facebookNewImage " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/>  
              <span class="glyphicon glyphicon-camera" style="float: right; margin-top: -4%; margin-right: 41%; color:White;font-size:140%" onclick ="javascript:document.getElementById('imagefile').click();"></span>
             <div align="center">
             <form  name="upload_form">

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('SignupCtrl', function ($scope, Auth, $location, $window,$http) {
+  .controller('SignupCtrl', function ($scope, Auth, $location, $window,$http,$cookieStore) {
     $scope.user = {};
     $scope.errors = {};
     $scope.errMessagesShow=false;
@@ -59,7 +59,9 @@ angular.module('easyparkangularApp')
       $window.location.href = '/auth/' + provider; 
     }; 
  
-    $scope.fbLogin = function () {  
+    $scope.fbLogin = function () { 
+     
+  
     $scope.errMessagesShow=false;
        Auth.fbLogin1(function(data) { 
         $scope.FacebookImage=data.FacebookImage;     
@@ -68,6 +70,7 @@ angular.module('easyparkangularApp')
        $scope.errMessagesShow=true;
        }
        else{
+        $cookieStore.put('userlogin', true);
        $location.path('/home'); //Logged in, redirect to home 
        }
         }); 

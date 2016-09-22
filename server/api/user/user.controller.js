@@ -104,12 +104,32 @@ exports.index = function (req, res) {
         res.json(200, users);
     });
 };
+exports.updateFbUser = function (req, res, next) {
+    var decodedDatalist = decodeURIComponent(req.params.data);
+    var datalist = JSON.parse(decodedDatalist);
+    console.log('Update _id' + datalist._id);
+    console.log('Update id' + datalist.id);    
+    User.findOne({ _id: datalist._id }, function (err, user) {
+        console.log('Update user' + user);
+        datalist.hashedPassword = user.encryptPassword(datalist.password);
+        User.update({ id: datalist.id }, datalist, function (err, userdt) {
+            console.log('UserDt Herer' + userdt);
+            res.json(userdt);
+        });
+    });
+};
 exports.updateUser = function (req, res, next) {
     var decodedDatalist = decodeURIComponent(req.params.data);
     var datalist = JSON.parse(decodedDatalist);
+    console.log('Update _id' + datalist._id);
+    console.log('Update id' + datalist.id);
     User.findById(datalist.id, function (err, user) {
-        datalist.hashedPassword = user.encryptPassword(datalist.password);
+        console.log('Update user' + user);
+        if (datalist.password) {
+            datalist.hashedPassword = user.encryptPassword(datalist.password);
+        }
         User.update({ _id: datalist.id }, datalist, function (err, userdt) {
+            console.log('UserDt Herer' + userdt);
             res.json(userdt);
         });
     });

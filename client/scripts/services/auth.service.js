@@ -108,24 +108,32 @@ angular.module('easyparkangularApp')
       fbLogin1: function(callback){ 
         var cb = callback || angular.noop; 
         var deferred = $q.defer(); 
-                   FB.getLoginStatus(function (response) {    // jshint ignore:line
+                FB.getLoginStatus(function (response) {    // jshint ignore:line
                 if (response.status === 'connected') {  
                 
                      FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line
                      
                      var FacebookImage=response.picture.data.url;
-                      $cookieStore.put('FacebookImage', FacebookImage); 
-                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'}));    // jshint ignore:line
+                       var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,email:response.email,userType:'Facebook',image:FacebookImage}));    // jshint ignore:line
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                       
+                       
                        data.FacebookImage=FacebookImage;
                        if(data.err){
                         return cb(data);
                        }
                        else{
                             $cookieStore.put('token', data.token); 
+                            $http.post('/api/notification/'+data.user._id).success(function(data) // jshint ignore:line
+                       { 
+                           //return cb(); 
+                       }).error(function(err) // jshint ignore:line
+                       { 
+                          //return cb(err); 
+                       });
                             currentUser = User.get(); 
                             deferred.resolve(data); 
-                            return cb({data:data,FacebookImage:FacebookImage}); 
+                            return cb(data); 
                             }
                        }); 
                      }); 
@@ -133,13 +141,14 @@ angular.module('easyparkangularApp')
                 else {  
                 FB.login(function (response){   // jshint ignore:line 
                   FB.getLoginStatus(function (response) {    // jshint ignore:line
-                      if (response.status === 'connected') {  
-                      FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line 
-                     
+                      if (response.status === 'connected') {
+                        
+                      FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line
+                                           
                       var FacebookImage=response.picture.data.url;
-                      $cookieStore.put('FacebookImage', FacebookImage); 
-                      var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,dob:'',email:response.email,userType:'Facebook'}));   // jshint ignore:line
+                        var datalist = encodeURIComponent(JSON.stringify({id:response.id,firstName:response.first_name,lastname:response.last_name,name:response.name,email:response.email,userType:'Facebook',image:FacebookImage}));   // jshint ignore:line
                        $http.post('/api/users/fbuser/'+datalist).success(function(data) {  
+                       
                        data.FacebookImage=FacebookImage;
                             if(data.err){
                         return cb(data);
@@ -147,6 +156,13 @@ angular.module('easyparkangularApp')
                        else{
                        
                             $cookieStore.put('token', data.token); 
+                            $http.post('/api/notification/'+data.user._id).success(function(data) // jshint ignore:line
+                           { 
+                           //return cb(); 
+                           }).error(function(err) // jshint ignore:line
+                          { 
+                          //return cb(err); 
+                          });
                             currentUser = User.get(); 
                             deferred.resolve(data); 
                             return cb(data); 
@@ -244,6 +260,17 @@ angular.module('easyparkangularApp')
        * Update User
        *
        */
+       updateFbUser: function(user,callback) { 
+        var cb = callback || angular.noop;
+        console.log('Auth service.js user'+user);
+        $http.put('/api/users/fbuserupdate/'+user). 
+        success(function(data) { 
+        console.log('Authservice.js'+data);
+           return cb(data);
+        }). 
+        error(function(err) {  // jshint ignore:line
+        }); 
+        },
 
       updateUser: function(user,callback) { 
         var cb = callback || angular.noop;
@@ -325,12 +352,6 @@ angular.module('easyparkangularApp')
       /**
        * Get auth token
        */
-       FacebookImageDisplay:function()
-       {
-      
-       return $cookieStore.get('FacebookImage');         
-       },
-
       getToken: function() {
         return $cookieStore.get('token');
       },

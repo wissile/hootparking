@@ -18,7 +18,7 @@ angular.module('easyparkangularApp')
               controller: 'data'
           }
       },
-      get: {
+        get: {
         method: 'GET',
         params: {
           id:'me'
