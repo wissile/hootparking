@@ -14,8 +14,30 @@ angular.module('easyparkangularApp')
             //return cb(err); 
         });
 
+        $scope.ShowSpendingBudget = function () {
+            var abc = document.getElementById('SpendingBudget');
+            if (abc.style.display !== 'none') {// jshint ignore:line
+                abc.style.display = 'none';
+            }
+            else {
+                abc.style.display = 'block';
+
+            }
+        }
+
+        $scope.ShowReminder = function () {
+            var abc = document.getElementById('SpendingReminder');
+            if (abc.style.display !== 'none') {// jshint ignore:line
+                abc.style.display = 'none';
+            }
+            else {
+                abc.style.display = 'block';
+
+            }
+        }
+
         $scope.NotificationEvent = function (value, data) {
-            
+
             var datalist = encodeURIComponent(JSON.stringify({ value: value, data: data, userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
@@ -26,6 +48,11 @@ angular.module('easyparkangularApp')
             });
 
         };
+        
+        $scope.SaveParkingReminder = function () {
+
+
+        }
 
     });
 
