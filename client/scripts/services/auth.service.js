@@ -106,6 +106,7 @@ angular.module('easyparkangularApp')
        */ 
  
       fbLogin1: function(callback){ 
+     // debugger;
         var cb = callback || angular.noop; 
         var deferred = $q.defer(); 
                    FB.getLoginStatus(function (response) {    // jshint ignore:line
@@ -153,14 +154,47 @@ angular.module('easyparkangularApp')
                             }
                        }); 
                      }); 
-                  }    
-                  });    
+                  }  //else closed  
+                  });   //fb.getlogin status closed 
             }); 
-        }  
+        }  //
    
  
   }); 
       },
+
+
+
+        fbLikeUsPage: function(callback){ 
+        var cb = callback || angular.noop; 
+   //     var deferred = $q.defer(); 
+                   FB.getLoginStatus(function (response) {    // jshint ignore:line
+                if (response.status === 'connected') {  
+                
+                     FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line
+                     return cb(response);
+                     }); 
+                }  
+                else {  
+                FB.login(function (response){   // jshint ignore:line 
+                  FB.getLoginStatus(function (response) {    // jshint ignore:line
+                      if (response.status === 'connected') {  
+                      FB.api('/me',{fields: fields},function(response) {   // jshint ignore:line 
+                     // var FacebookImage=response.picture.data.url;
+                     // $cookieStore.put('FacebookImage', FacebookImage); 
+                     return cb(response);
+                     
+                     }); 
+                  }  //if closed  
+                  });   //fb.getlogin status closed 
+            }); 
+        }  //else closed
+   
+ 
+  }); 
+      },
+
+
 
        fbLoginNewUser: function(callback){ 
         var cb = callback || angular.noop; 
