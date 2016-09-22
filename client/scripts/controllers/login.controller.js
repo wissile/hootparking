@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http) {
+  .controller('LoginCtrl', function ($scope, Auth, $location, $window,$http,$cookieStore) {
     $scope.user = {};
     $scope.errors = {};
     $scope.compulsaryfield=false;
@@ -25,6 +25,7 @@ angular.module('easyparkangularApp')
           //return cb(err); 
           });
           //Logged in, redirect to home
+           $cookieStore.put('userlogin', true);
           $location.path('/home');
 
         })

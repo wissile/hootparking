@@ -1,12 +1,23 @@
 'use strict';
 
 angular.module('easyparkangularApp')
-  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload) {
+  .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload, $cookieStore) {
+      
       $scope.labelMobile = true;
       $scope.Work = true;
       $scope.getCurrentUser = Auth.getCurrentUser();
-      $scope.FacebookImage = Auth.FacebookImageDisplay();
-      $scope.User = $scope.getCurrentUser;
+       $scope.User = $scope.getCurrentUser;
+      if ($scope.getCurrentUser.userType === 'Facebook') {
+          if ($scope.getCurrentUser.image) {
+              if ($scope.getCurrentUser.image.indexOf($scope.getCurrentUser._id) !== -1) {
+                   $scope.facebookNewImage = $scope.getCurrentUser.image;
+                  $cookieStore.put('facebookNewImage', $scope.facebookNewImage);
+              }
+              else {
+                  $scope.FacebookImage = $scope.getCurrentUser.image;
+              }
+          }
+      }
       $scope.logout = function () {
           Auth.logout();
       };
@@ -23,6 +34,7 @@ angular.module('easyparkangularApp')
 
 
       $scope.upload = function (file) {
+       
           var id = $scope.getCurrentUser._id;
           Upload.upload({// jshint ignore:line
               url: '/api/users/upload/' + id, //webAPI exposed to upload the file
@@ -30,14 +42,28 @@ angular.module('easyparkangularApp')
           }).then(function (resp) { //upload function returns a promise
               if (resp.data.error_code === 0) {// jshint ignore:line
                   $scope.submitted = true;
-                  var dob = new Date($scope.User.dob);
-                  var datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, dob: dob, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: resp.data.Image }));
-
-                  Auth.updateUser(datalist, function (data) {// jshint ignore:line
-                      // Logged in, redirect to home 
+                  var datalist;
+                  if ($scope.User.userType === 'Facebook') {
+                      datalist = encodeURIComponent(JSON.stringify({ _id: $scope.User._id, id: $scope.User.id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: resp.data.Image }));
+                      Auth.updateFbUser(datalist, function (data) {// jshint ignore:line
+                          // Logged in, redirect to home 
                     
-                      $location.path('/account');
-                  });
+                          $cookieStore.put('reloadvalue', true);
+
+                          $location.path('/account');
+                      });
+                  }
+                  else {
+                      datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: resp.data.Image }));
+                      Auth.updateUser(datalist, function (data) {// jshint ignore:line
+                          // Logged in, redirect to home 
+                          
+                          $cookieStore.put('reloadvalue', true);
+
+                          $location.path('/account');
+                      });
+
+                  }
 
               } else {
                   // $window.alert('an error occured');
@@ -54,14 +80,29 @@ angular.module('easyparkangularApp')
       };
 
       $scope.SaveEditData = function () {
+          
           $scope.submitted = true;
 
-          var datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: $scope.FacebookImage }));
+          var datalist;
+          if ($scope.User.userType === 'Facebook') {
+              datalist = encodeURIComponent(JSON.stringify({ _id: $scope.User._id, id: $scope.User.id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: $scope.FacebookImage }));
+              Auth.updateFbUser(datalist, function (data) {// jshint ignore:line
+                  // Logged in, redirect to home 
+                  
+                  $cookieStore.put('reloadvalue', true);
 
-          Auth.updateUser(datalist, function (data) {// jshint ignore:line
-              // Logged in, redirect to home 
-              $location.path('/account');
-          });
+                  $location.path('/account');
+              });
+          }
+          else {
+              datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress }));
+              Auth.updateUser(datalist, function (data) {// jshint ignore:line
+                  // Logged in, redirect to home 
+                  $cookieStore.put('reloadvalue', true);
+                  $location.path('/account');
+              });
+          }
+
       };
 
       //      $scope.fbLogin = function () {

@@ -7,15 +7,19 @@
 * Controller of the easyparkangularApp
 */
 angular.module('easyparkangularApp')
-    .controller('MainCtrl', function ($scope, ParkingSpots) {
-
+    .controller('MainCtrl', function ($scope, ParkingSpots, $cookieStore, $window) {
+        
+        if ($cookieStore.get('userlogin')) {
+            $cookieStore.put('userlogin', false);
+            $window.location.reload('/home');
+        }
         var userLatLng;
         $scope.result = '';
         $scope.options = null;
         $scope.details = '';
         var map;
         var geocoder = new google.maps.Geocoder();  // jshint ignore:line
-       
+
         function initialize() {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (p) {
