@@ -34,6 +34,8 @@ var authTypes = ['github', 'twitter', 'facebook', 'google'];
   ReachedBudget:Boolean,
   ParkingFareChange:Boolean,
   ParkingTime:Boolean,
+  SpendingBudget:String,
+  ParkingTimeReminder:String,
   comments: [{ body: String, date: Date }],
   date: { type: Date, default: Date.now },
   hidden: Boolean,

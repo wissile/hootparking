@@ -35,6 +35,8 @@ exports.create = function (req, res, next) {
                 ReachedBudget: 0,
                 ParkingFareChange: 0,
                 ParkingTime: 0,
+                SpendingBudget: null,
+                ParkingTimeReminder: null,
                 userId: userId
             });
             newUser.save(function (err, user) {
@@ -51,6 +53,7 @@ exports.Update = function (req, res, next) {
     var decodedDatalist = decodeURIComponent(req.params.setting);
     var datalist = JSON.parse(decodedDatalist);
     console.log(req.params.setting);
+  //  console.log(datalist);
     var userId = datalist.userId;
     notification.findOne({ userId: userId }, function (err, users) {
         //var user = users[0];
@@ -70,6 +73,10 @@ exports.Update = function (req, res, next) {
                 users.ParkingFareChange = datalist.value;
             if (datalist.data === 'ParkingTime')
                 users.ParkingTime = datalist.value;
+            if (datalist.data === 'SpendingBudget')
+                users.SpendingBudget = datalist.value;
+            if (datalist.data === 'ParkingTimeReminder')
+                users.ParkingTimeReminder = datalist.value;
             users.save({ userId: userId }, datalist, function (err, userdt) {
                 res.json(userdt);
 
