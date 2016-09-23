@@ -10,7 +10,7 @@ angular.module('easyparkangularApp')
             //return cb(); 
             $scope.notificationSetting = data[0];
             var ParkingTimeReminder = $scope.notificationSetting.ParkingTimeReminder;
-            var pt = ParkingTimeReminder.split(" : ");
+            var pt = ParkingTimeReminder.split(' : ');
             $scope.ParkingHrs = pt[0];
             $scope.ParkingMins = pt[1];
             $scope.ParkingToggleBtnVal = pt[2];
@@ -56,7 +56,6 @@ angular.module('easyparkangularApp')
         };
 
         $scope.SaveSpendingBudget = function (SpendingBudget) {
-            debugger;
             var spendingBudgetValue = document.getElementById('txtSpendingBudget').value;
 
 
@@ -69,10 +68,9 @@ angular.module('easyparkangularApp')
                 //return cb(err); 
             });
 
-        }
+        };
 
         $scope.SaveParkingReminder = function () {
-            debugger;
             var hrs = document.getElementById('txthrs').value;
             var mins = document.getElementById('txtmins').value;
             var toggleTime = document.getElementById('btnToggleTime').value;
@@ -93,20 +91,19 @@ angular.module('easyparkangularApp')
     })
 
 
-
     .directive('startstop', function () {
         return {
             restrict: 'C',
             replace: true,
-            template: '<input type="button" id="btnToggleTime" value="AM" ng-value="ParkingToggleBtnVal" />',
+            template: '<input type='button' id='btnToggleTime' value='AM' ng-value='ParkingToggleBtnVal' />',
             link: function (scope, elem, attrs) {
-                elem.bind("click", function () {
+                elem.bind('click', function () {
                     console.log('startstop clicked', elem)
-                    if (elem.val() == "AM") {
-                        elem.val("PM");
+                    if (elem.val() == 'AM') {
+                        elem.val('PM');
                     }
                     else {
-                        elem.val("AM");
+                        elem.val('AM');
                     }
 
                 })
