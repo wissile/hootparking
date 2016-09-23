@@ -4,7 +4,7 @@ angular.module('easyparkangularApp')
     .controller('ForgetPasswordCtrl', function ($scope, Auth) {
 
         $scope.forgetPassword = function (form) {
-            if (form.$valid) {
+                  if (form.$valid) {
                 Auth.forgetPass($scope.Email, function (data) {
                     if (data === 'Facebook') {
                         $scope.errMessage = 'User is Already registered using Facebook, Please login through Facebook.';

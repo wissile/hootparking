@@ -23,7 +23,7 @@ angular.module('easyparkangularApp')
                 abc.style.display = 'block';
 
             }
-        }
+        };
 
         $scope.ShowReminder = function () {
             var abc = document.getElementById('SpendingReminder');
@@ -34,7 +34,7 @@ angular.module('easyparkangularApp')
                 abc.style.display = 'block';
 
             }
-        }
+        };
 
         $scope.NotificationEvent = function (value, data) {
 
@@ -48,11 +48,11 @@ angular.module('easyparkangularApp')
             });
 
         };
-        
+
         $scope.SaveParkingReminder = function () {
 
 
-        }
+        };
 
     });
 

@@ -25,6 +25,7 @@ angular.module('easyparkangularApp')
           //return cb(err); 
           });
           //Logged in, redirect to home
+          
            $cookieStore.put('userlogin', true);
           $location.path('/home');
 
