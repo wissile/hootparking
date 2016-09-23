@@ -2,9 +2,6 @@
 
 angular.module('easyparkangularApp')
     .controller('NotificationCtrl', function ($scope, Auth, $http) {
-
-        debugger;
-        //   $scope.ParkingHrs = "notificationSetting.ParkingHrs";
         $scope.Sweep = true;
         $scope.appBackground = '#ede9e9';
         $scope.getCurrentUser = Auth.getCurrentUser();
@@ -18,16 +15,12 @@ angular.module('easyparkangularApp')
             $scope.ParkingMins = pt[1];
             $scope.ParkingToggleBtnVal = pt[2];
 
-            debugger;
-
         }).error(function (err) {      // jshint ignore:line
             //return cb(err); 
         });
 
-        // $scope.ParkingHrs = $scope.notificationSetting.ParkingTimeReminder;
 
         $scope.ShowSpendingBudget = function () {
-            // debugger;
             var abc = document.getElementById('DivSpendingBudget');
             if (abc.style.display !== 'none') {// jshint ignore:line
                 abc.style.display = 'none';
@@ -36,10 +29,9 @@ angular.module('easyparkangularApp')
                 abc.style.display = 'block';
 
             }
-        }
+        };
 
         $scope.ShowReminder = function () {
-            //    debugger;
             var abc = document.getElementById('DivParkingReminder');
             if (abc.style.display !== 'none') {// jshint ignore:line
                 abc.style.display = 'none';
@@ -48,7 +40,7 @@ angular.module('easyparkangularApp')
                 abc.style.display = 'block';
 
             }
-        }
+        };
 
         $scope.NotificationEvent = function (value, data) {
 
@@ -95,7 +87,7 @@ angular.module('easyparkangularApp')
                 //return cb(err); 
             });
 
-        }
+        };
 
 
     })
