@@ -132,6 +132,19 @@ angular.module('easyparkangularApp')
                        { 
                           //return cb(err); 
                        });
+                       if (data.user.userType === 'Facebook') {
+                        if (data.user.image) {
+                          if (data.user.image.indexOf(data.user._id) !== -1) {
+                                var facebookNewImage = data.user.image;
+                                 $cookieStore.put('facebookNewImage', facebookNewImage);
+                             }
+                       else {
+                           // $scope.FacebookImage = data.user.image;
+                           $cookieStore.put('facebookOldImage', FacebookImage);
+                            }
+                           }
+
+                         }
                             currentUser = User.get(); 
                             deferred.resolve(data); 
                             return cb(data); 
@@ -164,6 +177,19 @@ angular.module('easyparkangularApp')
                           { 
                           //return cb(err); 
                           });
+                          if (data.user.userType === 'Facebook') {
+                         if (data.user.image) {
+                          if (data.user.image.indexOf(data.user._id) !== -1) {
+                                       var facebookNewImage = data.user.image;
+                                        $cookieStore.put('facebookNewImage', facebookNewImage);
+                             }
+                        else {
+                                  //   $scope.FacebookImage = data.user.image;
+                                      $cookieStore.put('facebookOldImage', FacebookImage);
+                            }
+                           }
+
+                         }
                             currentUser = User.get(); 
                             deferred.resolve(data); 
                             return cb(data); 
@@ -391,7 +417,8 @@ angular.module('easyparkangularApp')
       },
 
       forgetPass: function(email,callback){
-        var cb = callback || angular.noop;
+          var cb = callback || angular.noop;
+        console.log('Email id forget'+email);
        $http.post('/api/users/forgetpassword/'+email).success(function(data) {  
        return cb(data);
        });

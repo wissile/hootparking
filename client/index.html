@@ -53,8 +53,8 @@
                 <img class="circle"ng-if="getCurrentUser.userType!='HootparkingUser'&& getCurrentUser.userType!='Facebook'" ng-src="http://hootparking.com/img/logoicon2.png" width="35" height="35"/>
                 <img class="circle" ng-if="getCurrentUser.userType=='HootparkingUser' && getCurrentUser.image"width="45" height="45" ng-src="http://localhost:9000/Images/{{getCurrentUser.image}}"/> 
                  <img class="circle" ng-if="getCurrentUser.userType=='HootparkingUser'&& !getCurrentUser.image"width="45" height="45" ng-src="http://localhost:9000/Images/profile.png"/> 
-                <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && !getCurrentUser.image.indexOf(getCurrentUser._id)" style="height: 80%; width: 80%;" ng-src="{{getCurrentUser.image}}"/> 
-                <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && getCurrentUser.image.indexOf(getCurrentUser._id)" style="height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{getCurrentUser.image}}"/> 
+                <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && facebookOldImage" style="height: 80%; width: 80%;" ng-src="{{getCurrentUser.image}}"/> 
+                <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && facebookNewImage" style="height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{getCurrentUser.image}}"/> 
                 
                 </div>
                 <div class="main-nav-name orange-text">{{ getCurrentUser.name }}{{getCurrentUser.lastname}}</div>

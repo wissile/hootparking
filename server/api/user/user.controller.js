@@ -168,22 +168,23 @@ exports.create = function (req, res, next) {
 */
 exports.forgetPassword = function (req, res, next) {
     User.findOne({ email: req.params.email }, function (err, user) {
-
+    console.log('Forgot password user here'+user);
         if (user === null) {
             var userNotFound = true;
             console.log(userNotFound);
             res.json({ 'userNotFound': true });
         }
         if (user !== null)
-            if (user.userType) {
+            if (user.userType === 'Facebook') {
                 if (user.userType ==='Facebook')
                     res.json(user.userType);
             }
             else {
                 User.findById(user._id, function (err, user) {
+                    console.log('Forgot password user here 2nd' + user);
                     var hashedPassword = user.encryptPassword('Password1');
                     User.update({ _id: user._id }, { 'hashedPassword': hashedPassword }, function (err, userdt) {
-                        console.log(userdt);
+                        console.log('user given by updaing'+userdt);
                         var subject = "";
                         var text = "";
                         subject = "Forget Password Request";
@@ -218,6 +219,7 @@ exports.forgetPassword = function (req, res, next) {
                             if (err) {
                                 console.log('Sending to ' + msg.to + ' failed: ' + err);
                             }
+                            console.log('Message send successfully' + user);
                             console.log('Sent to ' + msg.to);
                             msg.transport.close();
                             res.json(msg.to);
