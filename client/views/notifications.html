@@ -40,21 +40,22 @@
 <div class="collection with-header">
     <div class="collection-header"><h5><span class="glyphicon glyphicon-cog"></span> Settings</h5></div>
     <a ng-click="ShowSpendingBudget();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set spending budget</a>
-     <div  id="SpendingBudget" style="display: none" >
-        <input type="text"  />
-        <button  ng-click="SaveSpendingBudget();"  id="Button2">
+     <div  id="DivSpendingBudget" style="display: none" >
+        <input type="text"  style="width:40%; text-align:center" id="txtSpendingBudget" ng-model="notificationSetting.SpendingBudget" />
+        <button style="width:50%"   ng-click="SaveSpendingBudget('SpendingBudget')"  id="Button2">
             Save</button>
     </div>
     <a ng-click="ShowReminder();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set parking time reminder</a>
-    <div id="SpendingReminder" style="display: none" >
-        <input type="text"  ng-model="" />
-        <input type="text"  ng-model="" />
-          <button  ng-click="ToggleTime();" value="AM"  id="Button3" />
-            <br />
-        <button  ng-click="SaveParkingReminder();"  id="Button1">
+    <div id="DivParkingReminder" style="display: none" >
+        <input type="text" style="width:20%; text-align:center" id="txthrs" ng-model="ParkingHrs" /><span>:</span>
+        <input type="text" style="width:20%; text-align:center" id="txtmins" ng-model="ParkingMins"/>
+          <div  class="startstop"></div>
+        <button style="width:30%"  ng-click="SaveParkingReminder();"  id="Button1">
             Save</button>
     </div>
 </div>
+
+
 
 <ul class="account-setting-list">
     <li><h5><span class="glyphicon glyphicon-time"></span> Time & Budget</h5></li>
