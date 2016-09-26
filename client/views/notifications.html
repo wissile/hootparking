@@ -54,9 +54,22 @@
     </div>-->
 
     <div id="DivParkingReminder" style="display: none" >
-        <input type="time" class="inputTime" id="exampleInput" name="input" ng-model="ParkingTimeReminder" placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />
+        <!--<input type="time" class="inputTime" id="exampleInput" name="input" ng-model="ParkingTimeReminder" placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />-->
+        <form name="Clocksetting">
+        
+        <div style="margin-left:20% !important;margin-top:10% !important;">
+        <input id="hours" class="clock" ng-model="ParkingHrs" type="number" value={{ParkingHrs}} min="1" max="12"/>:<input type="number" ng-model="ParkingMins" value="{{ParkingMins}}" class="clock" id="min" ng-minlength="1" ng-maxlength="60" />
+      <select ng-options="s.name for s in sample" ng-init="selitem = sample[0]" ng-model="selitem" ng-change="getselectval()"  style="display:block;height:10% !important;border:1px solid;width:18% !important;margin-left: 40%;margin-top: -13%;padding:0px !important;">
+</select>
+        </div>
+         <span style="color: #f25d59;" class="error" ng-show="Clocksetting.hours.$error.maxlength">
+           Hours is not valid</span>
+            <span style="color: #f25d59;" class="error" ng-show="Clocksetting.hours.$error.minlength">
+           Hours is not valid</span>
         <input type="button" class="getpark regtext" style="width: 25%; color: black; font-weight: bold; float: right;" ng-click="SaveParkingReminder();"  id="Button1" value="SAVE" />
+   </form>
     </div>
+
 
 </div>
 

@@ -6,24 +6,41 @@ angular.module('easyparkangularApp')
         $scope.appBackground = '#ede9e9';
         $scope.getCurrentUser = Auth.getCurrentUser();
         $scope.User = $scope.getCurrentUser;
+        $scope.sample = [{
+            id: 1,
+            name: 'AM'
+        }, {
+            id: 2,
+            name: 'PM'
+        }];
         $http.get('/api/notification/' + $scope.User._id).success(function (data) {
             //return cb(); 
-          //  debugger;
+            debugger;
             $scope.notificationSetting = data[0];
             var ParkingTimeReminder = $scope.notificationSetting.ParkingTimeReminder;
-            var pt = ParkingTimeReminder.split(' : ');
-            $scope.ParkingHrs = pt[0];
-            $scope.ParkingMins = pt[1];
-            $scope.ParkingToggleBtnVal = pt[2];
-
-        }).error(function (err) {      // jshint ignore:line
+            if (ParkingTimeReminder) {
+                var pt = ParkingTimeReminder.split(':');
+                $scope.ParkingHrs = parseInt(pt[0]);
+                $scope.ParkingMins = parseInt(pt[1]);
+                $scope.ParkingToggleBtnVal = pt[2];
+                if ($scope.ParkingToggleBtnVal === 'PM') {
+                    $scope.selitem = $scope.sample[1];
+                }
+                if ($scope.ParkingToggleBtnVal === 'AM') {
+                    $scope.selitem = $scope.sample[0];
+                }
+            }
+        }).error(function (err) {// jshint ignore:line
             //return cb(err); 
         });
 
-
+        $scope.getselectval = function () {
+            debugger;
+            $scope.selectedvalues = $scope.selitem.name;
+        }
         $scope.ShowSpendingBudget = function () {
             var abc = document.getElementById('DivSpendingBudget');
-            if (abc.style.display !== 'none') {// jshint ignore:line
+            if (abc.style.display !== 'none') { // jshint ignore:line
                 abc.style.display = 'none';
             }
             else {
@@ -65,7 +82,7 @@ angular.module('easyparkangularApp')
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
                 //  $scope.notificationSetting = data;
-                
+
             }).error(function (err) {     // jshint ignore:line
                 //return cb(err); 
             });
@@ -73,19 +90,23 @@ angular.module('easyparkangularApp')
         };
 
         $scope.SaveParkingReminder = function () {
+            debugger;
             //            var hrs = document.getElementById('txthrs').value;
             //            var mins = document.getElementById('txtmins').value;
             //            var toggleTime = document.getElementById('btnToggleTime').value;
 
             //var ParkingTimeReminder = hrs + ' : ' + mins + ' : ' + toggleTime;
-            var ParkingTimeReminder = document.getElementById('exampleInput').value + 'AM';
+            var hours = document.getElementById('hours').value;
+            var min = document.getElementById('min').value;
+            var content = $scope.selitem;
+            var ParkingTimeReminder = hours + ':' + min + ':' + content.name;
             var abc = document.getElementById('DivParkingReminder');
             abc.style.display = 'none';
             var datalist = encodeURIComponent(JSON.stringify({ value: ParkingTimeReminder, data: 'ParkingTimeReminder', userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
                 //  $scope.notificationSetting = data;
-               
+
 
             }).error(function (err) {     // jshint ignore:line
                 //return cb(err); 
