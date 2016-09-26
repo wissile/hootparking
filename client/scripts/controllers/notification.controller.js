@@ -58,13 +58,14 @@ angular.module('easyparkangularApp')
 
         $scope.SaveSpendingBudget = function (SpendingBudget) {
             var spendingBudgetValue = document.getElementById('txtSpendingBudget').value;
-
+            var abc = document.getElementById('DivSpendingBudget');
+            abc.style.display = 'none';
 
             var datalist = encodeURIComponent(JSON.stringify({ value: spendingBudgetValue, data: SpendingBudget, userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
                 //  $scope.notificationSetting = data;
-
+                
             }).error(function (err) {     // jshint ignore:line
                 //return cb(err); 
             });
@@ -78,10 +79,13 @@ angular.module('easyparkangularApp')
 
             //var ParkingTimeReminder = hrs + ' : ' + mins + ' : ' + toggleTime;
             var ParkingTimeReminder = document.getElementById('exampleInput').value + 'AM';
+            var abc = document.getElementById('DivParkingReminder');
+            abc.style.display = 'none';
             var datalist = encodeURIComponent(JSON.stringify({ value: ParkingTimeReminder, data: 'ParkingTimeReminder', userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
                 //  $scope.notificationSetting = data;
+               
 
             }).error(function (err) {     // jshint ignore:line
                 //return cb(err); 
