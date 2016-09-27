@@ -14,7 +14,6 @@ angular.module('easyparkangularApp')
             name: 'PM'
         }];
         $http.get('/api/notification/' + $scope.User._id).success(function (data) {
-
             $scope.notificationSetting = data[0];
             var ParkingTimeReminder = $scope.notificationSetting.ParkingTimeReminder;
             if (ParkingTimeReminder) {
@@ -34,10 +33,6 @@ angular.module('easyparkangularApp')
         });
 
         $scope.getselectval = function () {
-
-            $scope.selectedvalues = $scope.selitem.name;
-        };
-
             $scope.selectedvalues = $scope.selitem.name;
         };
         $scope.ShowSpendingBudget = function () {
@@ -91,7 +86,6 @@ angular.module('easyparkangularApp')
         };
 
         $scope.SaveParkingReminder = function () {
-
             var hours = document.getElementById('hours').value;
             var min = document.getElementById('min').value;
             if (min && hours) {
