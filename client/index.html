@@ -55,22 +55,11 @@
                  <img class="circle" ng-if="getCurrentUser.userType=='HootparkingUser'&& !getCurrentUser.image"width="45" height="45" ng-src="http://localhost:9000/Images/profile.png"/> 
                 <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && facebookOldImage" style="height: 80%; width: 80%;" ng-src="{{getCurrentUser.image}}"/> 
                 <img class="circle" ng-if="getCurrentUser.userType=='Facebook' && facebookNewImage" style="height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{getCurrentUser.image}}"/> 
-                
                 </div>
-                <div class="main-nav-name orange-text">{{ getCurrentUser.name }}{{getCurrentUser.lastname}}</div>
+                <div class="main-nav-name orange-text">{{ getCurrentUser.name }}&nbsp;{{getCurrentUser.lastname}}</div>
+                </div>
 
-            </div>
-
-        </div><!-- end sidenav-header -->
-          <!--<ul class="main-nav" ng-controller="LeftCtrl">
-              <li><a class="waves-effect" ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search</span></a></li>
-              <li><a class="waves-effect" ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Parking</span></a></li>
-              <li><a class="waves-effect" ui-sref="notifications" ng-click="close()"><span class="glyphicon glyphicon-bell"> Notifications</span></a></li>
-              <li class="divider"></li>
-              <li><a class="waves-effect" ui-sref="account" ng-click="close()"><span class="glyphicon glyphicon-cog"> Settings</span></a></li>
-              <li><a class="waves-effect" ui-sref="guide" ng-click="close()"><span class="glyphicon glyphicon-question-sign"> Guide</span></a></li>
-          </ul>-->
-
+        </div>
           <ul class="main-nav" ng-controller="LeftCtrl">
               <li><a class="waves-effect" ui-sref="home" ng-click="close()"><span class="glyphicon glyphicon-search"> Search Parking</span></a></li>
               <li><a class="waves-effect" ui-sref="find" ng-click="close()"><span class="glyphicon glyphicon-map-marker"> Find Car</span></a></li>
@@ -190,6 +179,7 @@
     <script src="scripts/controllers/contactUs.controller.js" type="text/javascript"></script>
     <script src="scripts/controllers/edit-account.controller.js" type="text/javascript"></script>
     <script src="scripts/controllers/share.controller.js" type="text/javascript"></script>
+    <script src="scripts/controllers/Summary.controller.js" type="text/javascript"></script>
   <!--  <script src="bower_components/angular-base64/angular-base64.js" type="text/javascript"></script>-->
     <!-- endbuild -->
 
