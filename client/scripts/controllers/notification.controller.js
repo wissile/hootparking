@@ -43,8 +43,7 @@ angular.module('easyparkangularApp')
             if (abc.style.display !== 'none') { // jshint ignore:line
                 abc.style.display = 'none';
             }
-            else 
-            {
+            else {
                 abc.style.display = 'block';
 
             }
@@ -91,43 +90,30 @@ angular.module('easyparkangularApp')
         };
 
         $scope.SaveParkingReminder = function () {
-
-            //            var hrs = document.getElementById('txthrs').value;
-            //            var mins = document.getElementById('txtmins').value;
-            //            var toggleTime = document.getElementById('btnToggleTime').value;
-
-            //var ParkingTimeReminder = hrs + ' : ' + mins + ' : ' + toggleTime;
             var hours = document.getElementById('hours').value;
             var min = document.getElementById('min').value;
-            var content = $scope.selitem;
-            var ParkingTimeReminder = hours + ':' + min + ':' + content.name;
-            var abc = document.getElementById('DivParkingReminder');
-            abc.style.display = 'none';
-            var datalist = encodeURIComponent(JSON.stringify({ value: ParkingTimeReminder, data: 'ParkingTimeReminder', userId: $scope.User._id }));
-            $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
-                //return cb(); 
-                //  $scope.notificationSetting = data;
+            if (min && hours) {
+                if (hours < 12 && hours > 1) {
+                    if (min < 60 && min > 1) {
+                        var content = $scope.selitem;
+                        var ParkingTimeReminder = hours + ':' + min + ':' + content.name;
+                        var abc = document.getElementById('DivParkingReminder');
+                        abc.style.display = 'none';
+                        var datalist = encodeURIComponent(JSON.stringify({ value: ParkingTimeReminder, data: 'ParkingTimeReminder', userId: $scope.User._id }));
+                        $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
+                            //return cb(); 
+                            //  $scope.notificationSetting = data;
 
 
-            }).error(function (err) {     // jshint ignore:line
-                //return cb(err); 
-            });
+                        }).error(function (err) {     // jshint ignore:line
+                            //return cb(err); 
+                        });
 
-        };
+                    };
+                }
 
-        //        $scope.ToggleTimingType = function () {
-        //            debugger;
-        //            var btnToggleTime1 = document.getElementById('btnToggleTime').value;
-        //            if (btnToggleTime1 == 'AM') {
-        //                btnToggleTime1.innerHTML = 'PM';
-        //            }
-        //            else {
-        //                btnToggleTime1.innerHTML = 'AM';
-        //            }
-
-
-        //        };
-
+            }
+        }
 
     });
 
