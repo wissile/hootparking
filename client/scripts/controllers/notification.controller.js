@@ -105,11 +105,11 @@ angular.module('easyparkangularApp')
                             //return cb(err); 
                         });
 
-                    };
+                    }
                 }
 
             }
-        }
+        };
 
     });
 
