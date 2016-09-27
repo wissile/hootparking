@@ -14,8 +14,6 @@ angular.module('easyparkangularApp')
             name: 'PM'
         }];
         $http.get('/api/notification/' + $scope.User._id).success(function (data) {
-            //return cb(); 
-
             $scope.notificationSetting = data[0];
             var ParkingTimeReminder = $scope.notificationSetting.ParkingTimeReminder;
             if (ParkingTimeReminder) {
@@ -35,7 +33,6 @@ angular.module('easyparkangularApp')
         });
 
         $scope.getselectval = function () {
-
             $scope.selectedvalues = $scope.selitem.name;
         };
         $scope.ShowSpendingBudget = function () {
@@ -61,7 +58,6 @@ angular.module('easyparkangularApp')
         };
 
         $scope.NotificationEvent = function (value, data) {
-
             var datalist = encodeURIComponent(JSON.stringify({ value: value, data: data, userId: $scope.User._id }));
             $http.put('/api/notification/' + datalist).success(function (data) {      // jshint ignore:line
                 //return cb(); 
@@ -118,24 +114,5 @@ angular.module('easyparkangularApp')
     });
 
 
-//    .directive('startstop', function ($scope,$elem,$attrs) {
-//        return {
-//            restrict: 'C',
-//            replace: true,
-//            template: '<input type='button' id='btnToggleTime' value='AM' ng-value='ParkingToggleBtnVal' />',
-//            link: function ($scope, $elem, $attrs) {
-//                $elem.bind('click', function () {
-//                    console.log('startstop clicked', $elem)
-//                    if ($elem.val() == 'AM') {
-//                        $elem.val('PM');
-//                    }
-//                    else {
-//                        $elem.val('AM');
-//                    }
-
-//                })
-//            }
-//        }
-//    });
 
 
