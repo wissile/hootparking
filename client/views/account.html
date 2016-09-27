@@ -76,7 +76,7 @@
              <p ng-click="UserOfFacebook(getCurrentUser.id);" ng-if="getCurrentUser.userType=='Facebook'"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.name}}</a> </p> 
               <p ng-click="UserOfFacebook(getCurrentUser.facebook.id);" ng-if="!getCurrentUser.userType && getCurrentUser.facebook.id"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.facebook.name}}</a> </p>             
             <div>
-               <input style="margin-left: 2%;height: 50px; width: 335px;border:none;background-color:#b9b5b5;; color:White; font-size:18px" type="button" class="getpark" value="ACCOUNT SUMMARY"/>
+               <input style="margin-left: 2%;height: 50px; width: 335px;border:none;background-color:#b9b5b5; color:White; font-size:18px" type="button" ui-sref="summary" class="getpark" value="ACCOUNT SUMMARY"/>
             </div>
 
       </li>

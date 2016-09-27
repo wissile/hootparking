@@ -43,7 +43,8 @@ angular.module('easyparkangularApp')
             if (abc.style.display !== 'none') { // jshint ignore:line
                 abc.style.display = 'none';
             }
-            else {
+            else 
+            {
                 abc.style.display = 'block';
 
             }

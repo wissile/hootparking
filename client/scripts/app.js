@@ -123,6 +123,11 @@ angular
           title: 'Forget Password',
           templateUrl: 'views/forgetPassword.html',
           controller: 'ForgetPasswordCtrl'
+      }).state('summary', {
+          url: '/summary',
+          title: 'Summary',
+          templateUrl: 'views/summary.html',
+          controller: 'SummaryCtrl'
       }); 
 
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
