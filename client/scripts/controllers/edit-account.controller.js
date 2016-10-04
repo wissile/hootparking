@@ -1,16 +1,14 @@
 'use strict';
-
 angular.module('easyparkangularApp')
   .controller('EditAccountCtrl', function ($scope, Auth, $location, Upload, $cookieStore) {
-      
       $scope.labelMobile = true;
       $scope.Work = true;
       $scope.getCurrentUser = Auth.getCurrentUser();
-       $scope.User = $scope.getCurrentUser;
+      $scope.User = $scope.getCurrentUser;
       if ($scope.getCurrentUser.userType === 'Facebook') {
           if ($scope.getCurrentUser.image) {
               if ($scope.getCurrentUser.image.indexOf($scope.getCurrentUser._id) !== -1) {
-                   $scope.facebookNewImage = $scope.getCurrentUser.image;
+                  $scope.facebookNewImage = $scope.getCurrentUser.image;
                   $cookieStore.put('facebookNewImage', $scope.facebookNewImage);
               }
               else {
@@ -22,7 +20,6 @@ angular.module('easyparkangularApp')
           Auth.logout();
       };
 
-
       $scope.submit = function () { //function to call on form submit
           if ($scope.file) { //check if from is valid
               $scope.upload($scope.file); //call upload function
@@ -32,24 +29,20 @@ angular.module('easyparkangularApp')
           }
       };
 
-
       $scope.upload = function (file) {
-       
           var id = $scope.getCurrentUser._id;
           Upload.upload({// jshint ignore:line
               url: '/api/users/upload/' + id, //webAPI exposed to upload the file
               data: { file: file} //pass file as data, should be user ng-model
           }).then(function (resp) { //upload function returns a promise
-              if (resp.data.error_code === 0) {// jshint ignore:line
+             if (resp.data.error_code === 0) {// jshint ignore:line
                   $scope.submitted = true;
                   var datalist;
                   if ($scope.User.userType === 'Facebook') {
                       datalist = encodeURIComponent(JSON.stringify({ _id: $scope.User._id, id: $scope.User.id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: resp.data.Image }));
                       Auth.updateFbUser(datalist, function (data) {// jshint ignore:line
                           // Logged in, redirect to home 
-                    
                           $cookieStore.put('reloadvalue', true);
-
                           $location.path('/account');
                       });
                   }
@@ -57,9 +50,7 @@ angular.module('easyparkangularApp')
                       datalist = encodeURIComponent(JSON.stringify({ id: $scope.User._id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: resp.data.Image }));
                       Auth.updateUser(datalist, function (data) {// jshint ignore:line
                           // Logged in, redirect to home 
-                          
                           $cookieStore.put('reloadvalue', true);
-
                           $location.path('/account');
                       });
 
@@ -80,7 +71,7 @@ angular.module('easyparkangularApp')
       };
 
       $scope.SaveEditData = function () {
-          
+
           $scope.submitted = true;
 
           var datalist;
@@ -88,9 +79,7 @@ angular.module('easyparkangularApp')
               datalist = encodeURIComponent(JSON.stringify({ _id: $scope.User._id, id: $scope.User.id, name: $scope.User.name, lastname: $scope.User.lastname, password: $scope.User.password, email: $scope.User.email, mobileno: $scope.User.mobileno, homeaddress: $scope.User.homeaddress, workaddress: $scope.User.workaddress, image: $scope.FacebookImage }));
               Auth.updateFbUser(datalist, function (data) {// jshint ignore:line
                   // Logged in, redirect to home 
-                  
                   $cookieStore.put('reloadvalue', true);
-
                   $location.path('/account');
               });
           }

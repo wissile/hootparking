@@ -31,7 +31,6 @@ angular.module('easyparkangularApp')
         }).error(function (err) {// jshint ignore:line
             //return cb(err); 
         });
-
         $scope.getselectval = function () {
             $scope.selectedvalues = $scope.selitem.name;
         };

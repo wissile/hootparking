@@ -128,6 +128,11 @@ angular
           title: 'Summary',
           templateUrl: 'views/summary.html',
           controller: 'SummaryCtrl'
+      }).state('parkingspotslist', {
+          url: '/parkingspotslist',
+          title: 'Search Parking',
+          templateUrl: 'views/parkingspotslist.html',
+          controller: 'ParkingspotslistCtrl'
       }); 
 
         var isCordovaApp = document.URL.indexOf('http://') === -1 && document.URL.indexOf('https://') === -1;
