@@ -1,0 +1,127 @@
+<div style="background-color:#ede9e9">
+<ul class="account-setting-list">
+    <li><h5><span class="glyphicon glyphicon-bell"></span> General</h5></li>
+    <li><div class="switch-label">Parking sweeping
+        <p>Get reminded when its time to sweep your car</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="notificationSetting.ParkingSweeping" ng-change="NotificationEvent(notificationSetting.ParkingSweeping,'ParkingSweeping')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+    <li><div class="switch-label">Parking cleaning
+        <p>Get reminded the time your car is located in a cleaning zone</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="notificationSetting.ParkingClean" ng-change="NotificationEvent(notificationSetting.ParkingClean,'ParkingClean')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+    <li><div class="switch-label">Parking time limit
+        <p>Get notified when your parking spot has reached time limit</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="notificationSetting.TimeLimit" ng-change="NotificationEvent(notificationSetting.TimeLimit,'TimeLimit')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+</ul>
+<form class="form" name="form">
+
+<div class="collection with-header">
+    <div class="collection-header"><h5><span class="glyphicon glyphicon-cog"></span> Settings</h5></div>
+    <a ng-click="ShowSpendingBudget();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set spending budget</a>
+     <div  id="DivSpendingBudget" style="display: none" >
+        <input type="text"  class="inputBudget" style="width:40%; text-align:center" id="txtSpendingBudget" ng-model="notificationSetting.SpendingBudget" />
+        <input type="button" class="getpark regtext" style="width: 25%; color: black; font-weight: bold; float: right;" ng-click="SaveSpendingBudget('SpendingBudget')"  id="Button2" value="SAVE" />
+    </div>
+    <a ng-click="ShowReminder();" class="collection-item"><span class="glyphicon glyphicon-plus"></span>Set parking time reminder</a>
+    <!--<div id="DivParkingReminder" style="display: none" >
+        <input type="text" style="width:20%; text-align:center" id="txthrs" ng-model="ParkingHrs" /><span>:</span>
+        <input type="text" style="width:20%; text-align:center" id="txtmins" ng-model="ParkingMins"/>
+          <div  class="startstop"></div>
+        <button style="width:30%"  ng-click="SaveParkingReminder();"  id="Button1">
+            Save</button>
+    </div>-->
+
+    <div id="DivParkingReminder" style="display: none" >
+        <!--<input type="time" class="inputTime" id="exampleInput" name="input" ng-model="ParkingTimeReminder" placeholder="HH:mm:ss" min="08:00:00" max="17:00:00" required />-->
+        
+        
+        <div style="margin-left:20% !important;margin-top:10% !important;">
+        <input id="hours" name="hours" class="clock" ng-model="ParkingHrs" type="number" value={{ParkingHrs}} ng-min="1" ng-max="12"/>:<input type="number" ng-model="ParkingMins" name="minute" value="{{ParkingMins}}" class="clock" id="min" ng-min="1" ng-max="60" />
+      <select ng-options="s.name for s in sample" ng-init="selitem = sample[0]" ng-model="selitem" ng-change="getselectval()"  style="display:block;height:10% !important;border:1px solid;width:18% !important;margin-left: 40%;margin-top: -13%;padding:0px !important;">
+</select>
+        </div>
+         
+        <input type="button" class="getpark regtext" style="width: 25%; color: black; font-weight: bold; float: right;" ng-click="SaveParkingReminder();"  id="Button1" value="SAVE" />
+        <br />
+        <div align="center" style="margin-left: 20%;">
+                <span class="error" style="color:#f25d59;" ng-show="form.hours.$error.min"> Not valid Hour !</span>
+                <span class="error" style="color:#f25d59;" ng-show="form.hours.$error.max"> Not valid Hour !</span>
+                <br />
+                <span class="error" style="color:#f25d59;" ng-show="form.minute.$error.min"> Not valid Minute !</span>
+                <span class="error" style="color:#f25d59;" ng-show="form.minute.$error.max"> Not valid Minute !</span>
+
+        </div> 
+
+   
+    </div>
+
+
+
+
+
+</div>
+
+
+</form>
+
+<ul class="account-setting-list">
+    <li><h5><span class="glyphicon glyphicon-time"></span> Time & Budget</h5></li>
+    <li><div class="switch-label">Reached max budget
+        <p>Get notified you maxium budget has been reached</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+            
+                <input type="checkbox" ng-model="notificationSetting.ReachedBudget" ng-change="NotificationEvent(notificationSetting.ReachedBudget,'ReachedBudget')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+    <li><div class="switch-label">Parking fare change
+        <p>Get notified at the moment your parking fare is about to change</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="notificationSetting.ParkingFareChange" ng-change="NotificationEvent(notificationSetting.ParkingFareChange,'ParkingFareChange')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+    <li><div class="switch-label">Parking time
+        <p>Get regular notifications about time at your parking spot</p>
+    </div>
+        <!-- Switch -->
+        <div class="switch">
+            <label>
+                <input type="checkbox" ng-model="notificationSetting.ParkingTime" ng-change="NotificationEvent(notificationSetting.ParkingTime,'ParkingTime')">
+                <span class="lever"></span>
+            </label>
+        </div>
+    </li>
+</ul>
+</div>
+

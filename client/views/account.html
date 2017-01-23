@@ -1,0 +1,102 @@
+
+<div style="max-width:400px;">
+
+<div style="width:100%; height:85px;background-color: #ffffff;">
+                <div style="Background-color:#f25d59;height:57%; width: 400px;"> 
+                    <div class="circle" style="background-color:#ffffff; width: 100px; height: 106px;margin-left: 38%;">
+                    <img class="circle" ng-if="User.userType=='HootparkingUser' && User.image" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{User.image}}"/>
+                    <img class="circle" ng-if="User.userType=='HootparkingUser' && !User.image" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/profile.png"/> 
+                    <img class="circle" ng-if="User.userType=='Facebook' && FacebookImage " style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="{{User.image}}"/> 
+                    <img class="circle" ng-if="User.userType=='Facebook' && !FacebookImage && !facebookNewImage " style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/profile.png"/> 
+                    <img class="circle" ng-if="User.userType=='Facebook' && facebookNewImage" style= "margin-left: 40%; margin-top: 10%; margin-left: 10%; height: 80%; width: 80%;" ng-src="http://localhost:9000/Images/{{User.image}}"/> 
+                    </div>
+                </div>
+</div>
+<ul class="collection" ng-init="label=1" style="border:none;">  
+
+    <li class="collection-item">
+            
+             
+           <div class="title" style="display: flex; justify-content: center;" > {{getCurrentUser.name}}&nbsp;{{getCurrentUser.lastname}} </div>
+          <div style="margin-left: 15%;"> 
+            <a ui-sref="edit-account" style ="float:left;cursor:pointer;">EDIT ACCOUNT</a>  
+            <p id="circle" style="float:left; margin-left:6%; margin-top: 1%;"></p> 
+            <a style="cursor: pointer; margin-right: 30%; float:right;cursor:pointer;" ng-click="logout();">SIGN OUT</a> 
+           
+        </div> 
+        <br />
+        <br />
+        <h5>Personal Info</h5>
+        <span class="glyphicon glyphicon-earphone sHeight"></span> 
+        <input type="text" ng-show="label" style="border-bottom:none !important;width:60% !important;margin:0px 0px -5px 0px !important;" ng-model="getCurrentUser.mobileno">           
+        
+            
+            <br/>
+        <span class="glyphicon glyphicon-check sHeight"></span>{{getCurrentUser.email}}
+    </li>
+
+     
+    <li class="collection-item">
+        
+             <h5>Places</h5>
+           
+                     <span class="glyphicon glyphicon-star sHeight" style="float: left;margin-top: 4%;" ></span>
+
+                        
+                         <h5> Home</h5>
+                          
+                             <textarea style="margin:0%; height:0%;  padding-left: 9%; border: none; margin-top: -2%;" ng-show="label" ng-model="getCurrentUser.homeaddress" readonly></textarea>            
+                                               
+          
+                      <span class="glyphicon glyphicon-check sHeight" style="float: left;margin-top: 7%;" ></span> 
+
+                        <ul>
+                            <li><h5> Work</h5></li>
+                            <li>
+                                <textarea ng-show="label" ng-model="getCurrentUser.workaddress" style="margin:0%; height:0%; padding-left: 9%;  border: none; margin-top: -3%;" readonly></textarea>
+                            </li>   
+                        </ul>    
+        </li>
+    
+     <li class="collection-item">
+         <h5>Connected Account</h5>
+            <p ng-click="fbLoginUser();" ng-if="getCurrentUser.userType=='HootparkingUser' && !getCurrentUser.facebook.id "><span class="glyphicon glyphicon-bookmark sHeight"></span>LINK FACEBOOK {{getCurrentUser.userType}} </p> 
+             <p ng-click="UserOfFacebook(getCurrentUser.facebook.id);" ng-if="getCurrentUser.userType=='HootparkingUser' && getCurrentUser.facebook.id "><span class="glyphicon glyphicon-bookmark sHeight"></span>Your FACEBOOK {{getCurrentUser.facebook.name}} </p> 
+             <p ng-click="UserOfFacebook(getCurrentUser.id);" ng-if="getCurrentUser.userType=='Facebook'"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.name}}</a> </p> 
+              <p ng-click="UserOfFacebook(getCurrentUser.facebook.id);" ng-if="!getCurrentUser.userType && getCurrentUser.facebook.id"><span class="glyphicon glyphicon-bookmark sHeight"></span>FACEBOOK <a style="color:Blue;">{{getCurrentUser.facebook.name}}</a> </p>             
+            <div>
+               <input style="margin-left: 2%;height: 50px; width: 335px;border:none;background-color:#b9b5b5; color:White; font-size:18px" type="button" ui-sref="summary" class="getpark" value="ACCOUNT SUMMARY"/>
+            </div>
+
+      </li>
+    
+</ul>
+</div>
+
+<script>
+    var openFile = function (event) {
+        debugger;
+        var input = event.target;
+        alert(input);
+        var reader = new FileReader();
+        reader.onload = function () {
+            debugger;
+            var dataURL = reader.result;
+
+            alert(dataURL);
+        };
+        var re = reader.readAsDataURL(input.files[0]);
+        alert(re);
+    };
+</script>
+
+    
+
+
+
+
+
+
+
+
+

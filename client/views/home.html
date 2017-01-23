@@ -1,0 +1,63 @@
+<div id="geolocate">
+
+  <div ng-app="easyparkangularApp" ng-controller="MainCtrl">
+        
+       <form ng-submit="calcRoute()" id="calc-route-form">
+
+       <!-- Start home-search -->
+       
+       <!-- end home-search -->
+     
+       <div id="map-canvas" style="height:380px;"></div>
+
+       <div ng-include src="'views/parkingspotslist.html'"></div>
+
+       <div class="home-footer">
+
+       <!-- Start address container -->
+         <div class="home-search">
+       <input id="Autocomplete" type="text" placeholder="Search for name or address..."
+       ng-autocomplete="result" details="details" options="options" ng-model="address" />
+       <span class="glyphicon glyphicon-search" ng-click="writeAddressName(result);"></span></div>
+       <div class="address-container">
+       <div class="home-address-title"><span class="glyphicon glyphicon-map-marker"></span> Your location</div>
+       <span id="address">{{formattedAddress}}</span>
+       <span id="error">{{addressError}}</span>
+        </div><!-- end address container -->
+        <!--<input type="submit" class="getpark waves-effect" value="Search Parking"/>-->
+       <button type="submit" class="getpark waves-effectButton">Search Parking Now</button>
+       <button type="submit"  class="getpark waves-effectRelocateButton" ui-sref="parkingspotslist">Relocate</button>
+       </div>
+
+
+      </form>
+
+</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#parking").click(function () {
+            debugger;
+            $.ajax({
+                type: "GET",
+                contentType: 'application/json',
+                url: 'http://api.parkwhiz.com/search/?lat=41.8857256&lng=-87.6369590&start=1475045559&end=1475056359&key=f4231704422f0b0ec3f59e61a2971604',
+                cache: false,
+                dataType: 'json',
+                success: function (data) {
+                    alert(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log('Error: ' + jqXHR.status);
+                    console.log('textStatus: ' + textStatus)
+                }
+            });
+        });
+    });
+
+    
+</script>
+
+
+
+

@@ -1,0 +1,37 @@
+<div style="background: #2A2C3B" align="center" style="height:50%;width:50%;">
+    <div id="profile-intro">
+         <div id="circle" style="margin-left: 38%; border: solid; background: none; border-color: #f25d59; 
+            width: 104px; height: 100px; border-width: thin; border-radius: 183px;"> 
+            <div>
+                <div>
+                    <p>
+                        <img src="/images/logoicon.png" style="height: 40%; width: 70%; margin-top: 18%;"></p>
+                </div>
+            </div>
+        </div>
+        <p>
+            Your profile</p>
+    </div>
+    <form class="form" name="form" ng-submit="login(form)" novalidate>
+    <input id="inputName" class="register" type="text" name="email" ng-model="user.email"
+        placeholder="Enter email" required />
+    <input id="inputName" class="register" type="password" name="password" ng-model="user.password"
+        placeholder="Enter password" required />
+    <br />
+    <div align="center">
+        <span style="color: #f25d59;" class="errMessage" ng-show="compulsaryfield">
+            All fields are required.</span> <span ng-show="errMessage" style="color: #f25d59;"
+                class="errMessage" ng-show="compulsaryfield">{{errors.other}}</span>
+    </div>
+    <div align="center">
+        <input type="submit" class="getpark regtext" style="width: 40%; color: #f25d59; font-size: large;"
+            value="Sign in" />
+    </div>
+      <div align="center">
+             <input type="text" ui-sref="forgetPassword" class="getpark regtext" style="border: none !important;
+                    cursor: pointer; color: #f25d59;height: 16px !important;text-align: center;" value="Forget Password"  />
+    </div>
+    <div class="altsign">
+        Don't have an account, please <a ui-sref="signup" style="cursor: pointer;">Sign up</a></div>
+    </form>
+</div>

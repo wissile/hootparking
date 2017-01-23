@@ -1,0 +1,76 @@
+<div ng-controller="ParkingspotslistCtrl">
+  <!--I found {{spots.length}} spots. Filter by:-->
+  <!--<input type="checkbox" ng-model="typeFilter" ng-true-value="'OFF'" ng-false-value="'ON'"> Garage-->
+
+  <!--<div class="list-group">-->
+    <!--<a class="list-group-item" ng-click="saveParkingSpot(spot)"-->
+       <!--ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">-->
+
+      <!--<div class="parking-name">{{spot.NAME}}</div>-->
+      <!--<div class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</div>-->
+      <!--<div class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</div>-->
+      <!--<div class="status">{{spot.TYPE}}</div>-->
+      <!--<div class="right-data">-->
+        <!--<div class="price"><span>$</span>{{spot.currentRate.RATE | number:1}}</div>-->
+        <!--<div class="distance">{{spot.distance | number:1}}<span>mi</span></div>-->
+      <!--</div>-->
+    <!--</a>-->
+  <!--</div>-->
+  <div style="width:100%; height:55px;background-color: #ffffff;">
+         <div style="Background-color:#f25d59;height: 90%;; width: 400px;"> 
+            <div>
+                  <div style="float:left; width: 55%; margin-left: 8%; color: white; ">Hyatt Regency Hotel,San francisco, CA 94109, USA</div>
+                  <div class="circle" style="margin-top: 5%; background-color:#ffffff; width: 60px; height: 60px; float: right; margin-right: 8%;box-shadow: 7px 6px 10px #afadad;">
+                    <span class="glyphicon glyphicon-search" style="padding-top: 28%;padding-left: 28%;font-size: 25px;"></span>
+                  </div>
+             </div>
+         </div>
+  </div>
+  
+
+    <ul class="collection" style="border: none !important;width:100%">
+    <div>
+         <span style="margin-left: 5%;">Distance</span>
+         <span style="margin-left: 8%;">Price</span>
+    </div>
+
+
+     <h5 style="margin-left:5%; color:#f25d59">Parking Results</h5>
+     
+        <li class="collection-item avatar" ng-repeat="spot in spots | filter:{TYPE:typeFilter}  | orderBy:orderProp | limitTo: quantity">
+            <i class="material-icons circle blue">insert_chart</i>
+            <span class="title" style="font-weight: bold;color:Black;" >{{spot.NAME}}</span>
+           <!-- <p><span class="type" ng-show="{{spot.TYPE == 'OFF'}}">Garage</span>
+            <span class="type" ng-show="{{spot.TYPE == 'ON'}}">Street</span>-->
+
+       
+        <div>
+            <ul>
+                <li>
+                <input type="button" style="border-radius: 25px; background-color:#92d874; padding: 0px 10px;height:20px !important;line-height:0px !important;text-transform:none;" class="btn btn-default btn-xs" value="Available"/>
+                <span><i class="material-icons" style="font-size:large;">directions_walk</i>10 min</span>
+                <span class="glyphicon glyphicon-time">2h15</span>
+                </li>
+            </ul>
+        </div>
+        <div style="margin-left:77%;margin-top:-14%;font-size: initial;">
+            <ul class="parking-list-details">
+                <li style="color:Green;">{{spot.PTS | number:1}}<span>mi</span></li>
+                <li style="color:#f25d59;"><span>$</span>{{spot.RATES.RS[0].RATE | number:1}}</li>
+            </ul>
+
+           
+        </div>
+            <a class="secondary-content" ng-click="saveParkingSpot(spot)">
+                <i class="material-icons" style="font-size:-webkit-xxx-large;margin-left:35%">keyboard_arrow_right</i></a>
+              
+                <!--<i class="material-icons">keyboard_arrow_right</i>-->
+        <div class="collection-item" style="display: none" id="textarea_sendfeedback">
+        <textarea  ng-model="feedback.feedbackData" rows="20" cols="50">Write contents to sent Feedback here</textarea>
+        <button  ng-click="SaveFeedback();"  id="">
+            Send</button>
+        </div>
+        </li>
+    </ul>
+</div>
+

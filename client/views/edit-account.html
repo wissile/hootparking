@@ -1,0 +1,152 @@
+<div class="account-container" style="background: #2A2C3B">
+    <h5 style="color:White;">Profile</h5> 
+
+<form class="form" name="form" novalidate autocomplete="off">
+<div class="input-field col s6">
+         <div id="result">           
+           <img class="circle" ng-if="User.userType=='HootparkingUser'&& User.image " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/> 
+            <img class="circle" ng-if="User.userType=='HootparkingUser'&& !User.image " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/profile.png" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/profile.png'"/> 
+            <img class="circle" ng-if="User.userType=='Facebook' && FacebookImage"style="margin-left: 40%;" ng-src="{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file||'{{User.image}}'"/>
+             <img class="circle" ng-if="User.userType=='Facebook'&& !FacebookImage && !facebookNewImage " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/profile.png" ng-model="User.image" alt="http://localhost:9000/Images/profile.png"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/profile.png'"/>
+             <img class="circle" ng-if="User.userType=='Facebook'&& facebookNewImage " style="margin-left: 40%;" ng-src="http://localhost:9000/Images/{{User.image}}" ng-model="User.image"  width="80" height="80" ng-show="!!file" ngf-thumbnail="file ||'http://localhost:9000/Images/{{User.image}}'"/>  
+             <span class="glyphicon glyphicon-camera" style="float: right; margin-top: -4%; margin-right: 41%; color:White;font-size:140%" onclick ="javascript:document.getElementById('imagefile').click();"></span>
+            <div align="center">
+            <form  name="upload_form">
+                <input 
+                type="file" 
+                ngf-select 
+                ng-model="file" 
+                name="file" 
+                 ngf-pattern="'image/*'"
+                accept="image/*" 
+                ngf-max-size="20MB"
+                style='visibility: hidden;'
+                id = "imagefile"/>       
+                          
+                 </form>
+                 </div>
+            </div>           
+  <!--<div class="button" ngf-select ng-model="image" name="file" id="upload" ngf-pattern="'image/*'"
+    ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" 
+    ngf-resize="{width: 100, height: 100}">Select</div> src="images/jen.png"
+     <input 
+               type="file" 
+               ngf-select 
+               ng-model="up.file" 
+               name="file" 
+               ngf-pattern="'image/*'"
+               accept="image/*" 
+               ngf-max-size="20MB"
+               id="upload" 
+               />
+                                    <div> 
+                                        <a href="" id="A1" for="file" ng-disabled="disablefield" ng-click="SaveData();">Upload </a>
+                                        </div>-->
+                                        <!--<input type='file' accept='image/*' onchange='openFile(event)'>-->
+
+                
+    </div>
+    <div class="input-field col s6">
+        <input id="first_name" type="text" ng-model="User.name" class="validate inputEdit">
+        <label  ng-class="User.name ? 'active' : ''  " for="first_name">First Name</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="last_name" type="text" ng-model="User.lastname" class="validate inputEdit">
+        <label ng-class="User.lastname ? 'active' : ''  " for="last_name">Last Name</label>
+    </div>
+    <!--<div class="input-field col s6">
+        <span class="glyphicon glyphicon-calendar prefix"></span>
+        <input id="birthday" type="date" value="{{User.dob | date: 'yyyy-MM-dd'}}" ng-model="User.dob" class="datepicker inputEdit"> 
+        <label ng-class="User.dob ? 'active' : ''  " for="birthday">Birthday</label>
+    </div>-->
+    <div class="input-field col s6">
+        
+        <input id="mobile_number" name="phoneNumber" type="text" ng-model="User.mobileno" class="validate inputEdit">
+        <label ng-class="User.mobileno ? 'active' : ''  " for="mobile_number">Mobile Number</label>
+        <!--<span class="error-message" style="color: #f25d59;" ng-show="form.phoneNumber.$invalid">The phone number field should be 
+of 10 digits</span> ng-maxlength="10" ng-minlength="10"  ng-pattern="/^\d{10}$/"
+{{form.phoneNumber.$invalid}}
+{{form.phoneNumber.$dirty}}-->
+            </div>
+
+    <div class="input-field col s6">
+        <input id="home_address" type="text" ng-model="User.homeaddress" class="validate inputEdit">
+        <label ng-class="User.homeaddress ? 'active' : ''  " for="home_address">Home Address</label>
+    </div>
+    <div class="input-field col s6">
+        <input id="work_address" type="text" ng-model="User.workaddress" class="validate inputEdit" autocomplete="false">
+        <label ng-class="User.workaddress ? 'active' : ''  " for="work_address">Work Address</label>
+    </div>
+    <br />
+    <h5 style="color:White;">Account</h5> 
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="password" type="password" ng-model="User.password" class="validate inputEdit">
+            <label ng-class="User.password ? 'active' : ''  " for="password">Password</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+            <input id="email" type="email" ng-model="User.email" class="validate inputEdit">
+            <label ng-class="User.email ? 'active' : ''  " for="email" data-error="wrong" data-success="right">Email</label>
+        </div>
+    </div>
+    <!--<div class="row">
+        <input id="icon_telephone" type="tel" class="validate inputEdit">
+        <label for="icon_telephone">Telephone</label>
+    </div>-->
+    <div class="row">
+    <p>
+    <input type="submit" class=" main-nav-name1 orange-text getpark regtext" ng-click="submit()" style = "margin-left: 27%;border: 1px solid #A9A9A9;" value="SAVE"/>
+    </p>
+    </div>
+    </form>
+</div>
+
+
+
+<script>
+    var openFile = function (event) {
+        debugger;
+        var input = event.target;
+        alert(input);
+        var reader = new FileReader();
+        reader.onload = function () {
+            debugger;
+            var dataURL = reader.result;
+
+            alert(dataURL);
+        };
+        var re = reader.readAsDataURL(input.files[0]);
+        alert(re);
+    };
+</script>
+
+
+<!--<p>
+    <input class="with-gap" name="group3" type="radio" id="test5" checked />
+    <label for="test5">Red</label>
+</p>
+
+<form action="#">
+    <p>
+        <input type="checkbox" id="test5" />
+        <label for="test5">Red</label>
+    </p>
+    <p>
+        <input type="checkbox" id="test6" checked="checked" />
+        <label for="test6">Yellow</label>
+    </p>
+</form>
+
+
+<form action="#">
+    <div class="file-field input-field">
+        <input class="file-path validate" type="text"/>
+        <div class="btn">
+            <span>File</span>
+            <input type="file" />
+        </div>
+    </div>
+</form>-->
+

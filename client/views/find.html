@@ -1,0 +1,71 @@
+<div id="geolocate">  
+  <div ng-app="easyparkangularApp" ng-controller="MainCtrl">         
+       <form ng-submit="calcRoute()" id="calc-route-form">        
+       <div id="map-canvas" style="height:470px;" ></div>   
+           <div style=" z-index: 1; position: relative;"> 
+               <ul id="Ul1" > 
+                 <li class="geosecline">                  
+                    <p class="sectionline" style="font-size: 23px; color: white;margin-left: 65px;">LOCATION</p> 
+                    <div><p class="test" id="P1" style="margin-left: 65px;color: #cebcbc">{{formattedAddress}}</p></div>  
+                 </li> 
+                 <hr style="width:70%"/> 
+                 <li class="geosecline"> 
+                 <div> 
+                      <div class="test"><img src="images/carloc.png" style="height: 20px; margin-left:15px; width: 35px; float: left; margin-top: 10px;"/></div> 
+                      <div class="sectionline" style="font-size: 23px; color: white;margin-left: 65px;">CAR</div> 
+                      <div class="test" id="P2">{{carLocation.DESC}}</div> 
+                 </div> 
+                 </li> 
+               </ul> 
+           </div>         
+      </form> 
+</div> 
+</div>  
+
+<!--<div id="geolocate">
+
+  <ul id="geosection">
+    <li class="geosecline">
+
+      <p class="test"> <div class="preloader-wrapper small active">
+
+      <div id="doughnutChart" class="chart"></div>
+
+
+        <div class="spinner-layer spinner-yellow-only">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+    </div></p>
+
+      <p class="test" id="address">{{formattedAddress}}</p>
+
+      <p class="sectionline">Your location</p>
+    </li>
+    <li class="geosecline">
+      <p class="test"><img src="images/carloc.png"/></p>
+
+      <p class="test" id="address">{{carLocation.DESC}}</p>
+
+      <p class="sectionline">Car location</p>
+
+      <p>
+
+      <div class="getstats"><a href="">Find my Car</a></div>
+      </p>
+    </li>
+  </ul>
+  <div id="map-canvas"></div>
+</div>
+
+<ul id="carinfo">
+  <li><img src="images/walk.png"/>12min<p>walking</p></li>
+  <li>|</li>
+  <li><img src="images/time.png"/>1h16<p>parking time</p></li>
+</ul>
+-->
